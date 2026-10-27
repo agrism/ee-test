@@ -1,0 +1,94 @@
+services:
+  # 1. PostgreSQL Datubāze ar iepriekš aizpildītiem EIS datiem
+  postgres:
+    image: postgres:15-alpine
+    container_name: eis_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: directus
+      POSTGRES_USER: directus
+      POSTGRES_PASSWORD: directus_password
+    volumes:
+      - ./backend/init-db/01-directus-schema-seed.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "${POSTGRES_PORT:-5435}:5432"
+    networks:
+      - eis_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U directus -d directus"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # 2. Directus Headless CMS (Backend)
+  directus:
+    image: directus/directus:latest
+    container_name: eis_directus
+    restart: unless-stopped
+    ports:
+      - "8055:8055"
+    environment:
+      KEY: "eis-proovitoo-key-2026"
+      SECRET: "eis-proovitoo-secret-2026"
+      ADMIN_EMAIL: "admin@eis.ee"
+      ADMIN_PASSWORD: "adminpassword"
+      DB_CLIENT: "pg"
+      DB_HOST: "postgres"
+      DB_PORT: "5432"
+      DB_DATABASE: "directus"
+      DB_USER: "directus"
+      DB_PASSWORD: "directus_password"
+      WEBSOCKETS_ENABLED: "true"
+      CORS_ENABLED: "true"
+      CORS_ORIGIN: "true"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - eis_network
+
+  # 3. Model Context Protocol (MCP) AI Serviss
+  mcp-server:
+    build:
+      context: ./mcp-server
+      dockerfile: Dockerfile
+    container_name: eis_mcp_server
+    restart: unless-stopped
+    ports:
+      - "3001:3001"
+    environment:
+      PORT: 3001
+      DIRECTUS_URL: "http://directus:8055"
+    volumes:
+      - ./mcp-server/index.js:/app/index.js:ro
+    depends_on:
+      - directus
+    networks:
+      - eis_network
+
+  # 4. Next.js App Router (Frontend)
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: eis_frontend
+    restart: unless-stopped
+    ports:
+      - "${FRONTEND_PORT:-3002}:3000"
+    environment:
+      NEXT_PUBLIC_DIRECTUS_URL: "http://localhost:8055"
+      NEXT_PUBLIC_MCP_SERVER_URL: "http://localhost:3001"
+      NODE_ENV: "production"
+    depends_on:
+      - directus
+      - mcp-server
+    networks:
+      - eis_network
+
+networks:
+  eis_network:
+    driver: bridge
+
+volumes:
+  postgres_data:

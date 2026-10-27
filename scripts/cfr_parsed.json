@@ -1,0 +1,882 @@
+[
+  {
+    "id": "CFR-001",
+    "type": "KOHUSTUS",
+    "category": "ARENDUS",
+    "status": "APPROVED",
+    "text_ee": "Rakenduse kood on versioneerit ud kasutades Git'i. https://en.wikipedia.o rg/wiki/Git Tuleb lähtuda IT profiilist",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-002",
+    "type": "OOTUS",
+    "category": "ARENDUS",
+    "status": "APPROVED",
+    "text_ee": "Rakenduse andmebaas on versioneerit ud. Tuleb kasutada migratsioo ni skripte. Liquibase, flyway",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-003",
+    "type": "KOHUSTUS",
+    "category": "ARENDUS",
+    "status": "APPROVED",
+    "text_ee": "Kood peab olema kirjutatud piisavalt selgelt, et on loetav ja mõistetav ilma kommentaa rideta (clean code). Kohtades, kus koodiga ja/või valdkonnag a mitte tuttaval arendajal võib tekkida oht koodi vääritimõis tmiseks, peab lähtekood olema selgelt, arusaadaval t ja sisuliselt kommentaa ridega kirjeldatud. Lähtuda tuleb Clean Code printsiipidest (ISBN 978-0-13- 235088-4)",
+    "extra_ee": "about:blank 1/30"
+  },
+  {
+    "id": "CFR-004",
+    "type": "KOHUSTUS",
+    "category": "ARENDUS",
+    "status": "APPROVED",
+    "text_ee": "Rakenduse lähtekood ja kommentaa rid peavad olema inglise keeles.",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-005",
+    "type": "SOOVITUS",
+    "category": "ARENDUS",
+    "status": "APPROVED",
+    "text_ee": "Rakenduse tarkvara markeerida litsentsiga. Soovituslikult MIT.",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-006",
+    "type": "OOTUS",
+    "category": "ARENDUS",
+    "status": "APPROVED",
+    "text_ee": "Rakenduse arenduses ei kasutata programme erimiskeeli, mis pole Top 25 TIOBE index'is. https://www.tiobe.co m/tiobe-index/ Nõude eesmäärk on minimeerida olukordi, kus arendatakse uusi komponente tehnoloogiates, millele on raske leida arendajaid, kui komponendid vajavad muutmist.",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-007",
+    "type": "OOTUS",
+    "category": "ARENDUS",
+    "status": "APPROVED",
+    "text_ee": "Kõikide arendamise l kasutatavat e komponent ide (rakenduse, andmebaasi , kolmanda osapoole omad) eluea lõpp (inglise k End-of- Life, EOL) ei tohi teadaoleval t olla vähem kui 5 aastat.",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-008",
+    "type": "KOHUSTUS",
+    "category": "ARENDUS",
+    "status": "APPROVED",
+    "text_ee": "Teenuse rakendustel e eksisteeriva d ajakohased",
+    "extra_ee": "about:blank 2/30 taasteplaani d."
+  },
+  {
+    "id": "CFR-009",
+    "type": "KOHUSTUS",
+    "category": "ÜLDINE",
+    "status": "APPROVED",
+    "text_ee": "Taaskasutat avalt disainitud rakenduse kood on e- riigi koodivara mus (koodivara mu.eesti.ee ). MUSTAND ARENDUS APPROVED",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-010",
+    "type": "KOHUSTUS",
+    "category": "TARNE",
+    "status": "APPROVED",
+    "text_ee": "Rakendus peab olema läbinud enne toodanguss e minemist turvatestim ise. Tuleb rakendada OWASP (Top 10) https://owasp.org/ww w-project-top-ten/. Väljaarvatud: Juhul, kui on arhitektuuris rakendatud alternatiivsed kompenseerivad meetmed ning neile on tehtud riskihinnag.",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-011",
+    "type": "KOHUSTUS",
+    "category": "TARNE",
+    "status": "APPROVED",
+    "text_ee": "Rakendus ei lähe toodangu- keskkonda, kui selles on avastatud turvalisuse nõrkuseid ja/või haavatavusi . Haavatavuse tuvastamine on käsitsi või automatiseeritult, näiteks koodianalüüsi tulemusel. Lisasoovitus: Rakendus ei lähe toodangu-keskkonda, kui selle koodis on avastatud koodikvaliteedi vigu. Väljaarvatud: Kui riskianalüüsi alusel on otsustatud teha erisus, näiteks potentsiaalne probleem on lahendatud teisiti ning lahenduse vastupanuvõimet on testitud ning hinnatud turvaliseks. Soovitus kasutada staatilist koodi analüüsi näiteks Qodana, SonarQube, SpotBugs jm",
+    "extra_ee": "about:blank 3/30"
+  },
+  {
+    "id": "CFR-012",
+    "type": "KOHUSTUS",
+    "category": "TARNE",
+    "status": "APPROVED",
+    "text_ee": "Toodanagu keskkonda ei tarnita koodi, mille testid ebaõnnestu vad. Eeldus on, et rakendus on kaetud automaat testidega. Ka manuaalselt testimisel ei tarnita ebaõnnestunud osi toodangu keskkonda.",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-013",
+    "type": "OOTUS",
+    "category": "TARNE",
+    "status": "APPROVED",
+    "text_ee": "Toodangu keskkonda ei lähe kood, mis pole läbinud code review. Ehk nelja silma printsiipi. Eeldus on siin, et projektis on vähemalt 2 arendajat. Nõuet saab ka täita, kui on kasutusel staatilised koodi analüüsi tööriistad.",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-014",
+    "type": "OOTUS",
+    "category": "TARNE",
+    "status": "APPROVED",
+    "text_ee": "Koodi pakettide või imagete tarnimine toimub automaatse lt Kasutada näiteks, ArgoCD, Gitlab CI/CD või mõnda muud automatiseeritud vahendit.",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-015",
+    "type": "KOHUSTUS",
+    "category": "TARNE",
+    "status": "APPROVED",
+    "text_ee": "Toodangu keskkonda des on rakendused on automaatse lt monitooritu d. See eeldab ka monitooringus tekkivate vigadest automaatset teavitamist. Lisasoovitus: Monitooringut teostada ka arendus ja test- rakenduskeskkondad es. Lisasoovitus: Monitoorida ka teenuse käitumismustreid, näiteks kiirust ja arenduste mõju rakenduse kiirusele.",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-016",
+    "type": "SOOVITUS",
+    "category": "TARNE",
+    "status": "APPROVED",
+    "text_ee": "Rakendus on versioneerit ud kasutades semantilise versioneeri Põhimõte: https://medium.com/j avarevisited/applicati on-versioning- strategies- de353a84faaa Või kasutada release loogikat 2025-07-R3",
+    "extra_ee": "about:blank 4/30 mise põhimõtet. kus esimene ots, aastaarv, teine kuu ja kolmas R3 käimas olev nädal jooksvas kuus."
+  },
+  {
+    "id": "CFR-017",
+    "type": "KOHUSTUS",
+    "category": "ARHITEKTUUR",
+    "status": "APPROVED",
+    "text_ee": "Rakenduse konfigurats ioon (sh. paroolid) ei ole osa tarkvara koodist vaid paigaldatak se külge rakenduse tarnel keskkonda läbi keskkonna muutujate. Ära talleta paroole tekstina konfiguratsioonides või andmebaasides. Paroolide taaskasutus ainult läbi Vault- sarnase lahenduse.",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-018",
+    "type": "KOHUSTUS",
+    "category": "ARHITEKTUUR",
+    "status": "APPROVED",
+    "text_ee": "Rakendus ei tohi luua uut identiteedis üsteemi. Tuleb tugineda olemasolev atele riiklikele (ID-kaart, mobiilID, SmartID) Erandina microsoft SSO.",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-019",
+    "type": "OOTUS",
+    "category": "ARHITEKTUUR",
+    "status": "APPROVED",
+    "text_ee": "Rakenduse tehnilised komponend id kaitsevad iseennast ja valideeriva d nende poole pöördunud kasutaja või tehnilise teenuse õiguseid. Komponendid on andmebaasid, töötavad või väljakutsutavad tarkvara- komponendid, mikroteenused. Kui autentimine on soovituslikult tsentraalne, siis autoriseerimine on rakenduste enda tagada.",
+    "extra_ee": "about:blank 5/30"
+  },
+  {
+    "id": "CFR-020",
+    "type": "KOHUSTUS",
+    "category": "ARHITEKTUUR",
+    "status": "APPROVED",
+    "text_ee": "Tehniliste komponent ide API'del eksisteerib automaatse lt genereeritu d dokumentat sioon. Nagu näiteks Swagger või OpenAPI",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-021",
+    "type": "OOTUS",
+    "category": "ARHITEKTUUR",
+    "status": "APPROVED",
+    "text_ee": "Rakenduse d on disainitud ja arendatud domeenist juhinduva disaini (domain driven design) ja mikroteenu ste arhitektuuri põhimõttei d jälgides. Infosüsteemid on ehitatud mitmest koosvõimelisest autonoomsest - ehk väheste otseste sõltuvustega - mikroteenusest. Mikroteenus on teenuse komponent, milles on kokku koondatud kõik funktsioonid, mis muutuvad samadel põhjustel - erinevatel põhjustel muutuvad komponendid on tõstetud eraldi mikroteenusteks. Rakenduste enda sisse on kirjutatud ainult rakenduse enda piiridesse jääv äriloogika. Rakenduste sisse mitte ehitada otsepäringuid teiste lõpp-infosüsteemide pihta, kui selleks pole selget põhjendatud vajadust.Infosüsteemi d on ehitatud mitmest koosvõimelisest autonoomsest - ehk väheste otseste sõltuvustega - mikroteenusest. Mikroteenus on teenuse komponent, milles on kokku koondatud kõik funktsioonid, mis muutuvad samadel põhjustel - erinevatel põhjustel muutuvad",
+    "extra_ee": "about:blank 6/30 komponendid on tõstetud eraldi mikroteenusteks. Rakenduste enda sisse on kirjutatud ainult rakenduse enda piiridesse jääv äriloogika. Rakenduste sisse mitte ehitada otsepäringuid teiste lõpp-infosüsteemide pihta, kui selleks pole selget põhjendatud vajadust."
+  },
+  {
+    "id": "CFR-022",
+    "type": "OOTUS",
+    "category": "ARHITEKTUUR",
+    "status": "APPROVED",
+    "text_ee": "Infosüstee mide vaheline andmevahe tus toimub üle X-tee. Silmas peame kõiki teenuseid, mis ei ole majutatud meie endi juures või kuulub teisele osapoolele. Erandina võib olla otse REST liides, aga sellisel juhul tuleb toestada riskianalüüs ja põhjendada, miks pole võimalik X-tee liidestamine. Täiendavalt tuleb lähtuda RIA nõuetest.",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-023",
+    "type": "OOTUS",
+    "category": "ARHITEKTUUR",
+    "status": "APPROVED",
+    "text_ee": "Kasutajalii des ja teenuse funktsionaa lsus on loogiliselt eristatud kihid ja suhtlevad üle API. Äriloogilis ed tehnilised komponend id on kasutatavad erinevate kasutajaliid este poolt. Näiteks võib kaaluda Headless CMS põhimõtteid https://en.wikipedia.o rg/wiki/Headless_con tent_management_sy stem näiteks Directus Lisasoovitus: Kaaluda ka mikrofrontendide põhist lähenemist https://martinfowler.c om/articles/micro- frontends.html näiteks Single-SPA",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-024",
+    "type": "OOTUS",
+    "category": "ARHITEKTUUR",
+    "status": "APPROVED",
+    "text_ee": "Tehnilised komponend id avaldavad https://en.wikipedia.o rg/wiki/Representatio nal_state_transfer EST API URL on",
+    "extra_ee": "about:blank 7/30 taaskasutus eks REST API kujul https://[teenuse- domeen-ja- keskkond]/api/[versio on]/[ressurss]/[identif ikaator]/[jms...] Lisasoovitus: RPC lähenemine peab olema välistatud nii palju, kui (Remote Procedure Call, ehk 'sisendparameetriteta funktsioonide käivitamine') võimalik. See tähendab, et sama API päring ei tohiks üldjuhul anda erinevaid vastuseid. Ehk GET /api/v1/getMyContact Information asemel oleks GET /api/v1/contact/23/ (kus 23 on kontakti ID). Lisasoovitus: Mitte unustada 'idempotentsust' https://restfulapi.net/i dempotent-rest-apis/"
+  },
+  {
+    "id": "CFR-025",
+    "type": "OOTUS",
+    "category": "ARHITEKTUUR",
+    "status": "APPROVED",
+    "text_ee": "Rakendusel peab olema masinloeta v testleht (health check) JSON formaadis.",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-026",
+    "type": "SOOVITUS",
+    "category": "ARHITEKTUUR",
+    "status": "APPROVED",
+    "text_ee": "API teenused peavad toetama JSON andmeform aati. Accept: application/ json",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-027",
+    "type": "KOHUSTUS",
+    "category": "ARHITEKTUUR",
+    "status": "APPROVED",
+    "text_ee": "CamelCase peaks olema kasutuses",
+    "extra_ee": "about:blank 8/30 API teenuste keeles nii palju, kui võimalik. Fikseeritud väärtused, nagu BOOLEA N ja ENUM tüüpi väärtused peavad olema suurte tähtedega ja snake case stiilis. Näiteks https://som ething.eis.e e/api/v1/pe rson/person alCode"
+  },
+  {
+    "id": "CFR-028",
+    "type": "OOTUS",
+    "category": "ARHITEKTUUR",
+    "status": "APPROVED",
+    "text_ee": "Rakendus on pilvekõlbul ik. 1. Rakendus on skriptiga paigaldatav ning paigaldamine ja taastamine toimub automatiseeritava skripti käivitamisega. 2. Rakendus koosneb mitmest sõltumatust instantsist. 3. Rakendus on automaatselt skaleeritav ja vajadusel kõrgkäideldav kolme asukoha vahel sõltub ärilisest vajadusest. 4. Rakenduse andmed on varundatavad ja varundatud. Mikroteenused on (enamasti) pilvekõlbulikud, aga kõik, mis on pilvekõlbulik ei pruugi olla mikroteenus. Ehk ka ärivajaduste tõttu ehitatud monoliit",
+    "extra_ee": "about:blank 9/30 võib siiski olla pilvekõlbulik."
+  },
+  {
+    "id": "CFR-029",
+    "type": "OOTUS",
+    "category": "ARHITEKTUUR",
+    "status": "APPROVED",
+    "text_ee": "Rakenduse enda mälus või failisüstee mis talletatakse maksimaals elt käimasolev a päringu andmeid. Kõik andmed, mida vaja talletada pikemalt, peavad olema talletatud teenuse instantsist väljaspool.",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-030",
+    "type": "OOTUS",
+    "category": "ARHITEKTUUR",
+    "status": "APPROVED",
+    "text_ee": "Teenus suudab püsti jääda või end täisfunktsio naalselt taastada ka Chaos Monkey eksperimen teertestimis e tulemusel. https://en.wikipedia.o rg/wiki/Chaos_engine ering",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-031",
+    "type": "OOTUS",
+    "category": "ARHITEKTUUR",
+    "status": "APPROVED",
+    "text_ee": "Rakenduse tehnilised hajuskomp onendid ei jaga sama andmebaasi , mälu ega failisüstee mi. Ehk komponendi andmed ja failid on ligipääsetavad näiteks ainult läbi kontrollitud API kanali.",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-032",
+    "type": "OOTUS",
+    "category": "ARHITEKTUUR",
+    "status": "APPROVED",
+    "text_ee": "Andmebaas ei tohi sisaldada äriloogikat (triggerid, Kui ei saa täita siis tuleb põhjendada ja dokumenteerida juhud, miks pole nõue täidetav.",
+    "extra_ee": "about:blank 10/30 protseduuri d jms)."
+  },
+  {
+    "id": "CFR-033",
+    "type": "SOOVITUS",
+    "category": "ARHITEKTUUR",
+    "status": "APPROVED",
+    "text_ee": "Kasutajalii dese olekut (state) hoitakse kliendi liidese poolel ja teenused on ise olekuta. Brauseri kohalikus hoidlas, küpsistest. See on vajalik, kui teenused on mitmel õlal koormusjaoturi (LB) taga. Samuti hallatud klastri kontekstist, kus teenused peavad olema stateless.",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-034",
+    "type": "KOHUSTUS",
+    "category": "ARHITEKTUUR",
+    "status": "APPROVED",
+    "text_ee": "Rakendus peab logima kõik rakenduses tekkivad tehnilised vead.",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-035",
+    "type": "KOHUSTUS",
+    "category": "ÜLDINE",
+    "status": "APPROVED",
+    "text_ee": "Logid peavad olema jaotatud loogiliselt Auditlogi (seansilogi, tegevuslogi) - Info sisselogimiste, väljalogimiste ja seansi aegumiste kohta. Vigased sisselogimise katsed. Info õiguste suurendamise kohta. Peab olema logitud ka tühja või puuduvate parameetritega logimise katsed. Kogu informatsioon kasutajate tegevuste kohta koos tegevuse tüübi, seansi parameetrite (korreleerimaks seansi- ja tegevuslogi) ja kasutaja poolt esitatud sisendparameetritega (sh. väliste ressursside kasutamise kohta). Logida tuleb nii õnnestunud kui ka ebaõnnestunud tegevusi.",
+    "extra_ee": "TURVALISUS about:blank 11/30 Tehniline logi - Rakendusserveri poolt loodud logi. Vealogi - Erinevate veaolukordade info. Silumislogi - Arendajate jaoks vajalik debug info."
+  },
+  {
+    "id": "CFR-036",
+    "type": "OOTUS",
+    "category": "KVALITEET",
+    "status": "APPROVED",
+    "text_ee": "Lahendus peab olema kaetud automaatse te komponend itestidega (unit test), mis katavad ära iga äriloogika peamise funktsiooni , tagavad koodibaasi töökindluse ning võimaldava d regressioon ide kiiret tuvastamist ja vältimist. Kui esitulus kiht pole testidega katud siis tuleb välja tuua alternatiivsed testimise viisid. Soovituslik oleks kasutada Cypress või Selenium.",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-037",
+    "type": "KOHUSTUS",
+    "category": "ÜLDINE",
+    "status": "APPROVED",
+    "text_ee": "Rakenduse d on läbinud koormustes tid vähemalt kahekordse eeldatava kasutajama huga enne toodanguss e minekut. Koormustestid tuleb teha ka iga olulise muudatuse korral. Lisasoovitus: Koormusteste teostada regulaarselt. MUSTAND KVALITEET APPROVED",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-038",
+    "type": "KOHUSTUS",
+    "category": "KVALITEET",
+    "status": "APPROVED",
+    "text_ee": "Kasutajalii des peab olema veebipõhin e ja Võimalusel kuvada kasutajale kuvada inimloetav ja arusaadav veateade.",
+    "extra_ee": "about:blank 12/30 kasutatav kõigi enamlevinu d brauseriteg a - Edge, Chrome, Safari ja Firefox toega. Veebipõhin e kasutajaliid es peab olema kasutatav nutiseadme tel (Android, IOS)."
+  },
+  {
+    "id": "CFR-039",
+    "type": "KOHUSTUS",
+    "category": "KVALITEET",
+    "status": "APPROVED",
+    "text_ee": "Veebipõhin e kasutajaliid es järgib HTML5 ja CSS3 standardeid . https://validator.w3.o rg/ ning https://jigsaw.w3.org/ css-validator/",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-040",
+    "type": "SOOVITUS",
+    "category": "KVALITEET",
+    "status": "APPROVED",
+    "text_ee": "Süsteemi funktsionaa lne skoop on defineeritu d ja dokumente eritud.",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-041",
+    "type": "OOTUS",
+    "category": "KVALITEET",
+    "status": "APPROVED",
+    "text_ee": "Kasutajalii des kasutab EIS-i stiiliraamat ut. Hetkel beta DDS2",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-042",
+    "type": "OOTUS",
+    "category": "KVALITEET",
+    "status": "APPROVED",
+    "text_ee": "Rakendus vastab WCAG 2.2 AA tasemele",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-043",
+    "type": "KOHUSTUS",
+    "category": "TURVALISUS",
+    "status": "APPROVED",
+    "text_ee": "Rakenduse tarkvara tööd logitakse ning audit- Logima peaks õnnestunud ja ebaõnnestunud sisselogimiskatsed, ligipääs",
+    "extra_ee": "about:blank 13/30 logi talletatakse rakendusest ning selle baasist eraldi. logiandmetele, rakenduse töö katkemine ja tõrked, rakenduse administreerimistege vused, süsteemsed muudatused konfiguratsioonis, andmetöötlus ja seotud manipulatsioonid."
+  },
+  {
+    "id": "CFR-044",
+    "type": "KOHUSTUS",
+    "category": "TURVALISUS",
+    "status": "APPROVED",
+    "text_ee": "URL ei tohi sisaldada isikuandme id või sessioonivõ tit.",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-045",
+    "type": "KOHUSTUS",
+    "category": "TURVALISUS",
+    "status": "APPROVED",
+    "text_ee": "Tehniline lahendus peab olema projekteerit ud ja koostatud vastavalt kehtiva Eesti Infoturbest andardi (E- ITS) nõuetele veebiraken duste (APP.3.1) kohta. https://eits.ria.ee/et/v ersioon/2023/eits- poohidokumendid/eta lonturbe- kataloog/app- rakendused/app3- voorguteenused/app3 1-veebirakendused",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-046",
+    "type": "KOHUSTUS",
+    "category": "TURVALISUS",
+    "status": "APPROVED",
+    "text_ee": "Arendaja loodud lahenduse dokumentat sioonis (nt. detailanalü üs v.m.s.) tuleb välja tuua kasutatavad krüpto- ja räsialgorit mid, nende võtmepikk used, kasutuskoh ad, s.h. TLS",
+    "extra_ee": "about:blank 14/30 sertifikaati de kasutuskoh ad."
+  },
+  {
+    "id": "CFR-046",
+    "type": "KOHUSTUS",
+    "category": "TURVALISUS",
+    "status": "APPROVED",
+    "text_ee": "Võtmeid, sertifikaate, salasõnu ja muud sensitiivset ei talletata koodihoidl as või veebidoku mentides. Kasutada Vault- laadseid lahendusi. Oleks hea ka konfiguratsioonimuut ujaid hoida eemal tarkvara koodist, rancher vault, gitlab secrets",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-047",
+    "type": "KOHUSTUS",
+    "category": "TURVALISUS",
+    "status": "APPROVED",
+    "text_ee": "Rakendus peab olema väliste süsteemide tõrgete suhtes vastupanuv õimeline (resilient). Välise süsteemi tõrge tohib mõjutada ainult sellest otseselt sõltuvate kasutuslugude toimimist.",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-048",
+    "type": "OOTUS",
+    "category": "TURVALISUS",
+    "status": "APPROVED",
+    "text_ee": "Tarkvara koodile rakendatak se staatilise koodi analüüsi. Näiteks, SonarQube, Qodana, SpotBugs",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-049",
+    "type": "KOHUSTUS",
+    "category": "TURVALISUS",
+    "status": "APPROVED",
+    "text_ee": "Rakenduse tehnilised komponend id suhtlevad omavahel üle TLS/SSL'i",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-050",
+    "type": "OOTUS",
+    "category": "TURVALISUS",
+    "status": "APPROVED",
+    "text_ee": "Arendamis e käigus rakendada WAF reegleid https://owasp.org/ww w- community/Web_Ap plication_Firewall",
+    "extra_ee": "about:blank 15/30"
+  },
+  {
+    "id": "CFR-051",
+    "type": "KOHUSTUS",
+    "category": "ANDMEHALDUS",
+    "status": "APPROVED",
+    "text_ee": "Andmed peavad olema talletatud vähemalt UTF-8 enkoodingu s.",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-052",
+    "type": "KOHUSTUS",
+    "category": "ANDMEHALDUS",
+    "status": "APPROVED",
+    "text_ee": "Rakenduse, andmebaasi ja kolmanda osapoole komponend id peavad olema sellised, mille eluea lõpp (EOL) pole teadaoleval t vähem kui 2 aasta pärast.",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-052",
+    "type": "OOTUS",
+    "category": "ANDMEHALDUS",
+    "status": "APPROVED",
+    "text_ee": "Rakenduss erver peab võimaldam a töötamist andmebaasi serverist eraldi serveril.",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-053",
+    "type": "OOTUS",
+    "category": "ANDMEHALDUS",
+    "status": "APPROVED",
+    "text_ee": "Failide hoidmiseks tuleb kasutada S3 või analoogset lahendust. Näiteks AWS S3 teenus. Kui riigipilv saab teenuse valmis siis kaaluda nende poolt pakutavat objekt salvestus lahendust.",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-054",
+    "type": "KOHUSTUS",
+    "category": "ANDMEHALDUS",
+    "status": "APPROVED",
+    "text_ee": "Ühest relatsioonil ise andmebaasi andmetabel ist teise viitamisel tuleb kasutada väliseid võtmeid",
+    "extra_ee": "about:blank 16/30 (foreign key)."
+  },
+  {
+    "id": "CFR-055",
+    "type": "SOOVITUS",
+    "category": "ANDMEHALDUS",
+    "status": "APPROVED",
+    "text_ee": "Kõik välised võtmed (foreign key) peavad olema indekseerit ud. Kui on oluline hoida andmebaasi tööd võimalikult kiirena ja optimeerituna, siis tuleks igat foreign key indeksi vajadust eraldiseisvalt hinnata vastavalt andmebaasi tabelitele ja äriloogikale. Nt. kui tabelisse sisestatakse andmeid tihti kuid loetakse harva, siis on indeksid pigem koormavamad, kui kasulikud.",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-056",
+    "type": "OOTUS",
+    "category": "ANDMEHALDUS",
+    "status": "APPROVED",
+    "text_ee": "Tuleb kasutada päringumu utujaid (parameter binding).",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-057",
+    "type": "KOHUSTUS",
+    "category": "ANDMEHALDUS",
+    "status": "APPROVED",
+    "text_ee": "Kõigis andmebaasi tabelites peab olema defineeritu d üks primaarvõti (primary key).",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-058",
+    "type": "KOHUSTUS",
+    "category": "ANDMEHALDUS",
+    "status": "APPROVED",
+    "text_ee": "Andmebaas i objektide nimetused peavad olema sisulised ja andma aimu nende otstarbest.",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-059",
+    "type": "OOTUS",
+    "category": "ANDMEHALDUS",
+    "status": "APPROVED",
+    "text_ee": "Andmebaas is defineerita kse üldjuhul kaks või enam kasutaja Rakenduse peakasutaja - Kellena luuakse objektid ja skeemid. Objektide loomiseks vajalikud õigused ja ressursid on loetletud rakenduse dokumentatsioonis.",
+    "extra_ee": "about:blank 17/30 Rakenduse piiratud õigustega kasutaja - Kellena pöördub rakendusserver/raken dus."
+  },
+  {
+    "id": "CFR-060",
+    "type": "KOHUSTUS",
+    "category": "ANDMEHALDUS",
+    "status": "APPROVED",
+    "text_ee": "Andmetabe lites sisalduvad võõrvõtme d peavad nime järgi seostuma tabeli ja väljaga, millele need viitavad.",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-061",
+    "type": "OOTUS",
+    "category": "ANDMEHALDUS",
+    "status": "APPROVED",
+    "text_ee": "Määratud osa andmetest tuleb versioneeri da salvestamis el.",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-062",
+    "type": "OOTUS",
+    "category": "ANDMEHALDUS",
+    "status": "APPROVED",
+    "text_ee": "Andmete kustutamin e ei tohi kustutada tegelikke kirjeid andmebaasi st, välja arvatud, kui kirjed pole mittefunkts ionaalsed, ehk ei oma ärilist seost. Kustutamine peaks olema kustutamise lipuga, ajatempliga või juhul, kui andmed peavad päriselt kaduma, siis need obfuskeerida taastamatult. Unikaalne ID, mis erinevates teistes logides võib olla talletunud, peab aga jääma alles. Väljaarvatud: Kui tegelike kirjete kustutamise nõue tuleneb õigusaktidest.",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-063",
+    "type": "OOTUS",
+    "category": "ANDMEHALDUS",
+    "status": "APPROVED",
+    "text_ee": "Aja esitamisel kasutada standardist ISO 8601 Kuupäevad kirjutatakse kujul AAAA-KK-PP. Näide: 2. juuni 2025 kirjutada kujul 2025- 06-02. Kellaajad kirjutatakse kujul hh:mm:ss, kus hh järgib 24-tunnist",
+    "extra_ee": "about:blank 18/30 kellaajaformaati. Millisekundi täpsusega kellaaja teksti kujul esitamisel kasutatakse formaati hh:mm:ss,nnnn, kus nnnn on millisekundite arv. Aja esitamisel inimkasutajale kasutajaliidestes lähtuda vastavas kultuuris omaksvõetud vormingutest."
+  },
+  {
+    "id": "CFR-064",
+    "type": "OOTUS",
+    "category": "ANDMEHALDUS",
+    "status": "APPROVED",
+    "text_ee": "Infosüstee mile on koostatud andmekirje ldus. Infosüsteemi andmekihi kohta on koostatud andmekirjeldus, mis koosneb andmestiku kirjeldusest, andmeelementide kirjeldusest ja andmesõnastikust",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-065",
+    "type": "KOHUSTUS",
+    "category": "ARENDUS",
+    "status": "APPROVED",
+    "text_ee": "Süsteemiko mponendid peavad võimaldam a nende poolt töödeldavai d andmeid pärida autentitud kasutajalt (nt. JWT) RestAPI liidese vahendusel . Basic auth meetodit on keelatud.",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-066",
+    "type": "OOTUS",
+    "category": "ARHITEKTUUR",
+    "status": "APPROVED",
+    "text_ee": "Kõik komponend id peavad töötama n.ö. stateless- režiimis, mis võimaldab neid vajadusel juurde",
+    "extra_ee": "about:blank 19/30 lisada koormuse kasvamisel."
+  },
+  {
+    "id": "CFR-067",
+    "type": "OOTUS",
+    "category": "ARHITEKTUUR",
+    "status": "APPROVED",
+    "text_ee": "Rakendus peab olema võimeline töötama koormusjao turitega varustatud taristul.",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-068",
+    "type": "OOTUS",
+    "category": "ARHITEKTUUR",
+    "status": "APPROVED",
+    "text_ee": "Rakenduse ühenduste (s.h. andmebaasi ja sidusinfosü steemide ühendused) realiseerimi sel tuleb kasutada ühenduste puulimist (connection pooling).",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-069",
+    "type": "KOHUSTUS",
+    "category": "ARHITEKTUUR",
+    "status": "APPROVED",
+    "text_ee": "Tarkvarala hendus peab olema projekteerit ud kõrgkäidel davust võimaldava na sõltumata sellest, kas dubleerimis t rakendatak se või mitte.",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-070",
+    "type": "KOHUSTUS",
+    "category": "TURVALISUS",
+    "status": "APPROVED",
+    "text_ee": "Hüpikaknai d (pop-up) ei tohi kasutada. Modaalakn ad on lubatud.",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-071",
+    "type": "KOHUSTUS",
+    "category": "ARHITEKTUUR",
+    "status": "APPROVED",
+    "text_ee": "Rakenduste s tuleb Antud nõude abil on ajaloolised kirjed",
+    "extra_ee": "about:blank 20/30 rakendada soft delete lähenemist, et võimaldada kirjete taastamist ja säilitada ajalugu alles ning on võimalik lihtsasti taastada ilma, et peaks andmebaasi taastamist teostama. Soovituslik on rakendada kõikidele kirjetele aegumise kuupäev. Näiteks maailma lõpu kuupäev ning kirje kustutamisel kirjutatakse antud kuupäev üle ning kasutajaliidesse ei kuvata kirjet, mis on aegunud."
+  },
+  {
+    "id": "CFR-072",
+    "type": "KOHUSTUS",
+    "category": "ARHITEKTUUR",
+    "status": "APPROVED",
+    "text_ee": "Projekteerit av lahendus peab olema kooskõlas tellija IT profiiliga.",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-073",
+    "type": "KOHUSTUS",
+    "category": "ARHITEKTUUR",
+    "status": "APPROVED",
+    "text_ee": "Rakenduse äriloogika tuleb realiseerida andmebaasi st eraldi sõltumatus rakenduski his.",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-074",
+    "type": "KOHUSTUS",
+    "category": "ANDMEHALDUS",
+    "status": "APPROVED",
+    "text_ee": "Süsteemi või veebi loomisel kodanike ning ettevõtjate andmete kasutamisel lähtutakse andmete ristkasutam ise põhimõttest .",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-075",
+    "type": "KOHUSTUS",
+    "category": "ARENDUS",
+    "status": "APPROVED",
+    "text_ee": "Lähtekoodi s kirjeldatud andmetüübi d peavad",
+    "extra_ee": "about:blank 21/30 olema nimetava käände ainsuses. Kõik andmemass iivid tuleb nimetada nimetava mitmuses."
+  },
+  {
+    "id": "CFR-076",
+    "type": "KOHUSTUS",
+    "category": "ARENDUS",
+    "status": "APPROVED",
+    "text_ee": "Kasutuses mitteolev kood tuleb rakenduse lähtekoodis t kõrvaldada.",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-077",
+    "type": "OOTUS",
+    "category": "ARENDUS",
+    "status": "APPROVED",
+    "text_ee": "Lisanduvat e süsteemiko mponentide puhul tuleb vältida juba kasutuses olevate komponent ide funktsionaa lsuste dubleerimis t.",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-078",
+    "type": "OOTUS",
+    "category": "ANDMEHALDUS",
+    "status": "APPROVED",
+    "text_ee": "Süsteemi koosvõime tagamisel tuleb eelistada süsteemis juba kasutuses olevaid andmeform aate ning arhitektuur seid põhimõttei d.",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-079",
+    "type": "OOTUS",
+    "category": "ARHITEKTUUR",
+    "status": "APPROVED",
+    "text_ee": "Rakenduse disainimise l on oluline kasutada SA-l juba kasutusel",
+    "extra_ee": "about:blank 22/30 olevaid infosüstee me ja rakendusi."
+  },
+  {
+    "id": "CFR-080",
+    "type": "KOHUSTUS",
+    "category": "ARHITEKTUUR",
+    "status": "APPROVED",
+    "text_ee": "Rakenduse taaskäivitus , konfigurats iooni muutmine v.m.s. peab toimuma mõistliku aja jooksul. Podi mõistlikuks restardiks loetakse 1- 3min",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-081",
+    "type": "KOHUSTUS",
+    "category": "ARENDUS",
+    "status": "APPROVED",
+    "text_ee": "Kasutajalii dese kõik osad ja teated peavad olema eestikeelse d.",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-082",
+    "type": "KOHUSTUS",
+    "category": "ARHITEKTUUR",
+    "status": "APPROVED",
+    "text_ee": "Rakendust peab saama ilma ümberprogr ammeerima ta liigutada erinevate domeenide vahel.",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-083",
+    "type": "OOTUS",
+    "category": "ARHITEKTUUR",
+    "status": "APPROVED",
+    "text_ee": "Rakenduse komponent ide konfigurats iooni peab olema võimalik ette anda käivitamise l.",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-084",
+    "type": "OOTUS",
+    "category": "ARHITEKTUUR",
+    "status": "APPROVED",
+    "text_ee": "Konfigurat siooni muudatus peab olema teostatav ilma rakendust kompileeri mata.",
+    "extra_ee": "about:blank 23/30"
+  },
+  {
+    "id": "CFR-085",
+    "type": "OOTUS",
+    "category": "ARHITEKTUUR",
+    "status": "APPROVED",
+    "text_ee": "Erinevaid sama sisuga parameetrei d ei tohi konfigurats ioonis eksisteerida .",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-086",
+    "type": "KOHUSTUS",
+    "category": "ARHITEKTUUR",
+    "status": "APPROVED",
+    "text_ee": "Rakendus peab olema võimeline kasutama keskkonna muutujaid (serveri nimi, kuu, päev j.n.e.).",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-087",
+    "type": "OOTUS",
+    "category": "ARHITEKTUUR",
+    "status": "APPROVED",
+    "text_ee": "Keskkonna põhised muutujad peavad olema konfigurats ioonifailist seadistatav ad.",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-088",
+    "type": "KOHUSTUS",
+    "category": "ARENDUS",
+    "status": "APPROVED",
+    "text_ee": "Kogu rakenduse testimiseks, koolituseks või implemente erimiseks üle antav lähtekood ja tarkvarapak etid peavad olema versioneerit ud.",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-089",
+    "type": "KOHUSTUS",
+    "category": "TARNE",
+    "status": "APPROVED",
+    "text_ee": "Tarnepakett ide terviklikku se kontrollimi seks soovitataks e kasutada kontrollsu",
+    "extra_ee": "about:blank 24/30 mmafaili (.sum). Kui versiooniha ldus- või CI/CD- keskkond ei genereeri seda automaatse lt, tuleb checksum koostada käsitsi ja lisada failina tarnele juurde."
+  },
+  {
+    "id": "CFR-090",
+    "type": "OOTUS",
+    "category": "ARHITEKTUUR",
+    "status": "APPROVED",
+    "text_ee": "Kubernetes el orkestreerit avate lahenduste paigalduste jaoks tuleb luua Helm chart.",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-091",
+    "type": "KOHUSTUS",
+    "category": "KVALITEET",
+    "status": "APPROVED",
+    "text_ee": "Tarkvara lähtekood peab olema dokumente eritud detailsuses, mis võimaldab hilisemat edasiarend use jätkamist.",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-092",
+    "type": "KOHUSTUS",
+    "category": "KVALITEET",
+    "status": "APPROVED",
+    "text_ee": "Iga uue versiooniga peab alati välja tooma versiooni muudatuse kirjeldused (release notes). Täidetakse üldiselt confluence ja jira koostöös. Jira suudab automaatselt release note koostada.",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-093",
+    "type": "SOOVITUS",
+    "category": "ARENDUS",
+    "status": "APPROVED",
+    "text_ee": "Tarkvaraar enduses kasutatavad Node teegid",
+    "extra_ee": "about:blank 25/30 peavad olema markeeritu d MIT litsentsiga"
+  },
+  {
+    "id": "CFR-094",
+    "type": "KOHUSTUS",
+    "category": "ARENDUS",
+    "status": "APPROVED",
+    "text_ee": "Kogu lähtekood ja API- väljad peavad kasutama ühtset, keelespetsii filist nimetamisk onventsioo ni. Tarkvara lähtekoodis tuleb kasutada läbivat nimetamiskonventsio oni: näiteks Pythonis snake_case muutujate ja funktsioonide jaoks ning PascalCase klassidele; teistes keeltes camelCase muutujate ja meetodite jaoks ning PascalCase klassidele. Püsikonstantid esitatakse UPPER_SNAKE_C ASE. API väljad kasutavad vaikimisi camelCase, v.a kui tarbija ökosüsteem nõuab teisiti.",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-095",
+    "type": "OOTUS",
+    "category": "ARENDUS",
+    "status": "APPROVED",
+    "text_ee": "Rakendus peab kasutama tööriip- tekste (tooltips) järjepideval t, et selgitada lühidalt ebaselgeid elemente ilma kasutaja voogu katkestama ta. Näiteks ikoone",
+    "extra_ee": ""
+  },
+  {
+    "id": "CFR-096",
+    "type": "KOHUSTUS",
+    "category": "ARENDUS",
+    "status": "APPROVED",
+    "text_ee": "Rakenduse logid peavad olema struktureeri tud jsoni kujule Näiteks ei tohi olla kujul: log.info(\"Starti ng token exchange: receivedState= {},",
+    "extra_ee": "about:blank 26/30 expectedState= {}, code={}\", receivedState, expectedState, code); Peab olema kujul korrektselt key value paaridena jsoni kujul."
+  },
+  {
+    "id": "CFR-097",
+    "type": "KOHUSTUS",
+    "category": "ÜLDINE",
+    "status": "APPROVED",
+    "text_ee": "AI-põhiste tööriistade, sealhulgas koodigener aatorite, assistentide ja analüsaator ite kasutamise ks arenduses on antud tinglik luba, kui täidetakse EIS-i kehtestatud AI kasutamise tingimusi. AI-põhiseid tööriistu käsitletakse arendaja abivahendina. Kasutamisel tuleb lähtuda EIS-i AI- reeglitest: https://azure.eis.ee/ai- rules.",
+    "extra_ee": "AI WAITING FOR APPROVAL"
+  },
+  {
+    "id": "CFR-098",
+    "type": "KOHUSTUS",
+    "category": "ÜLDINE",
+    "status": "APPROVED",
+    "text_ee": "Arenduspar tner või arendaja peab EIS- ile teatama arenduses kasutatava AI-mudeli ja AI- teenuse pakkuja. Teave tuleb esitada enne AI-teenuse kasutuselevõttu. Mudeli või teenusepakkuja muutumisest tuleb EIS-ile teada anda.",
+    "extra_ee": "AI WAITING FOR APPROVAL"
+  },
+  {
+    "id": "CFR-099",
+    "type": "KOHUSTUS",
+    "category": "ÜLDINE",
+    "status": "APPROVED",
+    "text_ee": "AI- tööriistade kasutamisel peab olema tagatud EIS-i teabe konfidentsi aalsus ja andmekaits e. AI-tööriistale ei tohi edastada EIS-i lähtekoodi, konfiguratsiooni, logisid, arhitektuurimaterjale ega muid tundlikku teavet või isikuandmeid sisaldavaid andmeid.",
+    "extra_ee": "AI WAITING FOR APPROVAL about:blank 27/30"
+  },
+  {
+    "id": "CFR-100",
+    "type": "KOHUSTUS",
+    "category": "ÜLDINE",
+    "status": "APPROVED",
+    "text_ee": "Saladuste edastamine AI- tööriistadel e on keelatud. Saladusteks loetakse muu hulgas API- võtmed, paroolid, pääsutalongid ehk tokenid, sertifikaadid, privaatvõtmed ja muud autentimisandmed.",
+    "extra_ee": "AI WAITING FOR APPROVAL"
+  },
+  {
+    "id": "CFR-101",
+    "type": "KOHUSTUS",
+    "category": "ÜLDINE",
+    "status": "APPROVED",
+    "text_ee": "AI abil loodud või muudetud koodi ühiktestid ja automaatte stid peab looma inimene. AI-agent ei tohi iseseisvalt luua, muuta ega kustutada ühikteste, automaatteste, testandmeid, testimise konfiguratsiooni ega koodikatvuse piirmäärasid.",
+    "extra_ee": "AI WAITING FOR APPROVAL"
+  },
+  {
+    "id": "CFR-102",
+    "type": "KOHUSTUS",
+    "category": "ÜLDINE",
+    "status": "APPROVED",
+    "text_ee": "AI abil loodud või muudetud koodi automaatte stide koodikatvu s peab olema vähemalt 90%. Koodikatvust kontrollitakse CI/CD protsessis. Alla 90% tulemus peab blokeerima muudatuse liitmise. Mõõta tuleb eelistatult AI abil loodud või muudetud koodi katvust.",
+    "extra_ee": "AI WAITING FOR APPROVAL"
+  },
+  {
+    "id": "CFR-103",
+    "type": "KOHUSTUS",
+    "category": "ÜLDINE",
+    "status": "APPROVED",
+    "text_ee": "AI poolt loodud kood loetakse arendaja loodud koodiks ning selle eest vastutab arendaja. AI kasutamine ei vabasta arenduspartnerit ega arendajat vastutusest EIS-i turvanõuete, kvaliteedinõuete ega lepinguliste kohustuste täitmisel.",
+    "extra_ee": "AI WAITING FOR APPROVAL"
+  },
+  {
+    "id": "CFR-104",
+    "type": "KOHUSTUS",
+    "category": "ÜLDINE",
+    "status": "APPROVED",
+    "text_ee": "AI abil loodud või muudetud koodi ülevaatusse peab alati olema kaasatud inimene. Kood peab enne liitmist läbima sõltumatu inimese tehtud sisulise koodiülevaatuse. Ainult AI-agendi või automaatkontrolli tehtud ülevaatus ei ole piisav.",
+    "extra_ee": "AI WAITING FOR APPROVAL about:blank 28/30"
+  },
+  {
+    "id": "CFR-105",
+    "type": "KOHUSTUS",
+    "category": "ÜLDINE",
+    "status": "APPROVED",
+    "text_ee": "AI abil loodud või muudetud kood peab läbima kõik EIS-i kehtivas turvalise tarkvaraare nduse korras nõutud kontrollid. Kontrollid peavad hõlmama vähemalt sõltumatut koodiülevaatust, SAST-i, sõltuvuste ja litsentside skaneeringut, saladuste skaneeringut ning CI/CD toru kontrolle. OWASP ASVS-i nõuded ja turvalise koodi praktikad kehtivad täies mahus.",
+    "extra_ee": "AI WAITING FOR APPROVAL"
+  },
+  {
+    "id": "CFR-106",
+    "type": "KOHUSTUS",
+    "category": "ÜLDINE",
+    "status": "APPROVED",
+    "text_ee": "Arentustes peab tagama, et AI abil loodud kood ei rikuks kolmandate isikute autoriõigus i ega litsentsiting imusi. AI abil loodud koodile rakenduvad lepingus sätestatud intellektuaalomandi tingimused ning loodud kood jääb lepingu kohaselt EIS- i omandisse.",
+    "extra_ee": "AI WAITING FOR APPROVAL"
+  },
+  {
+    "id": "CFR-107",
+    "type": "KOHUSTUS",
+    "category": "ÜLDINE",
+    "status": "APPROVED",
+    "text_ee": "Arenduses tohib kasutada ainult selliseid AI- teenuseid, mille tingimused välistavad EIS-i andmete ja koodi kasutamise teenuse treenimisek s ning nende edastamise kolmandate le osapooltele . Vajaduse korral peab arenduspartner esitama teenuse kasutustingimused EIS-i IT-osakonnale ja infoturbe eest vastutavale üksusele ülevaatamiseks.",
+    "extra_ee": "AI WAITING FOR APPROVAL about:blank 29/30"
+  },
+  {
+    "id": "CFR-108",
+    "type": "KOHUSTUS",
+    "category": "ÜLDINE",
+    "status": "APPROVED",
+    "text_ee": "AI kasutamine arenduses peab olema arendusme eskonnale ja EIS-ile läbipaistev ning põhjendata v. AI kasutamine tuleb dokumenteerida näiteks pull request’is, muudatuse kirjelduses või disainikirjelduses. Dokumentatsioonist peab nähtuma AI kasutamise eesmärk ja mõjutatud artefaktid.",
+    "extra_ee": "AI WAITING FOR APPROVAL about:blank 30/30"
+  }
+]

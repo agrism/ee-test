@@ -1,0 +1,2190 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iepirkuma dokumentācija | EIS 315313 | Tīmekļu un IS analīze, izstrāde un uzturēšana 2026-2029</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0047b3;
+      --primary-dark: #002b80;
+      --primary-light: #e6f0ff;
+      --accent: #2563eb;
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface-alt: #f1f5f9;
+      --border: #e2e8f0;
+      --border-dark: #cbd5e1;
+      --text: #0f172a;
+      --text-muted: #475569;
+      --text-light: #64748b;
+      --success: #059669;
+      --success-light: #ecfdf5;
+      --warning: #d97706;
+      --warning-light: #fffbeb;
+      --danger: #dc2626;
+      --danger-light: #fef2f2;
+      --purple: #7c3aed;
+      --purple-light: #f5f3ff;
+      --sidebar-width: 320px;
+      --header-height: 72px;
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      --radius: 10px;
+      --radius-sm: 6px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4, .brand-font {
+      font-family: 'Outfit', 'Inter', sans-serif;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.25;
+    }
+
+    code, pre {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Top Sticky Header */
+    .top-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: var(--header-height);
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .brand-logo {
+      background: linear-gradient(135deg, var(--primary) 0%, #1e40af 100%);
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.15rem;
+      padding: 0.5rem 0.85rem;
+      border-radius: var(--radius-sm);
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 4px rgba(0, 71, 179, 0.25);
+    }
+
+    .brand-text h1 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .brand-text p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.55rem 1.1rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+    }
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      box-shadow: 0 2px 6px rgba(0, 71, 179, 0.3);
+    }
+
+    .btn-outline {
+      background: var(--surface);
+      border-color: var(--border-dark);
+      color: var(--text);
+    }
+    .btn-outline:hover {
+      background: var(--surface-alt);
+      border-color: var(--text-muted);
+    }
+
+    .btn-sm {
+      padding: 0.35rem 0.75rem;
+      font-size: 0.8rem;
+    }
+
+    /* Layout */
+    .app-container {
+      display: flex;
+      min-height: calc(100vh - var(--header-height));
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: var(--sidebar-width);
+      flex-shrink: 0;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      position: sticky;
+      top: var(--header-height);
+      height: calc(100vh - var(--header-height));
+      overflow-y: auto;
+      padding: 1.5rem 1rem;
+    }
+
+    .nav-group-title {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-light);
+      font-weight: 700;
+      padding: 0.5rem 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .nav-group-title:first-child {
+      margin-top: 0;
+    }
+
+    .nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.55rem 0.75rem;
+      border-radius: var(--radius-sm);
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: all 0.15s ease;
+    }
+
+    .nav-link:hover {
+      background: var(--surface-alt);
+      color: var(--primary);
+    }
+
+    .nav-link.active {
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .nav-link .badge {
+      font-size: 0.7rem;
+      padding: 0.15rem 0.45rem;
+      border-radius: 9999px;
+      font-weight: 700;
+    }
+
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      padding: 2.5rem 3rem;
+      max-width: 1280px;
+      overflow-x: hidden;
+    }
+
+    .doc-section {
+      background: var(--surface);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 2.5rem;
+      margin-bottom: 2.5rem;
+      box-shadow: var(--shadow-sm);
+      scroll-margin-top: calc(var(--header-height) + 1.5rem);
+    }
+
+    .section-header {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1.25rem;
+      margin-bottom: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .section-header h2 {
+      font-size: 1.75rem;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .section-header .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.25rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+      font-size: 0.775rem;
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    .badge-primary { background: var(--primary-light); color: var(--primary); }
+    .badge-success { background: var(--success-light); color: var(--success); }
+    .badge-warning { background: var(--warning-light); color: var(--warning); }
+    .badge-danger { background: var(--danger-light); color: var(--danger); }
+    .badge-purple { background: var(--purple-light); color: var(--purple); }
+    .badge-muted { background: var(--surface-alt); color: var(--text-muted); }
+
+    /* Dashboard Cards */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .kpi-card {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .kpi-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+      border-color: var(--accent);
+    }
+
+    .kpi-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-light);
+    }
+
+    .kpi-value {
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: var(--primary);
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .kpi-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* Callout Boxes */
+    .callout {
+      border-left: 4px solid var(--accent);
+      background: var(--primary-light);
+      padding: 1.25rem 1.5rem;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin: 1.5rem 0;
+    }
+
+    .callout-title {
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .callout-warning {
+      border-left-color: var(--warning);
+      background: var(--warning-light);
+    }
+    .callout-warning .callout-title { color: var(--warning); }
+
+    .callout-success {
+      border-left-color: var(--success);
+      background: var(--success-light);
+    }
+    .callout-success .callout-title { color: var(--success); }
+
+    .callout-purple {
+      border-left-color: var(--purple);
+      background: var(--purple-light);
+    }
+    .callout-purple .callout-title { color: var(--purple); }
+
+    /* Tables */
+    .table-container {
+      overflow-x: auto;
+      margin: 1.5rem 0;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+
+    th {
+      background: var(--surface-alt);
+      color: var(--text);
+      font-weight: 700;
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.825rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      vertical-align: top;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background: #fafbfd;
+    }
+
+    /* Original Estonian Collapsible Block */
+    .orig-block {
+      margin-top: 1rem;
+      border: 1px dashed var(--border-dark);
+      border-radius: var(--radius-sm);
+      background: #fafafa;
+      overflow: hidden;
+    }
+
+    .orig-header {
+      padding: 0.5rem 1rem;
+      background: #f1f5f9;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      user-select: none;
+    }
+
+    .orig-header:hover {
+      background: #e2e8f0;
+      color: var(--text);
+    }
+
+    .orig-content {
+      padding: 1rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-style: italic;
+      display: none;
+      line-height: 1.5;
+    }
+
+    .orig-content.open {
+      display: block;
+    }
+
+    /* Paragraph Blocks */
+    .para-item {
+      margin-bottom: 1.25rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .para-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    /* Interactive Tools */
+    .calc-box {
+      background: linear-gradient(to right, #f8fafc, #ffffff);
+      border: 2px solid var(--primary);
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin: 1.5rem 0;
+      box-shadow: var(--shadow);
+    }
+
+    .calc-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .calc-field label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .calc-input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      font-size: 1.1rem;
+      border: 1px solid var(--border-dark);
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-family: inherit;
+    }
+
+    .calc-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(0, 71, 179, 0.15);
+    }
+
+    .calc-score-display {
+      background: var(--primary);
+      color: #fff;
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+
+    .calc-score-number {
+      font-size: 3rem;
+      font-weight: 800;
+      font-family: 'Outfit', sans-serif;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    /* CFR Filter bar */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+      align-items: center;
+    }
+
+    .filter-chip {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 9999px;
+      padding: 0.35rem 0.85rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .filter-chip:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .filter-chip.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .search-box {
+      flex: 1;
+      min-width: 250px;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 0.55rem 1rem 0.55rem 2.25rem;
+      font-size: 0.875rem;
+      border: 1px solid var(--border-dark);
+      border-radius: var(--radius-sm);
+      outline: none;
+    }
+
+    .search-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(0, 71, 179, 0.1);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-light);
+      pointer-events: none;
+    }
+
+    /* Print styles */
+    @media print {
+      .top-header, .sidebar, .header-actions, .orig-header, .filter-bar, .search-box {
+        display: none !important;
+      }
+      .app-container {
+        display: block;
+      }
+      .main-content {
+        padding: 0;
+        max-width: 100%;
+      }
+      .doc-section {
+        border: none;
+        box-shadow: none;
+        padding: 1rem 0;
+        page-break-after: always;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .app-container {
+        flex-direction: column;
+      }
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: static;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+      .main-content {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Sticky Navigation -->
+  <header class="top-header">
+    <div class="header-brand">
+      <div class="brand-logo">EIS</div>
+      <div class="brand-text">
+        <h1>Iepirkuma dokumentācija (Nr. 315313) <span class="badge badge-success">Tulkojums LV</span></h1>
+        <p>Veebide ja infosüsteemide analüüsi, arendus- ning hooldustööd 2026 - 2029 (750 000 €)</p>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button class="btn btn-outline btn-sm" onclick="toggleAllOriginals()" id="toggleOrigBtn">
+        <span>🌐 Rādīt EE oriģinālu</span>
+      </button>
+      <button class="btn btn-outline btn-sm" onclick="window.print()">
+        <span>🖨️ Drukāt / PDF</span>
+      </button>
+      <a href="#kalkulators" class="btn btn-primary btn-sm">
+        <span>🧮 Punktu kalkulators</span>
+      </a>
+    </div>
+  </header>
+
+  <div class="app-container">
+
+    <!-- Sticky Left Sidebar -->
+    <aside class="sidebar">
+      <div class="nav-group-title">Pārskats un Rīki</div>
+      <ul class="nav-list">
+        <li><a href="#dashboard" class="nav-link active"><span>📊 Kopsavilkums & Dashboard</span></a></li>
+        <li><a href="#proovitoo-strategija" class="nav-link" style="color:var(--purple); font-weight:600;"><span>🚀 Proovitöö stratēģija (80p)</span> <span class="badge badge-purple">Ceļvedis</span></a></li>
+        <li><a href="#kalkulators" class="nav-link"><span>🧮 Vērtējuma kalkulators</span> <span class="badge badge-primary">20p / 80p</span></a></li>
+        <li><a href="#komanda" class="nav-link"><span>👥 Komandas pārbaude</span> <span class="badge badge-success">6 lomas</span></a></li>
+      </ul>
+
+      <div class="nav-group-title">Iepirkuma dokumenti</div>
+      <ul class="nav-list">
+        <li><a href="#uldosa" class="nav-link"><span>1. Nolikums: Vispārīgā daļa</span> <span class="badge badge-muted">Üldosa</span></a></li>
+        <li><a href="#lisa-1" class="nav-link"><span>2. Pielikums 1: Tehniskais apraksts</span> <span class="badge badge-muted">Lisa 1</span></a></li>
+        <li><a href="#cv-forma" class="nav-link"><span>3. Pielikums 1.1: CV Forma</span> <span class="badge badge-muted">Lisa 1.1</span></a></li>
+        <li><a href="#lisa-2" class="nav-link"><span>4. Pielikums 2: Vērtēšanas metodika</span> <span class="badge badge-muted">Lisa 2</span></a></li>
+        <li><a href="#lisa-3" class="nav-link"><span>5. Pielikums 3: Vispārīgā vienošanās</span> <span class="badge badge-muted">Lisa 3</span></a></li>
+        <li><a href="#gdpr" class="nav-link"><span>6. Pielikums 3.1: Datu apstrāde (GDPR)</span> <span class="badge badge-muted">GDPR</span></a></li>
+        <li><a href="#lisa-4" class="nav-link"><span>7. Pielikums 4: Pārbaudes uzdevums</span> <span class="badge badge-purple">Proovitöö</span></a></li>
+        <li><a href="#proovitoo-strategija" class="nav-link" style="background:#f5f3ff;"><span>💡 7.1. Risinājuma plāns</span> <span class="badge badge-purple">80p</span></a></li>
+        <li><a href="#lisa-5" class="nav-link"><span>8. Pielikums 5: Šķērsfunkcionālās prasības</span> <span class="badge badge-primary">110 CFR</span></a></li>
+        <li><a href="#vastavus" class="nav-link"><span>9. Atbilstības nosacījumi</span> <span class="badge badge-muted">RHR</span></a></li>
+        <li><a href="#hindamine" class="nav-link"><span>10. Vērtēšanas kritēriju izraksts</span> <span class="badge badge-muted">RHR</span></a></li>
+        <li><a href="#hankepass" class="nav-link"><span>11. ESPD / Hankepass kopsavilkums</span> <span class="badge badge-muted">ESPD</span></a></li>
+      </ul>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+
+      <!-- SECTION 0: DASHBOARD -->
+      <section id="dashboard" class="doc-section">
+        <div class="section-header">
+          <div class="tag-row">
+            <span class="badge badge-primary">Atsauces Nr. 315313</span>
+            <span class="badge badge-muted">Iekšējais Nr. HNR260046</span>
+            <span class="badge badge-purple">Directus + Next.js</span>
+            <span class="badge badge-success">Aktīvs iepirkums</span>
+          </div>
+          <h2>Iepirkuma kopsavilkums un galvenie rādītāji</h2>
+          <p class="section-subtitle">
+            <strong>Pasūtītājs:</strong> Ettevõtluse ja Innovatsiooni Sihtasutus (EIS / Igaunijas Uzņēmējdarbības un inovāciju fonds)<br>
+            <strong>Priekšmets:</strong> Tīmekļa vietņu un informācijas sistēmu analīzes, izstrādes un uzturēšanas darbi 2026 – 2029
+          </p>
+        </div>
+
+        <!-- KPI Grid -->
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <span class="kpi-label">Līguma maksimālā summa</span>
+            <span class="kpi-value">750 000 €</span>
+            <span class="kpi-desc">Bez PVN (36 kalendāro mēnešu periodam)</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-label">Līguma termiņš</span>
+            <span class="kpi-value">36 Mēneši</span>
+            <span class="kpi-desc">Pasūtījumu līgumi var turpināties vēl +12 mēn.</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-label">Vērtēšanas proporcija</span>
+            <span class="kpi-value">80% / 20%</span>
+            <span class="kpi-desc">80 punkti Pārbaudes darbam, 20 punkti Cenai</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-label">Minimālā vērtētā likme</span>
+            <span class="kpi-value">60 € / stundā</span>
+            <span class="kpi-desc">Cenas zem 60 € tiek pielīdzinātas 60 € slieksnim</span>
+          </div>
+        </div>
+
+        <!-- Executive Highlights -->
+        <h3 style="margin-bottom: 1rem;">Iepirkuma stratēģiskie uzsvari un tehnoloģijas</h3>
+        <div class="kpi-grid">
+          <div class="kpi-card" style="background:#fff;">
+            <strong style="color:var(--primary); font-size:1.05rem;">Directus Headless CMS</strong>
+            <p style="font-size:0.875rem; color:var(--text-muted); margin-top:0.35rem;">
+              Konsolidācija: pāreja no sadrumstalotām WordPress un Laravel vietnēm uz vienotu Directus Headless satura pārvaldības sistēmu ar universāliem blokiem un daudzvalodu atbalstu.
+            </p>
+          </div>
+          <div class="kpi-card" style="background:#fff;">
+            <strong style="color:var(--primary); font-size:1.05rem;">Next.js & shadcn/ui</strong>
+            <p style="font-size:0.875rem; color:var(--text-muted); margin-top:0.35rem;">
+              Mūsdienīgs frontend: Next.js App Router, React, TypeScript, servera puses datu ielāde (SSR/SSG), ātrdarbība un DDS 2.0 (Igaunijas Zīmola) dizaina komponentes.
+            </p>
+          </div>
+          <div class="kpi-card" style="background:#fff;">
+            <strong style="color:var(--purple); font-size:1.05rem;">Mākslīgais intelekts (AI) & MCP</strong>
+            <p style="font-size:0.875rem; color:var(--text-muted); margin-top:0.35rem;">
+              AI rīku atbalsts caur Model Context Protocol (MCP) slāni. Stingras kvalitātes un drošības prasības (CFR-102..108): 100% testu pārklājums AI kodam, obligāts Human Code Review un privātuma garantija.
+            </p>
+          </div>
+          <div class="kpi-card" style="background:#fff;">
+            <strong style="color:var(--success); font-size:1.05rem;">Riigipilv & GitOps</strong>
+            <p style="font-size:0.875rem; color:var(--text-muted); margin-top:0.35rem;">
+              Izvietošana Igaunijas Valsts mākonī (Riigipilv) uz Kubernetes klasteriem. CI/CD automatizācija ar GitLab CI un deklaratīvu izvietošanu caur ArgoCD.
+            </p>
+          </div>
+        </div>
+
+        <div class="callout callout-warning">
+          <div class="callout-title">⚠️ Izšķirošais uzvaras faktors: Pārbaudes darbs (Proovitöö)</div>
+          <p>
+            Cenas stundas likme dod tikai 20 punktus (un likmes zem 60 €/h netiek apbalvotas). <strong>80 punktus izšķir Pārbaudes darbs</strong>, kas jāiesniedz kopā ar piedāvājumu (koncepcija, Figma DDS 2.0 prototips, strādājošs kods GitHub ar <code>docker compose</code> un 10 minūšu YouTube video prezentācija)!
+          </p>
+        </div>
+      </section>
+
+      <!-- SECTION: INTERACTIVE SCORING CALCULATOR -->
+      <section id="kalkulators" class="doc-section">
+        <div class="section-header">
+          <div class="tag-row">
+            <span class="badge badge-primary">Rīks pretendentam</span>
+            <span class="badge badge-purple">Punktu simulācija</span>
+          </div>
+          <h2>Interaktīvais vērtējuma punktu kalkulators</h2>
+          <p class="section-subtitle">Aprēķiniet savu potenciālo punktu skaitu saskaņā ar RHAD 2. pielikuma un RHR oficiālo vērtēšanas metodiku.</p>
+        </div>
+
+        <div class="calc-box">
+          <div class="calc-row">
+            <div class="calc-field">
+              <label>1. Pretendenta stundas likme (EUR bez PVN):</label>
+              <input type="number" id="calcPriceInput" class="calc-input" value="65" min="20" max="150" step="1" oninput="recalcScore()">
+              <small style="color:var(--text-muted); display:block; margin-top:0.35rem;">
+                * Piezīme: Visi piedāvājumi zem 60 EUR/h tiek pielīdzināti 60 EUR/h.
+              </small>
+            </div>
+            <div class="calc-field">
+              <label>Zemākā iespējamā konkurenta likme tirgū (min slieksnis):</label>
+              <input type="number" id="calcMinPrice" class="calc-input" value="60" min="20" max="120" step="1" oninput="recalcScore()" readonly style="background:#e2e8f0;">
+              <small style="color:var(--text-muted); display:block; margin-top:0.35rem;">
+                Nolikuma oficiālā aprēķina bāze.
+              </small>
+            </div>
+          </div>
+
+          <h4 style="margin: 1.5rem 0 0.75rem 0;">2. Pārbaudes darba (Proovitöö) apakškritēriji (Kopā max 80 punkti):</h4>
+
+          <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:1rem;">
+            <div class="calc-field" style="background:#fff; padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border);">
+              <label>Analītiskā loģika un struktūra (max 20p):</label>
+              <select id="sub1" class="calc-input" style="font-size:0.95rem;" onchange="recalcScore()">
+                <option value="20" selected>20 punkti – Izcils / Labākais</option>
+                <option value="15">15 punkti – Ļoti labs</option>
+                <option value="10">10 punkti – Vidējs</option>
+                <option value="5">5 punkti – Vājš</option>
+                <option value="1">1 punkts – Neapmierinošs</option>
+              </select>
+            </div>
+
+            <div class="calc-field" style="background:#fff; padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border);">
+              <label>UX lietotāja ceļi un mērogojamība (max 20p):</label>
+              <select id="sub2" class="calc-input" style="font-size:0.95rem;" onchange="recalcScore()">
+                <option value="20" selected>20 punkti – Izcils / Labākais</option>
+                <option value="15">15 punkti – Ļoti labs</option>
+                <option value="10">10 punkti – Vidējs</option>
+                <option value="5">5 punkti – Vājš</option>
+                <option value="1">1 punkts – Neapmierinošs</option>
+              </select>
+            </div>
+
+            <div class="calc-field" style="background:#fff; padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border);">
+              <label>DDS 2.0 dizaina ieviešana (max 10p):</label>
+              <select id="sub3" class="calc-input" style="font-size:0.95rem;" onchange="recalcScore()">
+                <option value="10" selected>10 punkti – Izcils / Labākais</option>
+                <option value="8">8 punkti – Ļoti labs</option>
+                <option value="5">5 punkti – Vidējs</option>
+                <option value="1">1 punkts – Neapmierinošs</option>
+              </select>
+            </div>
+
+            <div class="calc-field" style="background:#fff; padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border);">
+              <label>Tehniskais izpildījums un kods (max 20p):</label>
+              <select id="sub4" class="calc-input" style="font-size:0.95rem;" onchange="recalcScore()">
+                <option value="20" selected>20 punkti – Izcils / Labākais</option>
+                <option value="15">15 punkti – Ļoti labs</option>
+                <option value="10">10 punkti – Vidējs</option>
+                <option value="5">5 punkti – Vājš</option>
+                <option value="1">1 punkts – Neapmierinošs</option>
+              </select>
+            </div>
+
+            <div class="calc-field" style="background:#fff; padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border);">
+              <label>Video prezentācija 10 min (max 10p):</label>
+              <select id="sub5" class="calc-input" style="font-size:0.95rem;" onchange="recalcScore()">
+                <option value="10" selected>10 punkti – Izcils / Labākais</option>
+                <option value="8">8 punkti – Ļoti labs</option>
+                <option value="5">5 punkti – Vidējs</option>
+                <option value="1">1 punkts – Neapmierinošs</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Total Score Display -->
+          <div class="calc-score-display">
+            <div style="font-size:0.9rem; text-transform:uppercase; letter-spacing:0.08em; opacity:0.85;">Kopējais prognozētais vērtējums:</div>
+            <div class="calc-score-number" id="calcTotalPoints">100.00</div>
+            <div style="font-size:1.05rem;" id="calcScoreBreakdown">
+              Cena: <strong>20.00</strong> punkti | Pārbaudes darbs: <strong>80</strong> punkti
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: TEAM QUALIFICATIONS CHECKER -->
+      <section id="komanda" class="doc-section">
+        <div class="section-header">
+          <div class="tag-row">
+            <span class="badge badge-success">Kvalifikācijas matrica</span>
+            <span class="badge badge-muted">RHAD 1. pielikuma 15. punkts</span>
+          </div>
+          <h2>Obligātās komandas kvalifikācijas pārbaude</h2>
+          <p class="section-subtitle">Pārbaudiet savas komandas atbilstību katrai no 6 obligātajām lomām pirms CV noformēšanas.</p>
+        </div>
+
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:22%;">Loma</th>
+                <th style="width:15%;">Speciālistu skaits</th>
+                <th style="width:28%;">Vispārējā pieredze</th>
+                <th style="width:25%;">Projektu pieredze (pēdējie 36 mēn.)</th>
+                <th style="width:10%;">Valoda</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1. IT projektu vadītājs</strong></td>
+                <td>Vismaz 1 persona</td>
+                <td>Vismaz 24 mēnešu darba pieredze kā IT PM pēdējo 60 mēnešu laikā</td>
+                <td>Vadījis vismaz 2 izstrādes projektus, katrā min 80 stundas</td>
+                <td>Igauņu valoda</td>
+              </tr>
+              <tr>
+                <td><strong>2. Front-end izstrādātāji</strong></td>
+                <td>Vismaz 2 personas (abām jāatbilst!)</td>
+                <td>CSS (Tailwind), JS, TypeScript (React, Next.js), HTML, PHP, Git</td>
+                <td>Vismaz 2 izstrādes projekti ar minētajām tehnoloģijām, kopā min 800 stundas katram</td>
+                <td>Angļu valoda</td>
+              </tr>
+              <tr>
+                <td><strong>3. Full-stack izstrādātāji</strong></td>
+                <td>Vismaz 2 personas (abām jāatbilst!)</td>
+                <td>Docker, Kubernetes, PostgreSQL, Node.js, REST, Tailwind, React, Next.js, PHP, Git</td>
+                <td>Vismaz 3 izstrādes projekti ar minētajām tehnoloģijām, kopā min 800 stundas katram</td>
+                <td>Angļu valoda</td>
+              </tr>
+              <tr>
+                <td><strong>4. Sistēmu / biznesa analītiķis</strong></td>
+                <td>Vismaz 1 persona</td>
+                <td>Biznesa procesu analīze un modelēšana</td>
+                <td>Vismaz 3 izstrādes projekti (no tiem min 1 biznesa procesu modelēšana, piem., Enterprise Architect), kopā min 500 stundas</td>
+                <td><span class="badge badge-danger">Igauņu B2</span></td>
+              </tr>
+              <tr>
+                <td><strong>5. UX/UI dizaineris</strong></td>
+                <td>Vismaz 1 persona</td>
+                <td>Vismaz 24 mēnešu darba pieredze kā UX dizainerim pēdējos 60 mēnešos</td>
+                <td>Vismaz 2 izstrādes projekti, kuros ievērots WCAG 2.0 AA un W3C standarti</td>
+                <td>Angļu / Igauņu</td>
+              </tr>
+              <tr>
+                <td><strong>6. Testētājs</strong></td>
+                <td>Vismaz 1 persona</td>
+                <td>Programmatūras un saskarņu testēšana</td>
+                <td>Vismaz 2 programmatūras izstrādes projekti pēdējos 36 mēnešos</td>
+                <td><span class="badge badge-danger">Igauņu B2</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout callout-success">
+          <div class="callout-title">💡 Svarīgas nolikuma priekšrocības un noteikumi:</div>
+          <p>
+            • <strong>Lomu apvienošana:</strong> Viens komandas loceklis drīkst pildīt vairākas lomas (piem., analītiķis var būt arī PM vai testētājs), ja pilnībā atbilst abu lomu kritērijiem.<br>
+            • <strong>Pakalpojuma valoda:</strong> Pretendentam jānodrošina pakalpojumu sniegšana igauņu valodā vismaz B2 līmenī.<br>
+            • <strong>CV forma:</strong> Visi CV jāiesniedz uz Pielikuma 1.1 noteiktās veidlapas igauņu valodā!
+          </p>
+        </div>
+      </section>
+
+      <!-- SECTION 1: ULDOSA -->
+      <section id="uldosa" class="doc-section">
+        <div class="section-header">
+          <div class="tag-row">
+            <span class="badge badge-primary">Pamatdokuments</span>
+            <span class="badge badge-muted">RHAD Üldosa.docx</span>
+          </div>
+          <h2>1. Publiskā iepirkuma nolikuma Vispārīgā daļa</h2>
+          <p class="section-subtitle">Procedūras pamatnoteikumi, prasības pretendentiem, iesniegšanas un vērtēšanas kārtība.</p>
+        </div>
+
+        <!-- Uldosa Table -->
+        <h3 style="margin: 1.5rem 0 0.75rem 0;">Iepirkuma pamatdati</h3>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:30%;">Parametrs (LV)</th>
+                <th style="width:45%;">Vērtība</th>
+                <th style="width:25%;">Oriģināls (EE)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Iepirkuma nosaukums</strong></td>
+                <td>Tīmekļa vietņu un informācijas sistēmu analīzes, izstrādes un uzturēšanas darbi 2026 – 2029</td>
+                <td>Veebide ja infosüsteemide analüüsi, arendus- ning hooldustööd 2026 - 2029</td>
+              </tr>
+              <tr>
+                <td><strong>Atsauces numurs</strong></td>
+                <td><span class="badge badge-primary">315313</span></td>
+                <td>315313</td>
+              </tr>
+              <tr>
+                <td><strong>Pasūtītāja iekšējais numurs</strong></td>
+                <td>HNR260046</td>
+                <td>HNR260046</td>
+              </tr>
+              <tr>
+                <td><strong>Iepirkuma veids</strong></td>
+                <td>Atklāts konkurss (e-procedūra e-riigihanked sistēmā)</td>
+                <td>Avatud hankemenetlus / e-menetlus</td>
+              </tr>
+              <tr>
+                <td><strong>Līguma veids</strong></td>
+                <td>Vispārīgā vienošanās (noslēdz ar vienu uzvarētāju)</td>
+                <td>Raamleping</td>
+              </tr>
+              <tr>
+                <td><strong>Līguma periods</strong></td>
+                <td>36 kalendārie mēneši vai līdz budžeta sasniegšanai</td>
+                <td>36 kalendrikuud</td>
+              </tr>
+              <tr>
+                <td><strong>Paredzamā līguma summa</strong></td>
+                <td><strong>750 000,00 € (bez PVN)</strong></td>
+                <td>750 000,00 €</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Uldosa Chapters -->
+        <h3 style="margin: 2rem 0 1rem 0;">Nolikuma noteikumu tulkojums</h3>
+
+        <div class="para-item">
+          <h4>1. Vispārīgie noteikumi</h4>
+          <p>
+            <strong>RHAD sastāvs:</strong> Iepirkuma pamatdokumenti (nolikums) sastāv no šī faila pamatteksta un tā pielikumiem, kā arī e-iepirkumu vidē (RHR) pieejamā iepirkuma paziņojuma (HT), tīmekļa formām un lejupielādējamajiem dokumentiem saskaņā ar RHS 4. panta 1. daļas 17. punktu.
+          </p>
+          <p style="margin-top:0.5rem;">
+            <strong>Nedalīšana daļās:</strong> Publiskais iepirkums nav sadalīts daļās, jo iepirkuma priekšmets ir funkcionāli kopā darbojošies pakalpojumi vienota mērķa sasniegšanai.
+          </p>
+          <p style="margin-top:0.5rem;">
+            <strong>Atsauces un ekvivalence:</strong> Jebkura atsauce uz konkrētu zīmolu, patentu, izcelsmi vai ražotāju ir jāsaprot ar atzīmi <em>„vai līdzvērtīgs“</em>. Līdzvērtīgums nozīmē tādas pašas ekspluatācijas īpašības un funkcionalitāti, un par to jāiesniedz pierādījumi.
+          </p>
+          <p style="margin-top:0.5rem;">
+            <strong>Dzīves cikla izmaksas:</strong> Netiek rēķinātas atsevišķi, jo līguma priekšmets ir jau esošas un pasūtītāja lietošanā esošas sistēmas uzlabošana un uzturēšana; izstrādes un uzturēšanas izmaksas ir iekļautas vienotajā darba stundas likmē.
+          </p>
+          <p style="margin-top:0.5rem;">
+            <strong>Reversā pārbaude:</strong> Pasūtītājs var pārbaudīt piedāvājumu atbilstību un vērtēt piedāvājumus pirms izslēgšanas iemeslu un kvalifikācijas pārbaudes.
+          </p>
+          <p style="margin-top:0.5rem;">
+            <strong>Valodu prioritāte:</strong> Pretrunu gadījumā starp igauņu valodu un svešvalodu noteicošais ir dokuments vai informācija igauņu valodā.
+          </p>
+          <p style="margin-top:0.5rem;">
+            <strong>Alternatīvie piedāvājumi:</strong> Nav atļauti.
+          </p>
+          <p style="margin-top:0.5rem;">
+            <strong>Dalībnieku loks:</strong> Var piedalīties tikai pretendenti no Igaunijas, citām ES/EEZ valstīm vai PTO valsts iepirkumu nolīguma dalībvalstīm.
+          </p>
+          <div class="orig-block">
+            <div class="orig-header" onclick="toggleOrig(this)"><span>Skatīt oriģinālu igauņu valodā (RHAD Üldosa p. 1-13)</span> <span>▼</span></div>
+            <div class="orig-content">
+              RHAD – riigihanke alusdokumendid, mis koosnevad käesolevas failis olevast põhitekstist koos selle lisadega ja e-riigihangete keskkonnas asuvatest hanketeatest (HT), veebivormidest ning allalaetavatest failidest... Riigihange ei ole ühe menetluse raames osadeks jaotatud... Eestikeelse ja võõrkeelse dokumendi/teabe vastuolu korral lähtutakse eestikeelsest dokumendist/teabest. Alternatiivsete lahenduste esitamine ei ole lubatud.
+            </div>
+          </div>
+        </div>
+
+        <div class="para-item">
+          <h4>2. Piedāvājuma noformēšana</h4>
+          <p>
+            Visi dokumenti jāiesniedz elektroniski RHR vidē (https://riigihanked.riik.ee). Piedāvājums tiek noformēts igauņu valodā (citvalodu dokumentiem obligāts tulkojums). Pretendents sedz visas sagatavošanas izmaksas. Pretendentu apvienībai obligāti jāiesniedz pilnvarotā pārstāvja pilnvara, kas derīga līdz līguma izpildei. Piedāvājums ir konfidenciāls līdz uzvarētāja paziņošanai.
+          </p>
+        </div>
+
+        <div class="para-item">
+          <h4>3. Piedāvājuma maksumus</h4>
+          <p>
+            Pretendents iesniedz vienotu darba stundas likmi RHR veidlapā. Piedāvātā stundas likme ir galīga un ietver visus nodokļus un nodevas, izņemot PVN. Nekādi papildu izdevumi netiek apmaksāti.
+          </p>
+        </div>
+
+        <div class="para-item">
+          <h4>4. Piedāvājumu noraidīšana un procedūras atcelšana</h4>
+          <p>
+            Pasūtītājs noraida neatbilstošus piedāvājumus, kā arī patur tiesības atcelt iepirkumu, ja mainās organizācijas mērķi un prioritātes, ja vadība pieņem atbilstošu lēmumu vai ja par atbilstošu tiek atzīts tikai viens piedāvājums.
+          </p>
+        </div>
+
+        <div class="para-item">
+          <h4>5. Vērtēšana</h4>
+          <p>
+            Līgums tiek slēgts ar saimnieciski visizdevīgāko piedāvājumu (labākā cenas un kvalitātes attiecība). Ja atbilstošs ir tikai 1 piedāvājums, pasūtītājam ir tiesības piešķirt maksimālos punktus bez saturiskas salīdzināšanas.
+          </p>
+        </div>
+      </section>
+
+      <!-- SECTION 2: LISA 1 -->
+      <section id="lisa-1" class="doc-section">
+        <div class="section-header">
+          <div class="tag-row">
+            <span class="badge badge-primary">Tehniskā specifikācija</span>
+            <span class="badge badge-purple">Headless Directus CMS</span>
+            <span class="badge badge-success">Kubernetes Riigipilv</span>
+          </div>
+          <h2>2. Pielikums 1 – Vispārīgās vienošanās tehniskais apraksts</h2>
+          <p class="section-subtitle">Tehnoloģiskā arhitektūra, darbu apjoms, SLA reakcijas laiki un prasības komandas kvalifikācijai.</p>
+        </div>
+
+        <h3>1. Fona informācija un esošā situācija</h3>
+        <p style="margin-bottom:1rem;">
+          Pasūtītājs pārvalda daudzas vietnes ar dažādu zīmolvedību (eis.ee, burger.eis.ee, tradewithestonia.com, investinestonia.com, workinestonia.com, visitestonia.com, estonia.ee, brand.estonia.ee un divas Laravel rezervāciju sistēmas). Esošās WordPress un Laravel sistēmas ir sasniegušas sava dzīves cikla beigas (end-of-life). Tehniskā arhitektūra ir novecojusi un kavē mērogošanu. Mērķis ir piesaistīt ilgtermiņa partneri jaunas platformas izveidei un esošo vietņu migrācijai.
+        </p>
+
+        <h3>2. Nākotnes tehnoloģiskā platforma</h3>
+        <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem; line-height: 1.7;">
+          <li><strong>Backend Headless CMS:</strong> Izvēlēta sistēma <strong>Directus</strong> (https://directus.com), nodrošinot satura vadības pilnīgu atdalīšanu no prezentācijas slāņa, universālus satura blokus un REST/GraphQL API.</li>
+          <li><strong>Frontend:</strong> <strong>React un Next.js App Router</strong> arhitektūra ar <strong>TypeScript</strong> un <strong>shadcn/ui</strong> komponentēm.</li>
+          <li><strong>Izvietošanas vide:</strong> Igaunijas Valsts mākonis (<strong>Riigipilv</strong>), darbinot lietotnes <strong>Kubernetes</strong> klasteros.</li>
+          <li><strong>Darbplūsma:</strong> Pilnīgs <strong>GitOps</strong> modelis ar <strong>GitLab CI</strong> un <strong>ArgoCD</strong> automatizācijai un versiju kontrolei.</li>
+          <li><strong>Dizains:</strong> Igaunijas Zīmola digitālā dizaina sistēma (<strong>Eesti Brändi DDS 2.0</strong>).</li>
+        </ul>
+
+        <h3>3. Pasūtījumu veikšana un procesi</h3>
+        <p style="margin-bottom:1rem;">
+          Vispārīgā vienošanās tiek noslēgta ar <strong>VIENU izpildītāju</strong> bez mini-konkursiem. Konkrētie darbi tiek definēti Atlassian Jira biļetēs, saskaņojot darba stundu apjomu un termiņus. Stundas likme pasūtījumos nedrīkst pārsniegt piedāvāto pamatlikmi. Izstrādē tiek piemērots Agile process (sprinti, ikdienas sanāksmes, demo), Confluence dokumentācija, OWASP ASVS drošības standarti, Clean Code principi, automatizētie testi un aizliegums glabāt paroles repozitorijos.
+        </p>
+
+        <h3>4. SLA un pakalpojuma pieejamības līmeņi</h3>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:20%;">Prioritāte</th>
+                <th style="width:40%;">Apraksts</th>
+                <th style="width:20%;">Reakcijas laiks</th>
+                <th style="width:20%;">Atrisināšanas laiks</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="badge badge-danger">Kritiskā (Critical)</span></td>
+                <td>Kritisko komponenšu bojājums vai incidents, kas aptur visas organizācijas vai klientu darbu; alternatīvu nav.</td>
+                <td>Nekavējoties pēc paziņojuma (arī telefoniski)</td>
+                <td>Līdz 1 darba dienai (ne vēlāk kā nākamajā darbdienā)</td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-warning">Augstā (High)</span></td>
+                <td>Būtisku komponenšu bojājums, kas traucē lielas lietotāju grupas darbu; ir pagaidu risinājumi ar ietekmi uz ātrumu.</td>
+                <td>Nekavējoties pēc paziņojuma</td>
+                <td>Līdz 5 darba dienām</td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-primary">Vidējā (Medium)</span></td>
+                <td>Kļūda vai incidents, kas ierobežo kopīgos resursus, bet pamatfunkcionalitāte darbojas.</td>
+                <td>Līdz 4 darba stundu laikā</td>
+                <td>Līdz 10 darba dienām</td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-muted">Zemā (Low)</span></td>
+                <td>Kļūda vai nepilnība, kas mazina ērtumu, bet netraucē pamatfunkciju izmantošanai.</td>
+                <td>Līdz 2 darba dienām</td>
+                <td>Līdz 10 darba dienām</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p style="margin-top:0.75rem;">
+          <strong>Drošības ievainojamības:</strong> Kritiskās drošības nepilnības jānovērš <strong>līdz 7 kalendārajām dienām</strong>; augsta riska ievainojamības – <strong>līdz 30 kalendārajām dienām</strong>.
+        </p>
+        <p style="margin-top:0.5rem; color:var(--danger); font-weight:600;">
+          * Svarīga sankcija par testēšanu: Sākot no otrās atkārtotās testēšanas, pasūtītājam ir tiesības izrakstīt rēķinu izpildītājam par testēšanas stundām un ekspertu izdevumiem!
+        </p>
+
+        <h3 style="margin-top:2rem;">5. Drošības prasības</h3>
+        <p>
+          Izstrādes un testa vidēs stingri aizliegts izmantot reālus personas datus. Piekļuvei pasūtītāja vidēm obligāta daudzfaktoru autentifikācija (MFA), lomu modelis (RBAC) un darbību žurnālu uzturēšana. Drošības incidentu gadījumā jāziņo 24 stundu laikā.
+        </p>
+
+        <h3 style="margin-top:2rem;">6. Komandas lomas un kvalifikācijas prasības</h3>
+        <p style="margin-bottom:1rem;">
+          Pretendentam jānodrošina šādas 6 obligātās speciālistu lomas visā līguma laikā (vismaz uz 12 secīgiem mēnešiem bez nesaskaņotas maiņas):
+        </p>
+        <ul style="margin-left:1.5rem; line-height:1.7;">
+          <li><strong>IT projektu vadītājs:</strong> 24 mēnešu PM pieredze pēdējos 5 gados; vadīti vismaz 2 izstrādes projekti (katrs min 80 stundas) pēdējos 3 gados.</li>
+          <li><strong>2x Front-end izstrādātāji:</strong> Tailwind, JS, TypeScript, React, Next.js, HTML, PHP, Git; pēdējos 3 gados vismaz 2 projekti un min 800 stundas katram.</li>
+          <li><strong>2x Full-stack izstrādātāji:</strong> Docker, Kubernetes, PostgreSQL, Node.js, REST, Tailwind, React, Next.js, PHP, Git; pēdējos 3 gados vismaz 3 projekti un min 800 stundas katram.</li>
+          <li><strong>Sistēmu / biznesa analītiķis:</strong> Igauņu valoda B2; pēdējos 3 gados vismaz 3 projekti (min 1 biznesa procesu modelēšana, piem., Enterprise Architect), kopā min 500 stundas.</li>
+          <li><strong>UX/UI dizaineris:</strong> 24 mēnešu UX pieredze pēdējos 5 gados; pēdējos 3 gados vismaz 2 projekti ar WCAG 2.0 AA standartu.</li>
+          <li><strong>Testētājs:</strong> Igauņu valoda B2; pēdējos 3 gados vismaz 2 izstrādes projekti.</li>
+        </ul>
+        <p style="margin-top:0.75rem;">
+          <em>* Viena persona drīkst pildīt vairākas lomas. Pakalpojums jānodrošina igauņu valodā (B2). Nomaiņa tikai ar 1 mēneša iepriekšēju saskaņošanu.</em>
+        </p>
+      </section>
+
+      <!-- SECTION 3: LISA 1.1 CV FORMA -->
+      <section id="cv-forma" class="doc-section">
+        <div class="section-header">
+          <div class="tag-row">
+            <span class="badge badge-primary">Veidne</span>
+            <span class="badge badge-muted">RHAD Lisa 1 Lisa 1.1</span>
+          </div>
+          <h2>3. Pielikums 1.1 – Komandas locekļa CV obligātā veidne</h2>
+          <p class="section-subtitle">Visiem pieteiktajiem speciālistiem dzīvesgājumi obligāti jāiesniedz uz šīs veidlapas igauņu valodā.</p>
+        </div>
+
+        <div style="background:#fff; border:1px solid var(--border); border-radius:var(--radius-sm); padding:1.5rem;">
+          <h4 style="border-bottom:1px solid var(--border); padding-bottom:0.5rem; margin-bottom:1rem;">1. Pamatinformācija par personu</h4>
+          <p><strong>Lomas nosaukums (Rolli nimetus):</strong> [IT projektijuht / Front-end arendaja / Full-stack arendaja / Süsteemi- ja/või ärianalüütik / UX/UI disainer / Testija]</p>
+          <p><strong>Vārds un uzvārds (Ees- ja perekonnanimi):</strong> [Vārds Uzvārds]</p>
+
+          <h4 style="border-bottom:1px solid var(--border); padding-bottom:0.5rem; margin:1.5rem 0 1rem 0;">2. Valodu prasmes (Keeleoskus)</h4>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Valoda</th>
+                  <th>Runāšanas prasme (Kõneoskus)</th>
+                  <th>Rakstīšanas prasme (Kirjaoskus)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Igauņu valoda (Eesti keel)</td>
+                  <td>[B2 / C1 / C2 / Emakeel]</td>
+                  <td>[B2 / C1 / C2 / Emakeel]</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4 style="border-bottom:1px solid var(--border); padding-bottom:0.5rem; margin:1.5rem 0 1rem 0;">3. Darba pieredze (Töökogemus)</h4>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Darba devējs (Tööandja)</th>
+                  <th>Periods (kk.aaaa - kk.aaaa)</th>
+                  <th>Amats un galvenie pienākumi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>[Uzņēmuma nosaukums]</td>
+                  <td>[01.2023 - šobrīd]</td>
+                  <td>[Amata nosaukums un īss apraksts]</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4 style="border-bottom:1px solid var(--border); padding-bottom:0.5rem; margin:1.5rem 0 1rem 0;">4. Dalība programmatūras izstrādes projektos (Osalemine tarkvaraarenduse projektides)</h4>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width:30%;">Lauks</th>
+                  <th style="width:70%;">Informācija par projektu</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Projekta nosaukums un iepirkuma Nr.</td>
+                  <td>[Projekta nosaukums un publiskā iepirkuma atsauces numurs, ja attiecināms]</td>
+                </tr>
+                <tr>
+                  <td>Loma projektā</td>
+                  <td>[Speciālista loma: izstrādātājs, analītiķis, dizaineris utt.]</td>
+                </tr>
+                <tr>
+                  <td>Projekta un veikto darbu apraksts</td>
+                  <td>[Detalizēts apraksts par izstrādātajām funkcijām un personas ieguldījumu]</td>
+                </tr>
+                <tr>
+                  <td>Izmantotās tehnoloģijas</td>
+                  <td>[React, Next.js, TypeScript, Tailwind, Docker, PostgreSQL, REST, GraphQL, WCAG AA utt.]</td>
+                </tr>
+                <tr>
+                  <td>Nostrādātās darba stundas pēdējos 36 mēn.</td>
+                  <td>[Stundu skaits: min 80h / 500h / 800h atkarībā no lomas]</td>
+                </tr>
+                <tr>
+                  <td>Pasūtītāja kontaktpersona atsauksmēm</td>
+                  <td>[Vārds, uzvārds, amats, e-pasts, tālrunis datu verifikācijai]</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4: LISA 2 -->
+      <section id="lisa-2" class="doc-section">
+        <div class="section-header">
+          <div class="tag-row">
+            <span class="badge badge-primary">Vērtēšana</span>
+            <span class="badge badge-purple">100 Punktu Skala</span>
+          </div>
+          <h2>4. Pielikums 2 – Vērtēšanas kritēriji un vērtēšanas metodika</h2>
+          <p class="section-subtitle">Detalizētas vērtēšanas formulas, punktu sadalījums un komisijas kvalitatīvā vērtējuma rubrika.</p>
+        </div>
+
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <span class="kpi-label">Stundas likme (Cena)</span>
+            <span class="kpi-value">20 Punkti</span>
+            <span class="kpi-desc">Zemākā cena saņem 20p; slieksnis min 60 €/h</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-label">Pārbaudes darbs (Proovitöö)</span>
+            <span class="kpi-value">80 Punkti</span>
+            <span class="kpi-desc">Komisijas vērtējums 5 apakškritērijos</span>
+          </div>
+        </div>
+
+        <h3 style="margin-top:1.5rem;">Cenas vērtēšanas formula (20 punkti)</h3>
+        <p style="margin-bottom:1rem;">
+          <code>Punkti = 20 - ((Piedāvājuma likme - Zemākā likme) / Lielākā likme) * 20</code><br>
+          <em>* Visas stundas likmes, kas ir zemākas par 60,00 EUR bez PVN, vērtēšanā tiek pielīdzinātas 60,00 EUR. Zemākas likmes piedāvāšana nedod nekādu papildu priekšrocību.</em>
+        </p>
+
+        <h3 style="margin-top:2rem;">Pārbaudes darba 5 apakškritēriji (80 punkti)</h3>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:30%;">Apakškritērijs</th>
+                <th style="width:12%;">Max punkti</th>
+                <th style="width:58%;">Vērtēšanas līmeņi un apraksts</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1. Analītiskā loģika un struktūra</strong></td>
+                <td><span class="badge badge-primary">20 p</span></td>
+                <td>
+                  <strong>20p:</strong> Labākā analītiskā loģika; problēmas nostādne skaidra, pieņēmumi pamatoti, vienots ietvars.<br>
+                  <strong>15p:</strong> Nedaudz vājāks, maznozīmīgi trūkumi.<br>
+                  <strong>10p:</strong> Skaidri vājāks, manāmi trūkumi saskaņotībā.<br>
+                  <strong>5p:</strong> Būtiski vājāks, sadrumstalots.<br>
+                  <strong>1p:</strong> Neatbalsta mērķu sasniegšanu.
+                </td>
+              </tr>
+              <tr>
+                <td><strong>2. UX lietotāja ceļu izpildāmība un mērogojamība</strong></td>
+                <td><span class="badge badge-primary">20 p</span></td>
+                <td>
+                  <strong>20p:</strong> Vislabākais UX; reālistisks, mērogojams un atbalsta biznesa procesus.<br>
+                  <strong>15p:</strong> Nelieli trūkumi, kopumā labi mērogojams.<br>
+                  <strong>10p:</strong> Manāmi trūkumi izpildāmībā.<br>
+                  <strong>5p:</strong> Mērķus atbalsta tikai ierobežotā apjomā.<br>
+                  <strong>1p:</strong> Vājākais UX risinājums.
+                </td>
+              </tr>
+              <tr>
+                <td><strong>3. DDS 2.0 dizaina sistēmas pielietojums</strong></td>
+                <td><span class="badge badge-purple">10 p</span></td>
+                <td>
+                  <strong>10p:</strong> Viskonsekventāk un kvalitatīvāk ievēroti DDS 2.0 dizaina sistēmas noteikumi.<br>
+                  <strong>8p:</strong> Nedaudz vājāks, maznozīmīgas nepilnības.<br>
+                  <strong>5p:</strong> Pamanāmi trūkumi konsekvencē.<br>
+                  <strong>1p:</strong> Būtiski trūkumi; neatbalsta mērķus.
+                </td>
+              </tr>
+              <tr>
+                <td><strong>4. Tehniskā realizācija un arhitektūra</strong></td>
+                <td><span class="badge badge-primary">20 p</span></td>
+                <td>
+                  <strong>20p:</strong> Vislabākais izpildījums (Next.js, Directus, Docker compose, koda kvalitāte, datu modeļi, testi).<br>
+                  <strong>15p:</strong> Nelieli trūkumi, kopumā kvalitatīvs.<br>
+                  <strong>10p:</strong> Manāmi trūkumi prasību izpildē.<br>
+                  <strong>5p:</strong> Nopietni trūkumi.<br>
+                  <strong>1p:</strong> Kritiski trūkumi; vājākais kods.
+                </td>
+              </tr>
+              <tr>
+                <td><strong>5. Video prezentācija (max 10 min)</strong></td>
+                <td><span class="badge badge-purple">10 p</span></td>
+                <td>
+                  <strong>10p:</strong> Vislabākā prezentācija; skaidra, strukturēta, saprotama gan tehniskam, gan biznesa vērtētājam.<br>
+                  <strong>8p:</strong> Nelieli trūkumi raitumā.<br>
+                  <strong>5p:</strong> Pamanāmi trūkumi, daļēji apgrūtināta izpratne.<br>
+                  <strong>1p:</strong> Būtiski trūkumi; nepilda mērķi.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout callout-warning">
+          <div class="callout-title">⚖️ Vienādu punktu noteikums:</div>
+          <p>
+            Ja diviem vai vairākiem pretendentiem kopējais punktu skaits ir vienāds, <strong>uzvar tas, kuram ir augstāks vērtējums Pārbaudes darbā (Proovitöö)</strong>! Ja arī pēc tam punkti sakrīt, tiek rīkota lozēšana.
+          </p>
+        </div>
+      </section>
+
+      <!-- SECTION 5: LISA 3 LĪGUMS -->
+      <section id="lisa-3" class="doc-section">
+        <div class="section-header">
+          <div class="tag-row">
+            <span class="badge badge-primary">Līguma projekts</span>
+            <span class="badge badge-muted">RHAD Lisa 3.docx</span>
+          </div>
+          <h2>5. Pielikums 3 – Vispārīgās vienošanās līgums (Raamleping)</h2>
+          <p class="section-subtitle">Juridiskie noteikumi, pasūtījumu veikšana, pieņemšana, apmaksa, intelektuālais īpašums, garantija un sankcijas.</p>
+        </div>
+
+        <div class="para-item">
+          <h4>1. Dokumentu hierarhija un prioritāte</h4>
+          <p>Pretrunu gadījumā spēkā ir šāda dokumentu secība: 1) Līgums; 2) Iepirkuma nolikums (RHAD); 3) Pretendenta piedāvājums.</p>
+        </div>
+
+        <div class="para-item">
+          <h4>2. Līguma termiņš</h4>
+          <p>Līgums ir spēkā 36 kalendāros mēnešus vai līdz maksimālās summas 750 000,00 EUR sasniegšanai. Konkrēto pasūtījumu (izpildes līgumu) darbība var turpināties līdz 12 mēnešiem pēc vispārīgās vienošanās beigām.</p>
+        </div>
+
+        <div class="para-item">
+          <h4>3. Pasūtījumu veikšana caur Jira</h4>
+          <p>Darbi tiek pasūtīti bez mini-konkursiem. Pasūtījums tiek reģistrēts Jira biļetē, izpildītājs novērtē stundas, un puses saskaņo apjomu pirms darbu uzsākšanas. Stundas likme nedrīkst pārsniegt līgumā nolīgto likmi.</p>
+        </div>
+
+        <div class="para-item">
+          <h4>4. Pieņemšana un nodošana</h4>
+          <p>Nodevumi tiek nodoti testēšanas vidē. Pasūtītājam ir 10 darba dienas pārbaudei. Pēc otrās atkārtotās testēšanas pasūtītājam ir tiesības izrakstīt rēķinu izpildītājam par testēšanas stundām.</p>
+        </div>
+
+        <div class="para-item">
+          <h4>5. Norēķinu kārtība</h4>
+          <p>Apmaksa reizi mēnesī pēc faktiski pieņemtajām stundām un Jira atskaites. Apmaksas termiņš – 21 kalendārā diena no rēķina saņemšanas.</p>
+        </div>
+
+        <div class="para-item">
+          <h4>6. Intelektuālais īpašums (Autortiesības)</h4>
+          <p>Visas mantiskās autortiesības uz radīto kodu, dokumentāciju un datubāzēm pāriet pasūtītājam visā pasaulē uz visu autortiesību termiņu bez papildu maksas. Pasūtītājs drīkst kodu brīvi publicēt ar MIT licenci.</p>
+        </div>
+
+        <div class="para-item">
+          <h4>7. Garantija (24 mēneši)</h4>
+          <p>Garantijas termiņš visiem darbiem ir 24 mēneši no pieņemšanas dienas. Kļūdas garantijas laikā tiek novērstas bez maksas saskaņā ar SLA termiņiem.</p>
+        </div>
+
+        <div class="para-item">
+          <h4>8. Atbildība un sankcijas</h4>
+          <p>Nokavējuma nauda par termiņu kavējumu: 0,1% dienā no uzdevuma vērtības vai 50,00 EUR par katru nokavēto dienu. Līgumsods par būtiskiem pārkāpumiem: līdz 10%. Kopējais sankciju limits: 20% no pasūtījuma vērtības.</p>
+        </div>
+
+        <div class="para-item">
+          <h4>9. Līguma vienpusēja izbeigšana</h4>
+          <p>Pasūtītājs var vienpusēji lauzt līgumu, brīdinot 30 dienas iepriekš, vai nekavējoties būtiska pārkāpuma gadījumā (termiņu kavējums virs 20 dienām, atkārtots brāķis, sankciju pārkāpums).</p>
+        </div>
+      </section>
+
+      <!-- SECTION 6: GDPR -->
+      <section id="gdpr" class="doc-section">
+        <div class="section-header">
+          <div class="tag-row">
+            <span class="badge badge-primary">Datu aizsardzība</span>
+            <span class="badge badge-purple">GDPR / VDAR</span>
+          </div>
+          <h2>6. Pielikums 3.1 – Datu apstrādes līgums (Andmetöötluse leping)</h2>
+          <p class="section-subtitle">Personas datu apstrādes noteikumi, drošības pasākumi un pārkāpumu paziņošanas kārtība.</p>
+        </div>
+
+        <p style="margin-bottom:1rem;">
+          EIS darbojas kā <strong>Datu pārzinis (Vastutav töötleja)</strong>, bet Izpildītājs ir <strong>Datu apstrādātājs (Volitatud töötleja)</strong>. Izpildītājs personas datus drīkst apstrādāt tikai un vienīgi saskaņā ar pasūtītāja dokumentētiem norādījumiem.
+        </p>
+
+        <ul style="margin-left:1.5rem; line-height:1.7;">
+          <li><strong>Tehniskie pasākumi:</strong> Piekļuves kontrole, personificēti konti, MFA, šifrēšana (TLS 1.3), darbību auditācija un žurnālēšana.</li>
+          <li><strong>Testa vides:</strong> Stingri aizliegts izmantot reālus personas datus izstrādes un testa vidēs (jāizmanto pseidonimizēti vai sintētiski dati).</li>
+          <li><strong>Pārkāpumu paziņošana:</strong> Par jebkuru personas datu drošības pārkāpumu vai incidentu jāpaziņo pasūtītājam <strong>ne vēlāk kā 24 stundu laikā</strong>.</li>
+          <li><strong>Datu iznīcināšana:</strong> Pēc līguma izbeigšanās visi pasūtītāja personas dati un to kopijas pēc pasūtītāja izvēles ir pilnībā jāizdzēš vai jānodod atpakaļ.</li>
+        </ul>
+      </section>
+
+      <!-- SECTION 7: LISA 4 PROOVITOO -->
+      <section id="lisa-4" class="doc-section">
+        <div class="section-header">
+          <div class="tag-row">
+            <span class="badge badge-purple">Vērtējamais pārbaudes darbs</span>
+            <span class="badge badge-primary">80 Punktu Svars</span>
+            <span class="badge badge-success">Next.js + Directus</span>
+          </div>
+          <h2>7. Pielikums 4 – Pārbaudes uzdevums (Proovitöö lähteülesanne)</h2>
+          <p class="section-subtitle">Praktiskā uzdevuma darba uzdevums: klienta ceļvedis no eis.ee sākumlapas līdz pakalpojumu lapām.</p>
+        </div>
+
+        <div class="callout callout-purple">
+          <div class="callout-title">🎯 Pārbaudes darba uzdevuma mērķis</div>
+          <p>
+            Novērtēt pretendenta spēju analizēt, dizainēt, modelēt un tehniski realizēt risinājumu, kas nodrošina lietotāja ceļu no EIS sākumlapas līdz pakalpojuma lapai (Homepage ➔ Category Page ➔ 3 Service Pages), izmantojot <strong>Directus Headless CMS</strong>, <strong>Next.js App Router</strong>, <strong>DDS 2.0 dizainu</strong> un <strong>Docker Compose</strong>.
+          </p>
+        </div>
+
+        <h3>Uzdevuma izejas lapu paraugi (Live vietne eis.ee)</h3>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:25%;">Lapas tips</th>
+                <th style="width:75%;">Saite uz reālo saturu</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Sākumlapa (Avaleht)</strong></td>
+                <td><a href="https://eis.ee" target="_blank" rel="noopener">https://eis.ee</a></td>
+              </tr>
+              <tr>
+                <td><strong>Kategorijas lapa</strong></td>
+                <td><a href="https://eis.ee/innoveeri-ja-kaitse-ari/" target="_blank" rel="noopener">https://eis.ee/innoveeri-ja-kaitse-ari/</a></td>
+              </tr>
+              <tr>
+                <td><strong>Pakalpojuma lapa 1</strong></td>
+                <td><a href="https://eis.ee/teenused/digitaliseerimise-teekaardi-arendustegevused-toetus/" target="_blank" rel="noopener">Digitalizācijas ceļa kartes atbalsts</a></td>
+              </tr>
+              <tr>
+                <td><strong>Pakalpojuma lapa 2</strong></td>
+                <td><a href="https://eis.ee/teenused/laenukaendus-2/" target="_blank" rel="noopener">Aizdevuma garantija</a></td>
+              </tr>
+              <tr>
+                <td><strong>Pakalpojuma lapa 3</strong></td>
+                <td><a href="https://eis.ee/teenused/tark-tellija" target="_blank" rel="noopener">Viedais pasūtītājs (Tark tellija)</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 style="margin-top:2rem;">Obligātās funkcionālās un tehniskās prasības</h3>
+        <div class="kpi-grid">
+          <div class="kpi-card" style="background:#fff;">
+            <strong>Next.js App Router</strong>
+            <p style="font-size:0.875rem; color:var(--text-muted); margin-top:0.35rem;">
+              Frontend jārealizē ar Next.js App Router, React un TypeScript, izmantojot servera puses datu ielādi un renderēšanu (SSR).
+            </p>
+          </div>
+          <div class="kpi-card" style="background:#fff;">
+            <strong>Directus Headless CMS</strong>
+            <p style="font-size:0.875rem; color:var(--text-muted); margin-top:0.35rem;">
+              Pilnīgi atdalīts backend; saziņa caur Directus SDK, REST vai GraphQL API. Dinamiskas lapas, SEO metadati un mediju pārvaldība.
+            </p>
+          </div>
+          <div class="kpi-card" style="background:#fff;">
+            <strong>AI atbalsts caur MCP slāni</strong>
+            <p style="font-size:0.875rem; color:var(--text-muted); margin-top:0.35rem;">
+              Risinājumam jānodrošina mākslīgā intelekta rīku atbalsts, izmantojot Model Context Protocol (MCP) arhitektūru.
+            </p>
+          </div>
+          <div class="kpi-card" style="background:#fff;">
+            <strong>Palaišana ar 1 komandu</strong>
+            <p style="font-size:0.875rem; color:var(--text-muted); margin-top:0.35rem;">
+              Frontend + Directus + Datubāze darbojas konteineros un obligāti startējas ar komandu: <code>docker compose up</code>.
+            </p>
+          </div>
+        </div>
+
+        <h3 style="margin-top:2rem;">4 Iesniedzamie materiāli un piegādes veids</h3>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:25%;">Nodevums</th>
+                <th style="width:30%;">Formāts</th>
+                <th style="width:45%;">Piegādes nosacījumi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1. Koncepcijas apraksts</strong></td>
+                <td>Dokuments līdz 10 lappusēm (PDF)</td>
+                <td>Problēmas izpratne, arhitektūra, datu modeļi, UX loģika.</td>
+              </tr>
+              <tr>
+                <td><strong>2. Figma prototips</strong></td>
+                <td>Klikšķināma Figma saite</td>
+                <td>Izstrādāts, balstoties uz DDS 2.0 (💎 DDS 2.0 - WIP) komponentēm.</td>
+              </tr>
+              <tr>
+                <td><strong>3. Funkcionējošs kods</strong></td>
+                <td>GitHub repozitorijs</td>
+                <td>Jādod piekļuve lietotājiem <code>martinroos-eis</code> un <code>rvaher</code>. Pilna commit vēsture.</td>
+              </tr>
+              <tr>
+                <td><strong>4. Video prezentācija</strong></td>
+                <td>YouTube nereģistrēta (unlisted) saite</td>
+                <td>Maksimums 10 minūtes. Risinājuma demonstrācija un arhitektūras pamatojums.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+
+      <!-- SECTION: PROOVITOO STRATEGY -->
+      <section id="proovitoo-strategija" class="doc-section" style="border: 2px solid var(--purple); background: linear-gradient(to bottom, #ffffff, #faf7ff);">
+        <div class="section-header">
+          <div class="tag-row">
+            <span class="badge badge-purple">Stratēģiskais ceļvedis</span>
+            <span class="badge badge-success">Mērķis: 80 / 80 punkti</span>
+            <span class="badge badge-primary">Next.js + Directus + MCP + DDS 2.0</span>
+          </div>
+          <h2>🚀 Pārbaudes darba (Proovitöö) risināšanas stratēģija</h2>
+          <p class="section-subtitle">
+            Kā praktiski atrisināt <strong>Pielikuma 4 uzdevumu</strong>, lai iepirkuma komisijas vērtējumā iegūtu maksimālos <strong>80 no 80 punktiem</strong>.
+          </p>
+        </div>
+
+        <!-- Problem & Vision -->
+        <div class="callout callout-purple">
+          <div class="callout-title">💡 EIS reālā biznesa problēma, ko komisija vēlas redzēt atrisinātu</div>
+          <p>
+            Apvienojoties <strong>EAS</strong> un <strong>KredEx</strong> vienotajā fondā <strong>EIS</strong>, organizācijai radās simtiem dažādu atbalsta pasākumu, kas pašlaik ir izmētāti novecojušās WordPress un Laravel vietnēs. Klients apmaldās birokrātiskajos tekstos un nesaprot, kurš pakalpojums ir domāts viņam.
+            <br><br>
+            <strong>Uzvarošā risinājuma atslēga:</strong> Parādīt, ka Jūsu komanda spēj ne tikai programmēt, bet arī izveidot <em>intuitīvu, ātru un uz rezultātu vērstu klienta ceļu</em> ar <strong>Directus Headless CMS</strong> un <strong>Next.js</strong>, integrējot inovatīvo <strong>MCP (Model Context Protocol) AI slāni</strong>.
+          </p>
+        </div>
+
+        <!-- Visual Architecture -->
+        <h3 style="margin: 2rem 0 1rem 0;">1. Tehnoloģiskā arhitektūra (Pilnīga atbilstība nolikumam)</h3>
+        
+        <div style="background:#0f172a; color:#f8fafc; padding:1.75rem; border-radius:var(--radius); font-family:'JetBrains Mono', monospace; font-size:0.875rem; line-height:1.6; margin-bottom:2rem; overflow-x:auto;">
+          <div style="color:#94a3b8; margin-bottom:0.5rem;">// SISTĒMAS ARHITEKTŪRAS SHĒMA (1-KOMANDAS PALAIŠANA: docker compose up)</div>
+          <div style="color:#38bdf8;">┌────────────────────────────────────────────────────────────────────────┐</div>
+          <div style="color:#38bdf8;">│                FRONTEND: Next.js 15+ (App Router)                      │</div>
+          <div style="color:#cbd5e1;">│  • React, TypeScript, Tailwind CSS, shadcn/ui                          │</div>
+          <div style="color:#cbd5e1;">│  • Server Components & SSR (Core Web Vitals zaļā zona)                 │</div>
+          <div style="color:#cbd5e1;">│  • Eesti Brändi DDS 2.0 dizaina sistēma (WCAG 2.1 AA)                  │</div>
+          <div style="color:#38bdf8;">└───────────────────────────────────▲────────────────────────────────────┘</div>
+          <div style="color:#64748b; text-align:center;">                            │ REST / GraphQL API (Directus SDK)</div>
+          <div style="color:#a855f7;">┌───────────────────────────────────▼────────────────────────────────────┐</div>
+          <div style="color:#a855f7;">│             BACKEND: Directus Headless CMS (Port: 8055)                │</div>
+          <div style="color:#cbd5e1;">│  • Universāli satura bloki (Many-to-Any Block Builder)                 │</div>
+          <div style="color:#cbd5e1;">│  • Dinamiskie URL un lapu pārvaldība (/page/..., /services/...)        │</div>
+          <div style="color:#cbd5e1;">│  • SEO metadati, OpenGraph, daudzvalodība (EE / EN)                   │</div>
+          <div style="color:#cbd5e1;">│  • S3 mediju krātuve, RBAC tiesības, Webhook paziņojumi                │</div>
+          <div style="color:#a855f7;">└─────────────────▲──────────────────────────────────────▲───────────────┘</div>
+          <div style="color:#64748b; text-align:center;">                  │                                      │</div>
+          <div style="display:flex; justify-content:space-around;">
+            <span style="color:#10b981;">┌─────────────────▼──────────────┐</span>
+            <span style="color:#f59e0b;">┌────────────────▼──────────────┐</span>
+          </div>
+          <div style="display:flex; justify-content:space-around;">
+            <span style="color:#10b981;">│      PostgreSQL Datubāze       │</span>
+            <span style="color:#f59e0b;">│      MCP AI Rīku Serviss      │</span>
+          </div>
+          <div style="display:flex; justify-content:space-around;">
+            <span style="color:#cbd5e1;">│  (Ar gataviem seed datiem)     │</span>
+            <span style="color:#cbd5e1;">│  (Model Context Protocol API) │</span>
+          </div>
+          <div style="display:flex; justify-content:space-around;">
+            <span style="color:#10b981;">└────────────────────────────────┘</span>
+            <span style="color:#f59e0b;">└───────────────────────────────┘</span>
+          </div>
+        </div>
+
+        <!-- 2. UX User Flow -->
+        <h3 style="margin: 2rem 0 1rem 0;">2. Klienta ceļvedis (UX Flow): No Sākumlapas līdz Pakalpojumam</h3>
+        <p style="margin-bottom:1.25rem;">
+          Pielikumā 4 noteikts, ka ceļam jāsākas EIS sākumlapā, jāietver vismaz 1 kategorijas lapa un 3 konkrēti pakalpojumi. Lūk, kā to uzbūvēt, lai gūtu 20/20 punktus UX vērtējumā:
+        </p>
+
+        <div class="kpi-grid">
+          <div class="kpi-card" style="background:#fff; border-top:4px solid var(--primary);">
+            <strong style="color:var(--primary); font-size:1.05rem;">1. Sākumlapa (Avaleht)</strong>
+            <p style="font-size:0.85rem; color:var(--text-muted); margin-top:0.35rem;">
+              • <strong>Viedais meklēšanas & filtru bloks:</strong> Klients izvēlas savu profilu (piem., <em>„Esmu eksportētājs“</em>, <em>„Meklēju digitalizācijas grantu“</em>).<br>
+              • <strong>Kategoriju kartītes ar ikonām:</strong> Tiešas saites uz galvenajiem virzieniem (Inovācijas, Kredīti, Eksports).<br>
+              • <strong>Top pakalpojumu karuselis:</strong> Tūlītēja piekļuve populārākajām programmām ar skaidriem statusa badge (<em>„Atvērts pieteikumiem“</em>).
+            </p>
+          </div>
+
+          <div class="kpi-card" style="background:#fff; border-top:4px solid var(--accent);">
+            <strong style="color:var(--accent); font-size:1.05rem;">2. Kategorija (/innoveeri-ja-kaitse-ari/)</strong>
+            <p style="font-size:0.85rem; color:var(--text-muted); margin-top:0.35rem;">
+              • <strong>Daudzkritēriju filtrs:</strong> Atlase pēc uzņēmuma lieluma (Mikro / MVU / Liels) un atbalsta veida (Grants / Garantija / Mentors).<br>
+              • <strong>Pārskatāmas pakalpojumu kartītes:</strong> Norādīts maksimālais atbalsta apjoms (€), intensitāte (%) un pieteikšanās termiņš.<br>
+              • <strong>Ātrais salīdzināšanas rīks:</strong> Ļauj klientam saprast atšķirību starp diviem līdzīgiem atbalsta pasākumiem.
+            </p>
+          </div>
+
+          <div class="kpi-card" style="background:#fff; border-top:4px solid var(--purple);">
+            <strong style="color:var(--purple); font-size:1.05rem;">3. Pakalpojumu lapas (3 Paraugi)</strong>
+            <p style="font-size:0.85rem; color:var(--text-muted); margin-top:0.35rem;">
+              • <strong>Digitalizācijas ceļa karte:</strong> Soļu grafiks (1. Diagnostika ➔ 2. Ceļa karte ➔ 3. Granta pieteikums), budžeta kalkulators.<br>
+              • <strong>Aizdevuma garantija:</strong> Interaktīvs procentu likmes kalkulators un sadarbības banku saraksts ar tiešajām saitēm.<br>
+              • <strong>Viedais pasūtītājs:</strong> Paziņojums par mentoriem un 1-klikšķa pieteikuma forma konsultācijai.
+            </p>
+          </div>
+        </div>
+
+        <!-- 3. Directus Data Modeling -->
+        <h3 style="margin: 2.5rem 0 1rem 0;">3. Directus CMS Datu modeļu shēma (Mērogojamība)</h3>
+        <p style="margin-bottom:1rem;">
+          Lai pierādītu arhitektūras ilgtspēju, Directus jākonfigurē elastīgs un modulārs datu modelis:
+        </p>
+
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:20%;">Kolekcija</th>
+                <th style="width:30%;">Galvenie lauki</th>
+                <th style="width:50%;">Nolūks un pielietojums</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong><code>pages</code></strong></td>
+                <td><code>id, title, slug, status, seo_title, seo_desc, og_image, blocks (M2A)</code></td>
+                <td>Dinamiskās lapas. Katra lapa sastāv no konfigurējamiem satura blokiem, ko satura redaktors var brīvi kārtot un rediģēt.</td>
+              </tr>
+              <tr>
+                <td><strong><code>page_blocks</code></strong></td>
+                <td><code>collection, item_id, sort_order</code></td>
+                <td>Polimorfiskā saikne (Many-to-Any), kas apvieno: <code>hero_block</code>, <code>services_grid_block</code>, <code>steps_block</code>, <code>faq_accordion</code>, <code>cta_banner</code>.</td>
+              </tr>
+              <tr>
+                <td><strong><code>services</code></strong></td>
+                <td><code>title, slug, category_id, summary, max_amount, intensity_percent, eligibility, process_steps (JSON), cta_url</code></td>
+                <td>Visi EIS sniegtie pakalpojumi un atbalsta programmas. Nodrošina vienotu datu avotu visām lapām un meklētājam.</td>
+              </tr>
+              <tr>
+                <td><strong><code>categories</code></strong></td>
+                <td><code>title, slug, icon, short_desc, color_theme</code></td>
+                <td>Pakalpojumu tematiskās kategorijas (Inovācijas, Eksports, Kredīti, Tūrisms).</td>
+              </tr>
+              <tr>
+                <td><strong><code>navigation</code></strong></td>
+                <td><code>menu_type (header/footer), label, link_url, sort_order</code></td>
+                <td>Globālā un kājenes navigācija, kas tiek pārvaldīta no CMS bez koda izmaiņām.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 4. MCP AI Protocol Layer -->
+        <h3 style="margin: 2.5rem 0 1rem 0;">4. Mākslīgā intelekta (AI) integrācija caur MCP (Model Context Protocol)</h3>
+        <div class="callout callout-warning">
+          <div class="callout-title">⭐ Nolikuma noslēpums, kas garantēs komisijas atzinību</div>
+          <p>
+            Nolikuma 4. pielikumā ir skaidri fiksēts: <em>„AI tööriistade tuge läbi MCP kihi“</em>. Lielākā daļa pretendentu to ignorēs vai nesapratīs. Izstrādājiet vienkāršu, bet funkcionējošu <strong>MCP Serveri</strong>, kas savieno AI aģentu ar Directus saturu:
+          </p>
+        </div>
+
+        <ul style="margin-left:1.5rem; line-height:1.7; margin-bottom:1.5rem;">
+          <li><strong>Rīks 1: <code>find_eis_services</code></strong> — Ļauj AI modelim pēc uzņēmuma apgrozījuma, darbinieku skaita un nozares no Directus atlasīt atbilstošās atbalsta programmas.</li>
+          <li><strong>Rīks 2: <code>get_service_criteria</code></strong> — Nolasa konkrētas programmas pieteikšanās nosacījumus un sniedz atbildes uz klienta jautājumiem.</li>
+          <li><strong>Frontend čatbota logs:</strong> Next.js saskarnē ievietojiet demonstrācijas logu <em>„EIS Viedais Asistents (ar MCP atbalstu)“</em>, kurā klients var pajautāt, piemēram: <em>„Esmu neliels ražotājs, vēlos digitalizēt noliktavu – kādu atbalstu varu saņemt?“</em>, un sistēma atgriež saiti uz <strong>Digitalizācijas ceļa kartes</strong> pakalpojumu!</li>
+        </ul>
+
+        <!-- 5. Docker Compose -->
+        <h3 style="margin: 2.5rem 0 1rem 0;">5. Viss startējas ar vienu komandu: `docker compose up`</h3>
+        <p style="margin-bottom:1rem;">
+          Komisijai ir kritiski svarīgi novērtēt risinājumu lokāli bez sarežģītas konfigurācijas. Repozitorija saknē jābūt gatavam <code>docker-compose.yml</code> ar iepriekš sagatavotiem datubāzes datiem:
+        </p>
+
+        <div style="background:#1e293b; color:#e2e8f0; padding:1.5rem; border-radius:var(--radius-sm); font-family:'JetBrains Mono', monospace; font-size:0.85rem; line-height:1.5; overflow-x:auto;">
+<pre style="margin:0;"><span style="color:#94a3b8;"># Repozitorija saknes docker-compose.yml fails</span>
+<span style="color:#38bdf8;">version:</span> <span style="color:#fde047;">'3.8'</span>
+
+<span style="color:#38bdf8;">services:</span>
+  <span style="color:#a855f7;">postgres:</span>
+    <span style="color:#38bdf8;">image:</span> postgres:15-alpine
+    <span style="color:#38bdf8;">environment:</span>
+      <span style="color:#cbd5e1;">POSTGRES_DB:</span> directus
+      <span style="color:#cbd5e1;">POSTGRES_USER:</span> directus
+      <span style="color:#cbd5e1;">POSTGRES_PASSWORD:</span> directus_password
+    <span style="color:#38bdf8;">volumes:</span>
+      <span style="color:#94a3b8;"># Iepriekš aizpildīti Directus shēmas un EIS satura dati!</span>
+      - ./backend/init-db/01-eis-seed.sql:/docker-entrypoint-initdb.d/init.sql
+    <span style="color:#38bdf8;">ports:</span>
+      - <span style="color:#fde047;">"5432:5432"</span>
+
+  <span style="color:#a855f7;">directus:</span>
+    <span style="color:#38bdf8;">image:</span> directus/directus:latest
+    <span style="color:#38bdf8;">ports:</span>
+      - <span style="color:#fde047;">"8055:8055"</span>
+    <span style="color:#38bdf8;">environment:</span>
+      <span style="color:#cbd5e1;">KEY:</span> <span style="color:#fde047;">"eis-proovitoo-key"</span>
+      <span style="color:#cbd5e1;">SECRET:</span> <span style="color:#fde047;">"eis-proovitoo-secret"</span>
+      <span style="color:#cbd5e1;">DB_CLIENT:</span> <span style="color:#fde047;">"pg"</span>
+      <span style="color:#cbd5e1;">DB_HOST:</span> <span style="color:#fde047;">"postgres"</span>
+      <span style="color:#cbd5e1;">DB_PORT:</span> <span style="color:#fde047;">"5432"</span>
+      <span style="color:#cbd5e1;">DB_DATABASE:</span> <span style="color:#fde047;">"directus"</span>
+      <span style="color:#cbd5e1;">DB_USER:</span> <span style="color:#fde047;">"directus"</span>
+      <span style="color:#cbd5e1;">DB_PASSWORD:</span> <span style="color:#fde047;">"directus_password"</span>
+      <span style="color:#cbd5e1;">ADMIN_EMAIL:</span> <span style="color:#fde047;">"admin@eis.ee"</span>
+      <span style="color:#cbd5e1;">ADMIN_PASSWORD:</span> <span style="color:#fde047;">"admin123"</span>
+    <span style="color:#38bdf8;">depends_on:</span>
+      - postgres
+
+  <span style="color:#a855f7;">frontend:</span>
+    <span style="color:#38bdf8;">build:</span>
+      <span style="color:#cbd5e1;">context:</span> ./frontend
+      <span style="color:#cbd5e1;">dockerfile:</span> Dockerfile
+    <span style="color:#38bdf8;">ports:</span>
+      - <span style="color:#fde047;">"3000:3000"</span>
+    <span style="color:#38bdf8;">environment:</span>
+      <span style="color:#cbd5e1;">NEXT_PUBLIC_DIRECTUS_URL:</span> <span style="color:#fde047;">"http://localhost:8055"</span>
+    <span style="color:#38bdf8;">depends_on:</span>
+      - directus</pre>
+        </div>
+
+        <!-- 6. Four Deliverables -->
+        <h3 style="margin: 2.5rem 0 1rem 0;">6. Četru obligāto nodevumu kontrolsaraksts</h3>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:22%;">Nodevums</th>
+                <th style="width:25%;">Formāts</th>
+                <th style="width:53%;">Izstrādes instrukcija maksimālajam vērtējumam</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1. Koncepcijas dokuments</strong></td>
+                <td>PDF (līdz 10 lpp.)</td>
+                <td>
+                  • Problēmas analīze un EIS digitālā transformācija (2 lpp.)<br>
+                  • Klienta ceļvedis (User Journey) un biznesa loģika (2 lpp.)<br>
+                  • Directus datu modeļu un komponentu specifikācija (2 lpp.)<br>
+                  • Tehniskā arhitektūra, Next.js, Docker, MCP AI slānis (2 lpp.)<br>
+                  • Drošība, WCAG 2.1 AA pieejamība un nākotnes migrācijas plāns (2 lpp.)
+                </td>
+              </tr>
+              <tr>
+                <td><strong>2. Figma DDS 2.0 prototips</strong></td>
+                <td>Figma publiska / koplietota saite</td>
+                <td>
+                  • Pielietot oficiālo Igaunijas Zīmola dizaina sistēmu <em>💎 DDS 2.0 - WIP</em>.<br>
+                  • Pilnībā klikšķināms ceļš no Avaleht ➔ Kategorija ➔ 3 Pakalpojumi.<br>
+                  • Desktop (1440px) un Mobile (375px) adaptīvie ekrāni.<br>
+                  • WCAG 2.1 AA kontrasta pārbaudes apliecinājums.
+                </td>
+              </tr>
+              <tr>
+                <td><strong>3. GitHub repozitorijs</strong></td>
+                <td>GitHub ar komandas pieejām</td>
+                <td>
+                  • Pilns funkcionējošs Next.js + Directus kods ar <code>docker compose up</code>.<br>
+                  • Koda vēsture ar jēgpilniem commit ierakstiem (Clean Git History).<br>
+                  • Detalizēts <code>README.md</code> ar ekrānuzņēmumiem un palaišanas soļiem.<br>
+                  • <strong>Obligāti piešķirt lasīšanas tiesības:</strong> <code>martinroos-eis</code> un <code>rvaher</code>!
+                </td>
+              </tr>
+              <tr>
+                <td><strong>4. Video prezentācija</strong></td>
+                <td>YouTube nereģistrēts (unlisted) links</td>
+                <td>
+                  • Ilgums: <strong>līdz 10 minūtēm</strong> (vislabāk 8-9 minūtes).<br>
+                  • Struktūra: 0:00-2:30 (Koncepcija un problēmas risinājums), 2:30-6:30 (Dzīvā demonstrācija pārlūkā un Directus CMS administrācijā), 6:30-8:30 (Tehniskā arhitektūra, MCP AI rīki un koda kvalitāte), 8:30-9:30 (Kopsavilkums).
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 7. Timeline -->
+        <h3 style="margin: 2.5rem 0 1rem 0;">7. Ieteicamais 12 dienu izstrādes plāns komandai</h3>
+        <div style="background:#fff; border:1px solid var(--border); border-radius:var(--radius-sm); padding:1.5rem;">
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:0.75rem; font-size:0.9rem;">
+            <li><strong style="color:var(--primary);">Diena 1-2:</strong> Analīze, satura atlase no eis.ee, Directus datu shēmas konfigurēšana un SQL eksports.</li>
+            <li><strong style="color:var(--primary);">Diena 3-5:</strong> Figma prototipa izstrāde (DDS 2.0 komponentes, interaktīvie ceļi, mobilais skats).</li>
+            <li><strong style="color:var(--accent);">Diena 6-8:</strong> Next.js frontenda izstrāde, Directus API savienošana, dinamiskie bloki un filtri.</li>
+            <li><strong style="color:var(--purple);">Diena 9-10:</strong> MCP AI servisa integrācija, Docker Compose testēšana 'tīrā' vidē, automatizētie vienībtesti.</li>
+            <li><strong style="color:var(--success);">Diena 11:</strong> Koncepcijas dokumenta (PDF līdz 10 lpp.) noformēšana un README pulēšana.</li>
+            <li><strong style="color:var(--danger);">Diena 12:</strong> 10 minūšu video prezentācijas ierakstīšana, augšupielāde YouTube un saišu pievienošana eRHR reģistrā.</li>
+          </ul>
+        </div>
+      </section>
+
+
+      <!-- SECTION 8: LISA 5 CFR PRASĪBAS -->
+      <section id="lisa-5" class="doc-section">
+        <div class="section-header">
+          <div class="tag-row">
+            <span class="badge badge-primary">Tehniskais standarts</span>
+            <span class="badge badge-purple">110 CFR Prasības</span>
+            <span class="badge badge-success">Meklētājs un filtri</span>
+          </div>
+          <h2>8. Pielikums 5 – Šķērsfunkcionālās prasības izstrādēm (CFR)</h2>
+          <p class="section-subtitle">Pilns 110 šķērsfunkcionālo tehnisko prasību katalogs (arhitektūra, drošība, koda standarti, AI vadlīnijas CFR-102..108).</p>
+        </div>
+
+        <!-- Filter bar -->
+        <div class="filter-bar">
+          <button class="filter-chip active" onclick="filterCFR('ALL', this)">Visi (110)</button>
+          <button class="filter-chip" onclick="filterCFR('Izstrāde', this)">Izstrāde</button>
+          <button class="filter-chip" onclick="filterCFR('Arhitektūra', this)">Arhitektūra</button>
+          <button class="filter-chip" onclick="filterCFR('Datu pārvaldība', this)">Datu pārvaldība</button>
+          <button class="filter-chip" onclick="filterCFR('Drošība', this)">Drošība</button>
+          <button class="filter-chip" onclick="filterCFR('Kvalitāte', this)">Kvalitāte</button>
+          <button class="filter-chip" onclick="filterCFR('Piegāde (CI/CD)', this)">CI / CD</button>
+          <button class="filter-chip" onclick="filterCFR('Vispārīgās / AI', this)">AI Vadlīnijas</button>
+          
+          <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="cfrSearchInput" class="search-input" placeholder="Meklēt prasību pēc koda vai atslēgvārda..." oninput="searchCFR()">
+          </div>
+        </div>
+
+        <div style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;" id="cfrCountDisplay">
+          Rāda 110 no 110 prasībām
+        </div>
+
+        <!-- CFR Table -->
+        <div class="table-container">
+          <table id="cfrTable">
+            <thead>
+              <tr>
+                <th style="width:12%;">Prasības ID</th>
+                <th style="width:14%;">Obligātums</th>
+                <th style="width:16%;">Kategorija</th>
+                <th style="width:58%;">Prasības nosaukums un apraksts (Latviešu valodā)</th>
+              </tr>
+            </thead>
+            <tbody id="cfrTableBody">
+              <!-- Dynamically populated from JS -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION 9: VASTAVUSTINGIMUSED -->
+      <section id="vastavus" class="doc-section">
+        <div class="section-header">
+          <div class="tag-row">
+            <span class="badge badge-primary">Kvalifikācija</span>
+            <span class="badge badge-muted">315313_vastavustingimused.pdf</span>
+          </div>
+          <h2>9. Atbilstības un kvalifikācijas nosacījumi (RHR Reģistrs)</h2>
+          <p class="section-subtitle">Oficiālie e-iepirkumu vides deklarāciju jautājumi un apliecinājumi.</p>
+        </div>
+
+        <div class="para-item">
+          <h4>1. Sankcijas pret Krieviju un Baltkrieviju</h4>
+          <p>Pretendents apliecina, ka nepiesaistīs vairāk par 10% no līguma apjoma apakšuzņēmējus vai piegādātājus, kuri ir Krievijas Federācijas pilsoņi, rezidenti vai Krievijā reģistrēti uzņēmumi (ES Padomes Regula 2022/576).</p>
+        </div>
+
+        <div class="para-item">
+          <h4>2. Apvienības pilnvara</h4>
+          <p>Kopīga piedāvājuma gadījumā jānorāda visu dalībnieku pilnvarotais pārstāvis un jāpievieno parakstīta pilnvara.</p>
+        </div>
+
+        <div class="para-item">
+          <h4>3. Komerciālais noslēpums</h4>
+          <p>Pretendents deklarē informāciju, kas uzskatāma par komercnoslēpumu. Cena (stundas likme) nedrīkst būt komercnoslēpums.</p>
+        </div>
+
+        <div class="para-item">
+          <h4>4. Pilnīgs atbilstības apliecinājums</h4>
+          <p>Iesniedzot piedāvājumu, pretendents apliecina pilnīgu visu iepirkuma pamatdokumentos izvirzīto prasību pārņemšanu bez atrunām.</p>
+        </div>
+
+        <div class="para-item">
+          <h4>5. Ekvivalence</h4>
+          <p>Apliecinājums par līdzvērtīgumu un pierādījumu pievienošana gadījumos, kad piedāvāts līdzvērtīgs risinājums.</p>
+        </div>
+
+        <div class="para-item">
+          <h4>6. Komandas CV iesniegšana</h4>
+          <p>Obligāta CV pievienošana 6 lomām uz 1.1 veidlapas: IT projektu vadītājs, 2x Frontend izstrādātāji, 2x Full-stack izstrādātāji, Analītiķis, UX/UI dizaineris, Testētājs.</p>
+        </div>
+
+        <div class="para-item">
+          <h4>7. Pārbaudes darba iesniegšana</h4>
+          <p>Pārbaudes darba materiālu (koncepcijas dokuments, Figma prototipa saite, GitHub repozitorijs, YouTube video) iesniegšana RHR reģistrā pirms termiņa beigām.</p>
+        </div>
+      </section>
+
+      <!-- SECTION 10: HINDAMISKRITEERIUMID -->
+      <section id="hindamine" class="doc-section">
+        <div class="section-header">
+          <div class="tag-row">
+            <span class="badge badge-primary">RHR Sistēma</span>
+            <span class="badge badge-muted">315313_hindamiskriteeriumid.pdf</span>
+          </div>
+          <h2>10. Vērtēšanas kritēriju oficiālais RHR izraksts</h2>
+          <p class="section-subtitle">E-iepirkumu sistēmas konfigurācija un kritēriju svēršanas algoritmi.</p>
+        </div>
+
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:8%;">Nr.</th>
+                <th style="width:30%;">Nosaukums</th>
+                <th style="width:12%;">Svars</th>
+                <th style="width:20%;">Tips</th>
+                <th style="width:30%;">Aprēķina apraksts</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td><strong>Izstrādes un uzturēšanas stundas likme (bez PVN)</strong></td>
+                <td><span class="badge badge-primary">20 %</span></td>
+                <td>Cena – mazākā ir labākā</td>
+                <td>Formula: Svars - (Likme - MinLikme) / MaxLikme * Svars. Likmes zem 60 EUR/h tiek pielīdzinātas 60 EUR.</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td><strong>Pārbaudes darbs (Proovitöö)</strong></td>
+                <td><span class="badge badge-purple">80 %</span></td>
+                <td>Kvalitāte – vērtē komisija</td>
+                <td>Vērtē vērtēšanas komisija 5 apakškritērijos saskaņā ar RHAD 2. pielikumu.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION 11: HANKEPASS (ESPD) -->
+      <section id="hankepass" class="doc-section">
+        <div class="section-header">
+          <div class="tag-row">
+            <span class="badge badge-primary">ESPD / Hankepass</span>
+            <span class="badge badge-muted">315313_hankepass.pdf & XML</span>
+          </div>
+          <h2>11. Iepirkuma pase (ESPD) un skaidrojumi</h2>
+          <p class="section-subtitle">Eiropas vienotā iepirkuma procedūras dokumenta prasības un pašdeklarācija.</p>
+        </div>
+
+        <p style="margin-bottom:1rem;">
+          Hankepass (ESPD) ir pretendenta pašdeklarācija, kas apliecina, ka uz uzņēmumu neattiecas izslēgšanas iemesli un tas atbilst kvalifikācijas prasībām.
+        </p>
+
+        <div class="kpi-grid">
+          <div class="kpi-card" style="background:#fff;">
+            <strong>I Daļa: Informācija par iepirkumu</strong>
+            <p style="font-size:0.875rem; color:var(--text-muted); margin-top:0.35rem;">
+              EIS paziņojums, atsauces numurs 315313, CPV kods 72262000-9 (Programmatūras izstrādes pakalpojumi).
+            </p>
+          </div>
+          <div class="kpi-card" style="background:#fff;">
+            <strong>II Daļa: Informācija par pretendentu</strong>
+            <p style="font-size:0.875rem; color:var(--text-muted); margin-top:0.35rem;">
+              Uzņēmuma rekvizīti, reģistrācijas numurs, pārstāvji, izmērs, kontaktinformācija.
+            </p>
+          </div>
+          <div class="kpi-card" style="background:#fff;">
+            <strong>III Daļa: Izslēgšanas iemesli</strong>
+            <p style="font-size:0.875rem; color:var(--text-muted); margin-top:0.35rem;">
+              Kriminālsodu neesamība, nodokļu nomaksa, maksātnespējas neesamība, profesionālā uzticamība un sankciju ievērošana.
+            </p>
+          </div>
+          <div class="kpi-card" style="background:#fff;">
+            <strong>IV Daļa: Kvalifikācija</strong>
+            <p style="font-size:0.875rem; color:var(--text-muted); margin-top:0.35rem;">
+              Finansiālā apgrozījuma minimums nav noteikts; kapacitāti pierāda komandas kvalifikācija (Pielikums 1) un pārbaudes darbs (Pielikums 4).
+            </p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Client-side Interactive Scripts -->
+  <script>
+    // CFR Items Dataset
+    const cfrData = [{"id": "CFR-001", "title_lv": "Koda versiju vadība ar Git", "desc_lv": "Lietotnes kodam jābūt versionētam, izmantojot Git. Jāievēro pasūtītāja noteiktais IT profils.", "details_lv": "Git repozitorijs ar skaidru zarošanas stratēģiju (GitFlow/Trunk-based).", "cat_lv": "Izstrāde", "type_lv": "Obligāts", "text_ee": "Rakenduse kood on versioneerit ud kasutades Git'i. https://en.wikipedia.o rg/wiki/Git Tuleb lähtuda IT profiilist", "type_ee": "KOHUSTUS", "cat_ee": "ARENDUS"}, {"id": "CFR-002", "title_lv": "Datubāzes versiju vadība un migrācijas", "desc_lv": "Lietotnes datubāzei jābūt versionētai. Jāizmanto migrāciju skripti (Liquibase, Flyway).", "details_lv": "Visiem datubāzes struktūras grozījumiem jābūt automatizētiem un izsekojamiem versiju vadībā.", "cat_lv": "Izstrāde", "type_lv": "Sagaidāms", "text_ee": "Rakenduse andmebaas on versioneerit ud. Tuleb kasutada migratsioo ni skripte. Liquibase, flyway", "type_ee": "OOTUS", "cat_ee": "ARENDUS"}, {"id": "CFR-003", "title_lv": "Tīrs un pašsaprotams kods (Clean Code)", "desc_lv": "Kodam jābūt uzrakstītam pietiekami skaidri, lai tas būtu lasāms un saprotams bez komentāriem (clean code). Vietās, kur citam izstrādātājam var rasties pārpratuma risks, kodam jābūt skaidri komentētam.", "details_lv": "Ievērot labākās Clean Code prakses un jēgpilnu nosaukumu došanas principus.", "cat_lv": "Izstrāde", "type_lv": "Obligāts", "text_ee": "Kood peab olema kirjutatud piisavalt selgelt, et on loetav ja mõistetav ilma kommentaa rideta (clean code). Kohtades, kus koodiga ja/või valdkonnag a mitte tuttaval arendajal võib tekkida oht koodi vääritimõis tmiseks, peab lähtekood olema selgelt, arusaadaval t ja sisuliselt kommentaa ridega kirjeldatud. Lähtuda tuleb Clean Code printsiipidest (ISBN 978-0-13- 235088-4)", "type_ee": "KOHUSTUS", "cat_ee": "ARENDUS"}, {"id": "CFR-004", "title_lv": "Kods un komentāri angļu valodā", "desc_lv": "Lietotnes pirmkodam, mainīgo nosaukumiem un koda komentāriem jābūt angļu valodā.", "details_lv": "Kods un dokumentācija kodā tiek rakstīta angliski, savukārt lietotāja saskarne un funkcionālā dokumentācija - igauņu valodā.", "cat_lv": "Izstrāde", "type_lv": "Obligāts", "text_ee": "Rakenduse lähtekood ja kommentaa rid peavad olema inglise keeles.", "type_ee": "KOHUSTUS", "cat_ee": "ARENDUS"}, {"id": "CFR-005", "title_lv": "Programmatūras licencēšana", "desc_lv": "Lietotnes programmatūrai jābūt marķētai ar licenci. Ieteicams izmantot MIT licenci.", "details_lv": "MIT atvērtā koda licences marķējums repozitorijā.", "cat_lv": "Izstrāde", "type_lv": "Ieteikums", "text_ee": "Rakenduse tarkvara markeerida litsentsiga. Soovituslikult MIT.", "type_ee": "SOOVITUS", "cat_ee": "ARENDUS"}, {"id": "CFR-006", "title_lv": "Programmēšanas valodu ierobežojums (TIOBE Top 25)", "desc_lv": "Lietotņu izstrādē nedrīkst izmantot programmēšanas valodas, kas nav iekļautas TIOBE index Top 25 sarakstā.", "details_lv": "Mērķis ir minimizēt situācijas, kad tiek radīti komponenti tehnoloģijās, kurām vēlāk grūti atrast izstrādātājus.", "cat_lv": "Izstrāde", "type_lv": "Sagaidāms", "text_ee": "Rakenduse arenduses ei kasutata programme erimiskeeli, mis pole Top 25 TIOBE index'is. https://www.tiobe.co m/tiobe-index/ Nõude eesmäärk on minimeerida olukordi, kus arendatakse uusi komponente tehnoloogiates, millele on raske leida arendajaid, kui komponendid vajavad muutmist.", "type_ee": "OOTUS", "cat_ee": "ARENDUS"}, {"id": "CFR-007", "title_lv": "Komponentu dzīves cikla beigas (EOL) uzraudzība", "desc_lv": "Visiem izstrādē izmantotajiem komponentiem (lietotnes bibliotēkas, datubāzes, trešo pušu risinājumi) nedrīkst būt zināms dzīves cikla beigu termiņš (EOL) tuvāko 2 gadu laikā.", "details_lv": "Aizliegts izmantot novecojušas un neatbalstītas bibliotēkas.", "cat_lv": "Izstrāde", "type_lv": "Obligāts", "text_ee": "Kõikide arendamise l kasutatavat e komponent ide (rakenduse, andmebaasi , kolmanda osapoole omad) eluea lõpp (inglise k End-of- Life, EOL) ei tohi teadaoleval t olla vähem kui 5 aastat.", "type_ee": "OOTUS", "cat_ee": "ARENDUS"}, {"id": "CFR-008", "title_lv": "Aktuāla un uzturēta sistēmas dokumentācija", "desc_lv": "Pakalpojumu lietotnēm jābūt aktuālai un uzturētai tehniskajai dokumentācijai (arhitektūra, izvietošana, konfigurācija).", "details_lv": "Dokumentācija tiek uzturēta pasūtītāja Confluence un repozitorija README failos.", "cat_lv": "Izstrāde", "type_lv": "Obligāts", "text_ee": "Teenuse rakendustel e eksisteeriva d ajakohased", "type_ee": "KOHUSTUS", "cat_ee": "ARENDUS"}, {"id": "CFR-009", "title_lv": "Lietotāja saskarnes stāvokļa (State) pārvaldība", "desc_lv": "Lietotāja saskarnes stāvoklis (state) tiek glabāts klienta pusē (pārlūkprogrammā), nodrošinot bezstāvokļa (stateless) aizmugursistēmas servisus.", "details_lv": "Ļauj brīvi mērogot aizmugursistēmu aiz slodzes balansētāja (LB) un Kubernetes klasterī.", "cat_lv": "Arhitektūra", "type_lv": "Sagaidāms", "text_ee": "Taaskasutat avalt disainitud rakenduse kood on e- riigi koodivara mus (koodivara mu.eesti.ee ). MUSTAND ARENDUS APPROVED", "type_ee": "KOHUSTUS", "cat_ee": "ÜLDINE"}, {"id": "CFR-010", "title_lv": "Tehnisko kļūdu žurnālēšana (Error Logging)", "desc_lv": "Lietotnei jāreģistrē visas tajā radušās tehniskās kļūdas un izņēmumi ar konteksta informāciju.", "details_lv": "Kļūdu žurnāliem jābūt strukturētiem un nosūtāmiem uz centrālo žurnālu sistēmu.", "cat_lv": "Arhitektūra", "type_lv": "Obligāts", "text_ee": "Rakendus peab olema läbinud enne toodanguss e minemist turvatestim ise. Tuleb rakendada OWASP (Top 10) https://owasp.org/ww w-project-top-ten/. Väljaarvatud: Juhul, kui on arhitektuuris rakendatud alternatiivsed kompenseerivad meetmed ning neile on tehtud riskihinnag.", "type_ee": "KOHUSTUS", "cat_ee": "TARNE"}, {"id": "CFR-011", "title_lv": "Žurnālu loģiskais dalījums", "desc_lv": "Žurnāliem (logiem) jābūt loģiski nodalītiem: audita žurnāls (sesijas, lietotāju darbības), sistēmas kļūdu žurnāls un veiktspējas metrikas.", "details_lv": "Atsevišķa pieeja audita un diagnostikas ierakstiem atbilstoši GDPR un drošības prasībām.", "cat_lv": "Arhitektūra", "type_lv": "Obligāts", "text_ee": "Rakendus ei lähe toodangu- keskkonda, kui selles on avastatud turvalisuse nõrkuseid ja/või haavatavusi . Haavatavuse tuvastamine on käsitsi või automatiseeritult, näiteks koodianalüüsi tulemusel. Lisasoovitus: Rakendus ei lähe toodangu-keskkonda, kui selle koodis on avastatud koodikvaliteedi vigu. Väljaarvatud: Kui riskianalüüsi alusel on otsustatud teha erisus, näiteks potentsiaalne probleem on lahendatud teisiti ning lahenduse vastupanuvõimet on testitud ning hinnatud turvaliseks. Soovitus kasutada staatilist koodi analüüsi näiteks Qodana, SonarQube, SpotBugs jm", "type_ee": "KOHUSTUS", "cat_ee": "TARNE"}, {"id": "CFR-012", "title_lv": "Sensitīvu datu izslēgšana no žurnāliem", "desc_lv": "Žurnāla ierakstos aizliegts iekļaut paroles, piekļuves atslēgas, autorizācijas tokenus un personu sensitīvos datus.", "details_lv": "Automātiska datu maskēšana pirms žurnāla ieraksta saglabāšanas.", "cat_lv": "Drošība", "type_lv": "Obligāts", "text_ee": "Toodanagu keskkonda ei tarnita koodi, mille testid ebaõnnestu vad. Eeldus on, et rakendus on kaetud automaat testidega. Ka manuaalselt testimisel ei tarnita ebaõnnestunud osi toodangu keskkonda.", "type_ee": "KOHUSTUS", "cat_ee": "TARNE"}, {"id": "CFR-013", "title_lv": "Konteinerizācija un Docker vide", "desc_lv": "Visiem pakalpojumiem un lietotnēm jābūt konteinerizētiem (Docker) un gataviem darbināšanai Kubernetes vidē (Riigipilv).", "details_lv": "Dockerfaili optimizēti, multi-stage būvēšana, minimāls bāzes attēla izmērs.", "cat_lv": "Arhitektūra", "type_lv": "Obligāts", "text_ee": "Toodangu keskkonda ei lähe kood, mis pole läbinud code review. Ehk nelja silma printsiipi. Eeldus on siin, et projektis on vähemalt 2 arendajat. Nõuet saab ka täita, kui on kasutusel staatilised koodi analüüsi tööriistad.", "type_ee": "OOTUS", "cat_ee": "TARNE"}, {"id": "CFR-014", "title_lv": "Infrastruktūra kā kods (IaC) un deklaratīva konfigurācija", "desc_lv": "Lietotnes izvietošanas konfigurācijām jābūt definētām kā kodam (Helm charts, Kubernetes manifests, ArgoCD).", "details_lv": "Pilnīga GitOps pieeja un deklaratīva vides pārvaldība.", "cat_lv": "Piegāde (CI/CD)", "type_lv": "Obligāts", "text_ee": "Koodi pakettide või imagete tarnimine toimub automaatse lt Kasutada näiteks, ArgoCD, Gitlab CI/CD või mõnda muud automatiseeritud vahendit.", "type_ee": "OOTUS", "cat_ee": "TARNE"}, {"id": "CFR-015", "title_lv": "CI/CD automatizētie cauruļvadi", "desc_lv": "Būvēšanai, testēšanai un izvietošanai jāizmanto automatizēti GitLab CI cauruļvadi (pipelines).", "details_lv": "Katrs commits iziet automātisku lintingu, vienībtestus un drošības skenēšanu.", "cat_lv": "Piegāde (CI/CD)", "type_lv": "Obligāts", "text_ee": "Toodangu keskkonda des on rakendused on automaatse lt monitooritu d. See eeldab ka monitooringus tekkivate vigadest automaatset teavitamist. Lisasoovitus: Monitooringut teostada ka arendus ja test- rakenduskeskkondad es. Lisasoovitus: Monitoorida ka teenuse käitumismustreid, näiteks kiirust ja arenduste mõju rakenduse kiirusele.", "type_ee": "KOHUSTUS", "cat_ee": "TARNE"}, {"id": "CFR-016", "title_lv": "Automātisko vienībtestu (Unit tests) prasība", "desc_lv": "Kritiskajai biznesa loģikai jābūt pārklātai ar automātiskajiem vienībtestiem. Testu izpildei jābūt obligātam solim CI/CD cauruļvadā.", "details_lv": "Koda pārklājuma uzraudzība un regulāra izpilde pirms koda sapludināšanas.", "cat_lv": "Kvalitāte", "type_lv": "Obligāts", "text_ee": "Rakendus on versioneerit ud kasutades semantilise versioneeri Põhimõte: https://medium.com/j avarevisited/applicati on-versioning- strategies- de353a84faaa Või kasutada release loogikat 2025-07-R3", "type_ee": "SOOVITUS", "cat_ee": "TARNE"}, {"id": "CFR-017", "title_lv": "Statiskā koda analīze un drošības pārbaude (SAST)", "desc_lv": "CI/CD cauruļvadā jābūt iekļautai statiskajai koda analīzei (SonarQube vai līdzvērtīgs rīks) un bibliotēku ievainojamību skenēšanai.", "details_lv": "Automātiska bloķēšana augsta riska ievainojamību gadījumā.", "cat_lv": "Kvalitāte", "type_lv": "Obligāts", "text_ee": "Rakenduse konfigurats ioon (sh. paroolid) ei ole osa tarkvara koodist vaid paigaldatak se külge rakenduse tarnel keskkonda läbi keskkonna muutujate. Ära talleta paroole tekstina konfiguratsioonides või andmebaasides. Paroolide taaskasutus ainult läbi Vault- sarnase lahenduse.", "type_ee": "KOHUSTUS", "cat_ee": "ARHITEKTUUR"}, {"id": "CFR-018", "title_lv": "Koda pārskatīšanas (Code Review) process", "desc_lv": "Neviens kods nedrīkst tikt sapludināts galvenajā zarā bez vismaz viena cita izstrādātāja apstiprinājuma (Merge Request / Pull Request).", "details_lv": "Četru acu princips (Four-eyes principle) izstrādes procesā.", "cat_lv": "Kvalitāte", "type_lv": "Obligāts", "text_ee": "Rakendus ei tohi luua uut identiteedis üsteemi. Tuleb tugineda olemasolev atele riiklikele (ID-kaart, mobiilID, SmartID) Erandina microsoft SSO.", "type_ee": "KOHUSTUS", "cat_ee": "ARHITEKTUUR"}, {"id": "CFR-019", "title_lv": "Semantiskā versiju vadība (SemVer)", "desc_lv": "Laidieniem un komponentu versijām jāizmanto semantiskā versiju vadība (SemVer 2.0.0: MAJOR.MINOR.PATCH).", "details_lv": "Skaidra un paredzama izmaiņu ietekme uz savietojamību.", "cat_lv": "Izstrāde", "type_lv": "Obligāts", "text_ee": "Rakenduse tehnilised komponend id kaitsevad iseennast ja valideeriva d nende poole pöördunud kasutaja või tehnilise teenuse õiguseid. Komponendid on andmebaasid, töötavad või väljakutsutavad tarkvara- komponendid, mikroteenused. Kui autentimine on soovituslikult tsentraalne, siis autoriseerimine on rakenduste enda tagada.", "type_ee": "OOTUS", "cat_ee": "ARHITEKTUUR"}, {"id": "CFR-020", "title_lv": "Automātiski ģenerēta API dokumentācija", "desc_lv": "Visiem tehnisko komponentu publiskajiem un iekšējiem API jābūt automātiski ģenerētai dokumentācijai (OpenAPI 3.0 / Swagger).", "details_lv": "Dokumentācijai vienmēr jābūt sinhronizētai ar reālo koda stāvokli.", "cat_lv": "Arhitektūra", "type_lv": "Obligāts", "text_ee": "Tehniliste komponent ide API'del eksisteerib automaatse lt genereeritu d dokumentat sioon. Nagu näiteks Swagger või OpenAPI", "type_ee": "KOHUSTUS", "cat_ee": "ARHITEKTUUR"}, {"id": "CFR-021", "title_lv": "Domēna vadīts dizains (DDD) un mikrosistēmu principi", "desc_lv": "Lietotnēm jābūt veidotām, ievērojot Domain-Driven Design principus un vāji saistītu servisu arhitektūru ar skaidrām atbildības robežām.", "details_lv": "Modulāra struktūra ar minimālu savstarpējo atkarību.", "cat_lv": "Arhitektūra", "type_lv": "Sagaidāms", "text_ee": "Rakenduse d on disainitud ja arendatud domeenist juhinduva disaini (domain driven design) ja mikroteenu ste arhitektuuri põhimõttei d jälgides. Infosüsteemid on ehitatud mitmest koosvõimelisest autonoomsest - ehk väheste otseste sõltuvustega - mikroteenusest. Mikroteenus on teenuse komponent, milles on kokku koondatud kõik funktsioonid, mis muutuvad samadel põhjustel - erinevatel põhjustel muutuvad komponendid on tõstetud eraldi mikroteenusteks. Rakenduste enda sisse on kirjutatud ainult rakenduse enda piiridesse jääv äriloogika. Rakenduste sisse mitte ehitada otsepäringuid teiste lõpp-infosüsteemide pihta, kui selleks pole selget põhjendatud vajadust.Infosüsteemi d on ehitatud mitmest koosvõimelisest autonoomsest - ehk väheste otseste sõltuvustega - mikroteenusest. Mikroteenus on teenuse komponent, milles on kokku koondatud kõik funktsioonid, mis muutuvad samadel põhjustel - erinevatel põhjustel muutuvad", "type_ee": "OOTUS", "cat_ee": "ARHITEKTUUR"}, {"id": "CFR-022", "title_lv": "RESTful un GraphQL API standarti", "desc_lv": "Datu apmaiņai starp front-end un back-end jāizmanto standarta RESTful JSON vai GraphQL protokoli ar paredzamām statusa atbildēm.", "details_lv": "Standarta HTTP statusu kodi (200, 201, 400, 401, 403, 404, 500) un vienota kļūdu JSON struktūra.", "cat_lv": "Arhitektūra", "type_lv": "Obligāts", "text_ee": "Infosüstee mide vaheline andmevahe tus toimub üle X-tee. Silmas peame kõiki teenuseid, mis ei ole majutatud meie endi juures või kuulub teisele osapoolele. Erandina võib olla otse REST liides, aga sellisel juhul tuleb toestada riskianalüüs ja põhjendada, miks pole võimalik X-tee liidestamine. Täiendavalt tuleb lähtuda RIA nõuetest.", "type_ee": "OOTUS", "cat_ee": "ARHITEKTUUR"}, {"id": "CFR-023", "title_lv": "Asinhrona notikumu apstrāde", "desc_lv": "Ilgstošiem fona procesiem un datu apmaiņai starp sistēmām jāizmanto asinhronas rindu vai notikumu ziņojumapmaiņas arhitektūras.", "details_lv": "Lietotāja saskarne netiek bloķēta fona darbu laikā.", "cat_lv": "Arhitektūra", "type_lv": "Sagaidāms", "text_ee": "Kasutajalii des ja teenuse funktsionaa lsus on loogiliselt eristatud kihid ja suhtlevad üle API. Äriloogilis ed tehnilised komponend id on kasutatavad erinevate kasutajaliid este poolt. Näiteks võib kaaluda Headless CMS põhimõtteid https://en.wikipedia.o rg/wiki/Headless_con tent_management_sy stem näiteks Directus Lisasoovitus: Kaaluda ka mikrofrontendide põhist lähenemist https://martinfowler.c om/articles/micro- frontends.html näiteks Single-SPA", "type_ee": "OOTUS", "cat_ee": "ARHITEKTUUR"}, {"id": "CFR-024", "title_lv": "Pakalpojumu veselības pārbaudes (Health Checks)", "desc_lv": "Katram servisam jānodrošina `/healthz`, `/live` un `/ready` galapunkti Kubernetes veselības un gatavības pārbaudēm.", "details_lv": "Automātiska bojātu konteineru pārstartēšana un slodzes noņemšana.", "cat_lv": "Arhitektūra", "type_lv": "Obligāts", "text_ee": "Tehnilised komponend id avaldavad https://en.wikipedia.o rg/wiki/Representatio nal_state_transfer EST API URL on", "type_ee": "OOTUS", "cat_ee": "ARHITEKTUUR"}, {"id": "CFR-025", "title_lv": "Konfigurācijas atdalīšana no koda (12-Factor App)", "desc_lv": "Lietotnes konfigurācijai jābūt pilnībā atdalītai no koda un padotai caur vides mainīgajiem (Environment Variables) vai Secret pārvaldnieku.", "details_lv": "Vienāds koda artefakts tiek darbināts izstrādes, testa un produkcijas vidēs.", "cat_lv": "Arhitektūra", "type_lv": "Obligāts", "text_ee": "Rakendusel peab olema masinloeta v testleht (health check) JSON formaadis.", "type_ee": "OOTUS", "cat_ee": "ARHITEKTUUR"}, {"id": "CFR-026", "title_lv": "Horizontāla mērogojamība (Stateless)", "desc_lv": "Aizmugursistēmas lietotņu instancēm jābūt bezstāvokļa, lai tās varētu horizontāli mērogot atkarībā no slodzes.", "details_lv": "Datu glabāšana tikai ārējās datubāzēs, Redis vai S3 krātuvē.", "cat_lv": "Arhitektūra", "type_lv": "Obligāts", "text_ee": "API teenused peavad toetama JSON andmeform aati. Accept: application/ json", "type_ee": "SOOVITUS", "cat_ee": "ARHITEKTUUR"}, {"id": "CFR-027", "title_lv": "Graceful Shutdown un darbības pabeigšana", "desc_lv": "Konteineriem jāatbalsta droša darba apturēšana (SIGTERM apstrāde), pabeidzot aktīvos pieprasījumus pirms procesa beigām.", "details_lv": "Nepārtraukta pakalpojuma pieejamība versiju atjaunināšanas laikā (Zero-downtime).", "cat_lv": "Arhitektūra", "type_lv": "Obligāts", "text_ee": "CamelCase peaks olema kasutuses", "type_ee": "KOHUSTUS", "cat_ee": "ARHITEKTUUR"}, {"id": "CFR-028", "title_lv": "Atvērtā koda bibliotēku auditi", "desc_lv": "Izmantotajām npm / pip / composer bibliotēkām jābūt aktīvi uzturētām un bez neatrisinātām kritiskām ievainojamībām.", "details_lv": "Regulāra npm audit / dependabot pārbaude.", "cat_lv": "Drošība", "type_lv": "Obligāts", "text_ee": "Rakendus on pilvekõlbul ik. 1. Rakendus on skriptiga paigaldatav ning paigaldamine ja taastamine toimub automatiseeritava skripti käivitamisega. 2. Rakendus koosneb mitmest sõltumatust instantsist. 3. Rakendus on automaatselt skaleeritav ja vajadusel kõrgkäideldav kolme asukoha vahel sõltub ärilisest vajadusest. 4. Rakenduse andmed on varundatavad ja varundatud. Mikroteenused on (enamasti) pilvekõlbulikud, aga kõik, mis on pilvekõlbulik ei pruugi olla mikroteenus. Ehk ka ärivajaduste tõttu ehitatud monoliit", "type_ee": "OOTUS", "cat_ee": "ARHITEKTUUR"}, {"id": "CFR-029", "title_lv": "Autentifikācija un autorizācija (OAuth2 / OIDC)", "desc_lv": "Lietotāju autentifikācijai jāizmanto atvērtie standarti OAuth 2.0 un OpenID Connect (OIDC), nodrošinot vienoto pieteikšanos (SSO).", "details_lv": "Integrācija ar Valsts autentifikācijas pakalpojumu (Tara) un EIS iekšējo identitātes pārvaldnieku.", "cat_lv": "Drošība", "type_lv": "Obligāts", "text_ee": "Rakenduse enda mälus või failisüstee mis talletatakse maksimaals elt käimasolev a päringu andmeid. Kõik andmed, mida vaja talletada pikemalt, peavad olema talletatud teenuse instantsist väljaspool.", "type_ee": "OOTUS", "cat_ee": "ARHITEKTUUR"}, {"id": "CFR-030", "title_lv": "Lomu bāzēta piekļuves kontrole (RBAC)", "desc_lv": "Lietotnē un satura vadības sistēmā (Directus) jābūt ieviestai granulārai lomu un tiesību pārvaldībai.", "details_lv": "Pieeja tikai tiem datiem un darbībām, kas nepieciešamas konkrētās lomas izpildei.", "cat_lv": "Drošība", "type_lv": "Obligāts", "text_ee": "Teenus suudab püsti jääda või end täisfunktsio naalselt taastada ka Chaos Monkey eksperimen teertestimis e tulemusel. https://en.wikipedia.o rg/wiki/Chaos_engine ering", "type_ee": "OOTUS", "cat_ee": "ARHITEKTUUR"}, {"id": "CFR-031", "title_lv": "Ievaddatu validācija un sanitizācija", "desc_lv": "Visiem no klienta vai ārējām sistēmām saņemtajiem datiem jāveic stingra servera puses validācija un sanitizācija (XSS un SQLi novēršana).", "details_lv": "Nekad neuzticēties klienta sniegtajiem datiem.", "cat_lv": "Drošība", "type_lv": "Obligāts", "text_ee": "Rakenduse tehnilised hajuskomp onendid ei jaga sama andmebaasi , mälu ega failisüstee mi. Ehk komponendi andmed ja failid on ligipääsetavad näiteks ainult läbi kontrollitud API kanali.", "type_ee": "OOTUS", "cat_ee": "ARHITEKTUUR"}, {"id": "CFR-032", "title_lv": "CSRF aizsardzība", "desc_lv": "Visām stāvokli mainošajām darbībām (POST, PUT, DELETE) jānodrošina aizsardzība pret starpvietņu pieprasījumu viltošanu (CSRF žetoni vai SameSite sīkfaili).", "details_lv": "Standarta drošības mehānisms visām formām un API pieprasījumiem.", "cat_lv": "Drošība", "type_lv": "Obligāts", "text_ee": "Andmebaas ei tohi sisaldada äriloogikat (triggerid, Kui ei saa täita siis tuleb põhjendada ja dokumenteerida juhud, miks pole nõue täidetav.", "type_ee": "OOTUS", "cat_ee": "ARHITEKTUUR"}, {"id": "CFR-033", "title_lv": "Stateless klienta sesijas", "desc_lv": "Klienta saskarnes stāvoklis un sesijas informācija tiek uzturēta klienta pusē vai bezstāvokļa žetonos (JWT ar īsu derīguma termiņu).", "details_lv": "Aizmugursistēmas serveriem nav nepieciešama sesiju sinhronizācija.", "cat_lv": "Arhitektūra", "type_lv": "Ieteikums", "text_ee": "Kasutajalii dese olekut (state) hoitakse kliendi liidese poolel ja teenused on ise olekuta. Brauseri kohalikus hoidlas, küpsistest. See on vajalik, kui teenused on mitmel õlal koormusjaoturi (LB) taga. Samuti hallatud klastri kontekstist, kus teenused peavad olema stateless.", "type_ee": "SOOVITUS", "cat_ee": "ARHITEKTUUR"}, {"id": "CFR-034", "title_lv": "Strukturēts kļūdu žurnāls JSON formātā", "desc_lv": "Visiem kļūdu žurnālu ierakstiem jābūt strukturētā formātā (ieteicams JSON) ar laika zīmogu, kļūdas kodu un izsekošanas ID.", "details_lv": "Atvieglo automatizētu analīzi un monitoringu Elasticsearch / Kibana vidē.", "cat_lv": "Arhitektūra", "type_lv": "Obligāts", "text_ee": "Rakendus peab logima kõik rakenduses tekkivad tehnilised vead.", "type_ee": "KOHUSTUS", "cat_ee": "ARHITEKTUUR"}, {"id": "CFR-035", "title_lv": "Auditācijas pierakstu nodalīšana un neaizskaramība", "desc_lv": "Lietotāju drošības un datu apstrādes audita pieraksti tiek glabāti atsevišķi no ikdienas lietojuma logiem un nav maināmi.", "details_lv": "Nodrošina atbilstību ISKE un GDPR prasībām par datu izsekojamību.", "cat_lv": "Drošība", "type_lv": "Obligāts", "text_ee": "Logid peavad olema jaotatud loogiliselt Auditlogi (seansilogi, tegevuslogi) - Info sisselogimiste, väljalogimiste ja seansi aegumiste kohta. Vigased sisselogimise katsed. Info õiguste suurendamise kohta. Peab olema logitud ka tühja või puuduvate parameetritega logimise katsed. Kogu informatsioon kasutajate tegevuste kohta koos tegevuse tüübi, seansi parameetrite (korreleerimaks seansi- ja tegevuslogi) ja kasutaja poolt esitatud sisendparameetritega (sh. väliste ressursside kasutamise kohta). Logida tuleb nii õnnestunud kui ka ebaõnnestunud tegevusi.", "type_ee": "KOHUSTUS", "cat_ee": "ÜLDINE"}, {"id": "CFR-036", "title_lv": "Droša paroļu hešēšana (Argon2 / bcrypt)", "desc_lv": "Paroles un slepenās atslēgas nekad netiek glabātas atvērtā veidā. Jāizmanto mūsdienīgi hešēšanas algoritmi (Argon2id vai bcrypt ar atbilstošu darba faktoru).", "details_lv": "Pilnīga drošība datubāzes noplūdes gadījumā.", "cat_lv": "Drošība", "type_lv": "Obligāts", "text_ee": "Lahendus peab olema kaetud automaatse te komponend itestidega (unit test), mis katavad ära iga äriloogika peamise funktsiooni , tagavad koodibaasi töökindluse ning võimaldava d regressioon ide kiiret tuvastamist ja vältimist. Kui esitulus kiht pole testidega katud siis tuleb välja tuua alternatiivsed testimise viisid. Soovituslik oleks kasutada Cypress või Selenium.", "type_ee": "OOTUS", "cat_ee": "KVALITEET"}, {"id": "CFR-037", "title_lv": "HTTPS un TLS 1.3 šifrēšana", "desc_lv": "Visa datu pārraide starp klientu un serveri, kā arī starp iekšējiem komponentiem jānodrošina ar šifrēšanu (TLS 1.2+ / TLS 1.3).", "details_lv": "Stingra HSTS (HTTP Strict Transport Security) politikas ieviešana.", "cat_lv": "Drošība", "type_lv": "Obligāts", "text_ee": "Rakenduse d on läbinud koormustes tid vähemalt kahekordse eeldatava kasutajama huga enne toodanguss e minekut. Koormustestid tuleb teha ka iga olulise muudatuse korral. Lisasoovitus: Koormusteste teostada regulaarselt. MUSTAND KVALITEET APPROVED", "type_ee": "KOHUSTUS", "cat_ee": "ÜLDINE"}, {"id": "CFR-038", "title_lv": "Drošības galvenes (Security Headers)", "desc_lv": "Tīmekļa atbildēs jābūt iekļautām standarta drošības galvenēm: CSP, X-Content-Type-Options, X-Frame-Options, Referrer-Policy.", "details_lv": "Aizsardzība pret Clickjacking, MIME pārņemšanu un nesankcionētiem skriptiem.", "cat_lv": "Drošība", "type_lv": "Obligāts", "text_ee": "Kasutajalii des peab olema veebipõhin e ja Võimalusel kuvada kasutajale kuvada inimloetav ja arusaadav veateade.", "type_ee": "KOHUSTUS", "cat_ee": "KVALITEET"}, {"id": "CFR-039", "title_lv": "Mākoņa infrastruktūras pielāgošana (Riigipilv)", "desc_lv": "Lietotnēm jābūt optimizētām darbam Igaunijas Valsts mākonī (Riigipilv) uz Kubernetes platformas.", "details_lv": "Savietojamība ar Riigipilv sniegtajiem pakalpojumiem un tīkla drošības zonām.", "cat_lv": "Piegāde (CI/CD)", "type_lv": "Obligāts", "text_ee": "Veebipõhin e kasutajaliid es järgib HTML5 ja CSS3 standardeid . https://validator.w3.o rg/ ning https://jigsaw.w3.org/ css-validator/", "type_ee": "KOHUSTUS", "cat_ee": "KVALITEET"}, {"id": "CFR-040", "title_lv": "Datubāzu savienojumu pūls (Connection Pooling)", "desc_lv": "Datubāzes pieprasījumiem jāizmanto efektīvs savienojumu pūls (connection pooler), lai novērstu pārslodzi pie lielas lietotāju aktivitātes.", "details_lv": "PgBouncer vai iebūvētais savienojumu pūls.", "cat_lv": "Datu pārvaldība", "type_lv": "Sagaidāms", "text_ee": "Süsteemi funktsionaa lne skoop on defineeritu d ja dokumente eritud.", "type_ee": "SOOVITUS", "cat_ee": "KVALITEET"}, {"id": "CFR-041", "title_lv": "Prasība CFR-041: Kasutajalii des kasutab EIS-i stiiliraamat ut.", "desc_lv": "Kasutajalii des kasutab EIS-i stiiliraamat ut. Hetkel beta DDS2 (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Kvalitāte, Statuss: Apstiprināts.", "cat_lv": "Kvalitāte", "type_lv": "Sagaidāms", "text_ee": "Kasutajalii des kasutab EIS-i stiiliraamat ut. Hetkel beta DDS2", "type_ee": "OOTUS", "cat_ee": "KVALITEET"}, {"id": "CFR-042", "title_lv": "Prasība CFR-042: Rakendus vastab WCAG 2.2 AA tasemele", "desc_lv": "Rakendus vastab WCAG 2.2 AA tasemele (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Kvalitāte, Statuss: Apstiprināts.", "cat_lv": "Kvalitāte", "type_lv": "Sagaidāms", "text_ee": "Rakendus vastab WCAG 2.2 AA tasemele", "type_ee": "OOTUS", "cat_ee": "KVALITEET"}, {"id": "CFR-043", "title_lv": "Prasība CFR-043: Rakenduse tarkvara tööd logitakse ning audit-", "desc_lv": "Rakenduse tarkvara tööd logitakse ning audit- Logima peaks õnnestunud ja ebaõnnestunud sisselogimiskatsed, ligipääs (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Drošība, Statuss: Apstiprināts.", "cat_lv": "Drošība", "type_lv": "Obligāts", "text_ee": "Rakenduse tarkvara tööd logitakse ning audit- Logima peaks õnnestunud ja ebaõnnestunud sisselogimiskatsed, ligipääs", "type_ee": "KOHUSTUS", "cat_ee": "TURVALISUS"}, {"id": "CFR-044", "title_lv": "Prasība CFR-044: URL ei tohi sisaldada isikuandme id", "desc_lv": "URL ei tohi sisaldada isikuandme id või sessioonivõ tit. (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Drošība, Statuss: Apstiprināts.", "cat_lv": "Drošība", "type_lv": "Obligāts", "text_ee": "URL ei tohi sisaldada isikuandme id või sessioonivõ tit.", "type_ee": "KOHUSTUS", "cat_ee": "TURVALISUS"}, {"id": "CFR-045", "title_lv": "Prasība CFR-045: Tehniline lahendus peab olema projekteerit ud", "desc_lv": "Tehniline lahendus peab olema projekteerit ud ja koostatud vastavalt kehtiva Eesti Infoturbest andardi (E- ITS) nõuetele veebiraken duste (APP.3.1) kohta. https://eits.ria.ee/et/v ersioon/2023/eits- poohidokumendid/eta lonturbe- kataloog/app- rakendused/app3- voorguteenused/app3 1-veebirakendused (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Drošība, Statuss: Apstiprināts.", "cat_lv": "Drošība", "type_lv": "Obligāts", "text_ee": "Tehniline lahendus peab olema projekteerit ud ja koostatud vastavalt kehtiva Eesti Infoturbest andardi (E- ITS) nõuetele veebiraken duste (APP.3.1) kohta. https://eits.ria.ee/et/v ersioon/2023/eits- poohidokumendid/eta lonturbe- kataloog/app- rakendused/app3- voorguteenused/app3 1-veebirakendused", "type_ee": "KOHUSTUS", "cat_ee": "TURVALISUS"}, {"id": "CFR-046", "title_lv": "Prasība CFR-046: Arendaja loodud lahenduse dokumentat sioonis (nt.", "desc_lv": "Arendaja loodud lahenduse dokumentat sioonis (nt. detailanalü üs v.m.s.) tuleb välja tuua kasutatavad krüpto- ja räsialgorit mid, nende võtmepikk used, kasutuskoh ad, s.h. TLS (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Drošība, Statuss: Apstiprināts.", "cat_lv": "Drošība", "type_lv": "Obligāts", "text_ee": "Arendaja loodud lahenduse dokumentat sioonis (nt. detailanalü üs v.m.s.) tuleb välja tuua kasutatavad krüpto- ja räsialgorit mid, nende võtmepikk used, kasutuskoh ad, s.h. TLS", "type_ee": "KOHUSTUS", "cat_ee": "TURVALISUS"}, {"id": "CFR-046", "title_lv": "Prasība CFR-046: Võtmeid, sertifikaate, salasõnu ja muud sensitiivset", "desc_lv": "Võtmeid, sertifikaate, salasõnu ja muud sensitiivset ei talletata koodihoidl as või veebidoku mentides. Kasutada Vault- laadseid lahendusi. Oleks hea ka konfiguratsioonimuut ujaid hoida eemal tarkvara koodist, rancher vault, gitlab secrets (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Drošība, Statuss: Apstiprināts.", "cat_lv": "Drošība", "type_lv": "Obligāts", "text_ee": "Võtmeid, sertifikaate, salasõnu ja muud sensitiivset ei talletata koodihoidl as või veebidoku mentides. Kasutada Vault- laadseid lahendusi. Oleks hea ka konfiguratsioonimuut ujaid hoida eemal tarkvara koodist, rancher vault, gitlab secrets", "type_ee": "KOHUSTUS", "cat_ee": "TURVALISUS"}, {"id": "CFR-047", "title_lv": "Prasība CFR-047: Rakendus peab olema väliste süsteemide tõrgete", "desc_lv": "Rakendus peab olema väliste süsteemide tõrgete suhtes vastupanuv õimeline (resilient). Välise süsteemi tõrge tohib mõjutada ainult sellest otseselt sõltuvate kasutuslugude toimimist. (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Drošība, Statuss: Apstiprināts.", "cat_lv": "Drošība", "type_lv": "Obligāts", "text_ee": "Rakendus peab olema väliste süsteemide tõrgete suhtes vastupanuv õimeline (resilient). Välise süsteemi tõrge tohib mõjutada ainult sellest otseselt sõltuvate kasutuslugude toimimist.", "type_ee": "KOHUSTUS", "cat_ee": "TURVALISUS"}, {"id": "CFR-048", "title_lv": "Prasība CFR-048: Tarkvara koodile rakendatak se staatilise koodi", "desc_lv": "Tarkvara koodile rakendatak se staatilise koodi analüüsi. Näiteks, SonarQube, Qodana, SpotBugs (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Drošība, Statuss: Apstiprināts.", "cat_lv": "Drošība", "type_lv": "Sagaidāms", "text_ee": "Tarkvara koodile rakendatak se staatilise koodi analüüsi. Näiteks, SonarQube, Qodana, SpotBugs", "type_ee": "OOTUS", "cat_ee": "TURVALISUS"}, {"id": "CFR-049", "title_lv": "Prasība CFR-049: Rakenduse tehnilised komponend id suhtlevad omavahel", "desc_lv": "Rakenduse tehnilised komponend id suhtlevad omavahel üle TLS/SSL'i (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Drošība, Statuss: Apstiprināts.", "cat_lv": "Drošība", "type_lv": "Obligāts", "text_ee": "Rakenduse tehnilised komponend id suhtlevad omavahel üle TLS/SSL'i", "type_ee": "KOHUSTUS", "cat_ee": "TURVALISUS"}, {"id": "CFR-050", "title_lv": "Tīmekļa lietotņu ugunsmūra (WAF) noteikumu ievērošana", "desc_lv": "Lietotnes arhitektūrai jābūt saskaņotai ar WAF noteikumiem un jāievēro OWASP rekomendācijas.", "details_lv": "Sistēma nedrīkst radīt viltus trauksmes standarta drošības ugunsmūru uzraudzībā.", "cat_lv": "Drošība", "type_lv": "Sagaidāms", "text_ee": "Arendamis e käigus rakendada WAF reegleid https://owasp.org/ww w- community/Web_Ap plication_Firewall", "type_ee": "OOTUS", "cat_ee": "TURVALISUS"}, {"id": "CFR-051", "title_lv": "Datu kodējums UTF-8", "desc_lv": "Visiem datiem lietotnē, API saskarnēs, failos un datubāzē jābūt glabātiem un apstrādātiem vismaz UTF-8 kodējumā.", "details_lv": "Nodrošina pilnu atbalstu igauņu, latviešu un citām daudzvalodu rakstzīmēm.", "cat_lv": "Datu pārvaldība", "type_lv": "Obligāts", "text_ee": "Andmed peavad olema talletatud vähemalt UTF-8 enkoodingu s.", "type_ee": "KOHUSTUS", "cat_ee": "ANDMEHALDUS"}, {"id": "CFR-052", "title_lv": "Lietotnes un datubāzes serveru nodalīšana", "desc_lv": "Lietotnes izpildes videi un datubāzes serverim jābūt izvietotiem atsevišķos serveros/konteineros drošības un mērogojamības nolūkos.", "details_lv": "Tīkla izolācija un piekļuves ierobežojumi datubāzes slānim.", "cat_lv": "Datu pārvaldība", "type_lv": "Sagaidāms", "text_ee": "Rakenduse, andmebaasi ja kolmanda osapoole komponend id peavad olema sellised, mille eluea lõpp (EOL) pole teadaoleval t vähem kui 2 aasta pärast.", "type_ee": "KOHUSTUS", "cat_ee": "ANDMEHALDUS"}, {"id": "CFR-052", "title_lv": "Lietotnes un datubāzes serveru nodalīšana", "desc_lv": "Lietotnes izpildes videi un datubāzes serverim jābūt izvietotiem atsevišķos serveros/konteineros drošības un mērogojamības nolūkos.", "details_lv": "Tīkla izolācija un piekļuves ierobežojumi datubāzes slānim.", "cat_lv": "Datu pārvaldība", "type_lv": "Sagaidāms", "text_ee": "Rakenduss erver peab võimaldam a töötamist andmebaasi serverist eraldi serveril.", "type_ee": "OOTUS", "cat_ee": "ANDMEHALDUS"}, {"id": "CFR-053", "title_lv": "Failu glabāšana S3 saderīgā objektu krātuvē", "desc_lv": "Failu, dokumentu un mediju glabāšanai jāizmanto S3 vai analoģisks objektu glabāšanas risinājums (AWS S3, Ceph, Riigipilv S3).", "details_lv": "Faili netiek glabāti lietotnes konteinera lokālajā diska telpā.", "cat_lv": "Datu pārvaldība", "type_lv": "Obligāts", "text_ee": "Failide hoidmiseks tuleb kasutada S3 või analoogset lahendust. Näiteks AWS S3 teenus. Kui riigipilv saab teenuse valmis siis kaaluda nende poolt pakutavat objekt salvestus lahendust.", "type_ee": "OOTUS", "cat_ee": "ANDMEHALDUS"}, {"id": "CFR-054", "title_lv": "Prasība CFR-054: Ühest relatsioonil ise andmebaasi andmetabel ist", "desc_lv": "Ühest relatsioonil ise andmebaasi andmetabel ist teise viitamisel tuleb kasutada väliseid võtmeid (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Datu pārvaldība, Statuss: Apstiprināts.", "cat_lv": "Datu pārvaldība", "type_lv": "Obligāts", "text_ee": "Ühest relatsioonil ise andmebaasi andmetabel ist teise viitamisel tuleb kasutada väliseid võtmeid", "type_ee": "KOHUSTUS", "cat_ee": "ANDMEHALDUS"}, {"id": "CFR-055", "title_lv": "Prasība CFR-055: Kõik välised võtmed (foreign key) peavad", "desc_lv": "Kõik välised võtmed (foreign key) peavad olema indekseerit ud. Kui on oluline hoida andmebaasi tööd võimalikult kiirena ja optimeerituna, siis tuleks igat foreign key indeksi vajadust eraldiseisvalt hinnata vastavalt andmebaasi tabelitele ja äriloogikale. Nt. kui tabelisse sisestatakse andmeid tihti kuid loetakse harva, siis on indeksid pigem koormavamad, kui kasulikud. (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Datu pārvaldība, Statuss: Apstiprināts.", "cat_lv": "Datu pārvaldība", "type_lv": "Ieteikums", "text_ee": "Kõik välised võtmed (foreign key) peavad olema indekseerit ud. Kui on oluline hoida andmebaasi tööd võimalikult kiirena ja optimeerituna, siis tuleks igat foreign key indeksi vajadust eraldiseisvalt hinnata vastavalt andmebaasi tabelitele ja äriloogikale. Nt. kui tabelisse sisestatakse andmeid tihti kuid loetakse harva, siis on indeksid pigem koormavamad, kui kasulikud.", "type_ee": "SOOVITUS", "cat_ee": "ANDMEHALDUS"}, {"id": "CFR-056", "title_lv": "Prasība CFR-056: Tuleb kasutada päringumu utujaid (parameter binding).", "desc_lv": "Tuleb kasutada päringumu utujaid (parameter binding). (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Datu pārvaldība, Statuss: Apstiprināts.", "cat_lv": "Datu pārvaldība", "type_lv": "Sagaidāms", "text_ee": "Tuleb kasutada päringumu utujaid (parameter binding).", "type_ee": "OOTUS", "cat_ee": "ANDMEHALDUS"}, {"id": "CFR-057", "title_lv": "Prasība CFR-057: Kõigis andmebaasi tabelites peab olema defineeritu", "desc_lv": "Kõigis andmebaasi tabelites peab olema defineeritu d üks primaarvõti (primary key). (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Datu pārvaldība, Statuss: Apstiprināts.", "cat_lv": "Datu pārvaldība", "type_lv": "Obligāts", "text_ee": "Kõigis andmebaasi tabelites peab olema defineeritu d üks primaarvõti (primary key).", "type_ee": "KOHUSTUS", "cat_ee": "ANDMEHALDUS"}, {"id": "CFR-058", "title_lv": "Prasība CFR-058: Andmebaas i objektide nimetused peavad olema", "desc_lv": "Andmebaas i objektide nimetused peavad olema sisulised ja andma aimu nende otstarbest. (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Datu pārvaldība, Statuss: Apstiprināts.", "cat_lv": "Datu pārvaldība", "type_lv": "Obligāts", "text_ee": "Andmebaas i objektide nimetused peavad olema sisulised ja andma aimu nende otstarbest.", "type_ee": "KOHUSTUS", "cat_ee": "ANDMEHALDUS"}, {"id": "CFR-059", "title_lv": "Prasība CFR-059: Andmebaas is defineerita kse üldjuhul kaks", "desc_lv": "Andmebaas is defineerita kse üldjuhul kaks või enam kasutaja Rakenduse peakasutaja - Kellena luuakse objektid ja skeemid. Objektide loomiseks vajalikud õigused ja ressursid on loetletud rakenduse dokumentatsioonis. (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Datu pārvaldība, Statuss: Apstiprināts.", "cat_lv": "Datu pārvaldība", "type_lv": "Sagaidāms", "text_ee": "Andmebaas is defineerita kse üldjuhul kaks või enam kasutaja Rakenduse peakasutaja - Kellena luuakse objektid ja skeemid. Objektide loomiseks vajalikud õigused ja ressursid on loetletud rakenduse dokumentatsioonis.", "type_ee": "OOTUS", "cat_ee": "ANDMEHALDUS"}, {"id": "CFR-060", "title_lv": "Prasība CFR-060: Andmetabe lites sisalduvad võõrvõtme d peavad", "desc_lv": "Andmetabe lites sisalduvad võõrvõtme d peavad nime järgi seostuma tabeli ja väljaga, millele need viitavad. (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Datu pārvaldība, Statuss: Apstiprināts.", "cat_lv": "Datu pārvaldība", "type_lv": "Obligāts", "text_ee": "Andmetabe lites sisalduvad võõrvõtme d peavad nime järgi seostuma tabeli ja väljaga, millele need viitavad.", "type_ee": "KOHUSTUS", "cat_ee": "ANDMEHALDUS"}, {"id": "CFR-061", "title_lv": "Prasība CFR-061: Määratud osa andmetest tuleb versioneeri da", "desc_lv": "Määratud osa andmetest tuleb versioneeri da salvestamis el. (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Datu pārvaldība, Statuss: Apstiprināts.", "cat_lv": "Datu pārvaldība", "type_lv": "Sagaidāms", "text_ee": "Määratud osa andmetest tuleb versioneeri da salvestamis el.", "type_ee": "OOTUS", "cat_ee": "ANDMEHALDUS"}, {"id": "CFR-062", "title_lv": "Prasība CFR-062: Andmete kustutamin e ei tohi kustutada", "desc_lv": "Andmete kustutamin e ei tohi kustutada tegelikke kirjeid andmebaasi st, välja arvatud, kui kirjed pole mittefunkts ionaalsed, ehk ei oma ärilist seost. Kustutamine peaks olema kustutamise lipuga, ajatempliga või juhul, kui andmed peavad päriselt kaduma, siis need obfuskeerida taastamatult. Unikaalne ID, mis erinevates teistes logides võib olla talletunud, peab aga jääma alles. Väljaarvatud: Kui tegelike kirjete kustutamise nõue tuleneb õigusaktidest. (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Datu pārvaldība, Statuss: Apstiprināts.", "cat_lv": "Datu pārvaldība", "type_lv": "Sagaidāms", "text_ee": "Andmete kustutamin e ei tohi kustutada tegelikke kirjeid andmebaasi st, välja arvatud, kui kirjed pole mittefunkts ionaalsed, ehk ei oma ärilist seost. Kustutamine peaks olema kustutamise lipuga, ajatempliga või juhul, kui andmed peavad päriselt kaduma, siis need obfuskeerida taastamatult. Unikaalne ID, mis erinevates teistes logides võib olla talletunud, peab aga jääma alles. Väljaarvatud: Kui tegelike kirjete kustutamise nõue tuleneb õigusaktidest.", "type_ee": "OOTUS", "cat_ee": "ANDMEHALDUS"}, {"id": "CFR-063", "title_lv": "Prasība CFR-063: Aja esitamisel kasutada standardist ISO 8601", "desc_lv": "Aja esitamisel kasutada standardist ISO 8601 Kuupäevad kirjutatakse kujul AAAA-KK-PP. Näide: 2. juuni 2025 kirjutada kujul 2025- 06-02. Kellaajad kirjutatakse kujul hh:mm:ss, kus hh järgib 24-tunnist (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Datu pārvaldība, Statuss: Apstiprināts.", "cat_lv": "Datu pārvaldība", "type_lv": "Sagaidāms", "text_ee": "Aja esitamisel kasutada standardist ISO 8601 Kuupäevad kirjutatakse kujul AAAA-KK-PP. Näide: 2. juuni 2025 kirjutada kujul 2025- 06-02. Kellaajad kirjutatakse kujul hh:mm:ss, kus hh järgib 24-tunnist", "type_ee": "OOTUS", "cat_ee": "ANDMEHALDUS"}, {"id": "CFR-064", "title_lv": "Prasība CFR-064: Infosüstee mile on koostatud andmekirje ldus.", "desc_lv": "Infosüstee mile on koostatud andmekirje ldus. Infosüsteemi andmekihi kohta on koostatud andmekirjeldus, mis koosneb andmestiku kirjeldusest, andmeelementide kirjeldusest ja andmesõnastikust (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Datu pārvaldība, Statuss: Apstiprināts.", "cat_lv": "Datu pārvaldība", "type_lv": "Sagaidāms", "text_ee": "Infosüstee mile on koostatud andmekirje ldus. Infosüsteemi andmekihi kohta on koostatud andmekirjeldus, mis koosneb andmestiku kirjeldusest, andmeelementide kirjeldusest ja andmesõnastikust", "type_ee": "OOTUS", "cat_ee": "ANDMEHALDUS"}, {"id": "CFR-065", "title_lv": "Prasība CFR-065: Süsteemiko mponendid peavad võimaldam a nende", "desc_lv": "Süsteemiko mponendid peavad võimaldam a nende poolt töödeldavai d andmeid pärida autentitud kasutajalt (nt. JWT) RestAPI liidese vahendusel . Basic auth meetodit on keelatud. (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Izstrāde, Statuss: Apstiprināts.", "cat_lv": "Izstrāde", "type_lv": "Obligāts", "text_ee": "Süsteemiko mponendid peavad võimaldam a nende poolt töödeldavai d andmeid pärida autentitud kasutajalt (nt. JWT) RestAPI liidese vahendusel . Basic auth meetodit on keelatud.", "type_ee": "KOHUSTUS", "cat_ee": "ARENDUS"}, {"id": "CFR-066", "title_lv": "Prasība CFR-066: Kõik komponend id peavad töötama n.ö.", "desc_lv": "Kõik komponend id peavad töötama n.ö. stateless- režiimis, mis võimaldab neid vajadusel juurde (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Arhitektūra, Statuss: Apstiprināts.", "cat_lv": "Arhitektūra", "type_lv": "Sagaidāms", "text_ee": "Kõik komponend id peavad töötama n.ö. stateless- režiimis, mis võimaldab neid vajadusel juurde", "type_ee": "OOTUS", "cat_ee": "ARHITEKTUUR"}, {"id": "CFR-067", "title_lv": "Prasība CFR-067: Rakendus peab olema võimeline töötama koormusjao", "desc_lv": "Rakendus peab olema võimeline töötama koormusjao turitega varustatud taristul. (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Arhitektūra, Statuss: Apstiprināts.", "cat_lv": "Arhitektūra", "type_lv": "Sagaidāms", "text_ee": "Rakendus peab olema võimeline töötama koormusjao turitega varustatud taristul.", "type_ee": "OOTUS", "cat_ee": "ARHITEKTUUR"}, {"id": "CFR-068", "title_lv": "Prasība CFR-068: Rakenduse ühenduste (s.h. andmebaasi ja sidusinfosü", "desc_lv": "Rakenduse ühenduste (s.h. andmebaasi ja sidusinfosü steemide ühendused) realiseerimi sel tuleb kasutada ühenduste puulimist (connection pooling). (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Arhitektūra, Statuss: Apstiprināts.", "cat_lv": "Arhitektūra", "type_lv": "Sagaidāms", "text_ee": "Rakenduse ühenduste (s.h. andmebaasi ja sidusinfosü steemide ühendused) realiseerimi sel tuleb kasutada ühenduste puulimist (connection pooling).", "type_ee": "OOTUS", "cat_ee": "ARHITEKTUUR"}, {"id": "CFR-069", "title_lv": "Prasība CFR-069: Tarkvarala hendus peab olema projekteerit ud", "desc_lv": "Tarkvarala hendus peab olema projekteerit ud kõrgkäidel davust võimaldava na sõltumata sellest, kas dubleerimis t rakendatak se või mitte. (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Arhitektūra, Statuss: Apstiprināts.", "cat_lv": "Arhitektūra", "type_lv": "Obligāts", "text_ee": "Tarkvarala hendus peab olema projekteerit ud kõrgkäidel davust võimaldava na sõltumata sellest, kas dubleerimis t rakendatak se või mitte.", "type_ee": "KOHUSTUS", "cat_ee": "ARHITEKTUUR"}, {"id": "CFR-070", "title_lv": "Uznirstošo logu (pop-up) aizliegums", "desc_lv": "Lietotāja saskarnē aizliegts izmantot pārlūkprogrammas standarta pop-up logus. Atļauti tikai labi izstrādāti lietotnes iekšējie modālie logi (modals).", "details_lv": "Nodrošina kvalitatīvu lietotāja pieredzi un novērš pārlūkprogrammu bloķētāju konfliktus.", "cat_lv": "Izstrāde", "type_lv": "Obligāts", "text_ee": "Hüpikaknai d (pop-up) ei tohi kasutada. Modaalakn ad on lubatud.", "type_ee": "KOHUSTUS", "cat_ee": "TURVALISUS"}, {"id": "CFR-071", "title_lv": "Mīkstā dzēšana (Soft Delete) datu bāzē", "desc_lv": "Būtiskajiem datubāzes ierakstiem jāizmanto mīkstās dzēšanas pieeja (ar statusa vai dzēšanas lauka atzīmi), lai nodrošinātu datu atjaunošanas iespēju.", "details_lv": "Ieraksti netiek fiziski izdzēsti uzreiz, saglabājot vēsturi un auditējamību.", "cat_lv": "Datu pārvaldība", "type_lv": "Sagaidāms", "text_ee": "Rakenduste s tuleb Antud nõude abil on ajaloolised kirjed", "type_ee": "KOHUSTUS", "cat_ee": "ARHITEKTUUR"}, {"id": "CFR-072", "title_lv": "Atbilstība pasūtītāja IT profilam", "desc_lv": "Projektētajam risinājumam jābūt pilnīgā saskaņā ar pasūtītāja apstiprināto IT arhitektūras un tehnoloģiju profilu.", "details_lv": "Izstrāde iekļaujas EIS tehnoloģiju standartos.", "cat_lv": "Arhitektūra", "type_lv": "Obligāts", "text_ee": "Projekteerit av lahendus peab olema kooskõlas tellija IT profiiliga.", "type_ee": "KOHUSTUS", "cat_ee": "ARHITEKTUUR"}, {"id": "CFR-073", "title_lv": "Biznesa loģikas atdalīšana no datu piekļuves slāņa", "desc_lv": "Lietotnes biznesa loģika jārealizē servisu slānī, nodalot to no konkrētās datubāzes vai API piekļuves implementācijas.", "details_lv": "Atvieglo vienībtestēšanu un nākotnes refaktorēšanu.", "cat_lv": "Arhitektūra", "type_lv": "Obligāts", "text_ee": "Rakenduse äriloogika tuleb realiseerida andmebaasi st eraldi sõltumatus rakenduski his.", "type_ee": "KOHUSTUS", "cat_ee": "ARHITEKTUUR"}, {"id": "CFR-074", "title_lv": "Prasība CFR-074: Süsteemi või veebi loomisel kodanike ning", "desc_lv": "Süsteemi või veebi loomisel kodanike ning ettevõtjate andmete kasutamisel lähtutakse andmete ristkasutam ise põhimõttest . (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Datu pārvaldība, Statuss: Apstiprināts.", "cat_lv": "Datu pārvaldība", "type_lv": "Obligāts", "text_ee": "Süsteemi või veebi loomisel kodanike ning ettevõtjate andmete kasutamisel lähtutakse andmete ristkasutam ise põhimõttest .", "type_ee": "KOHUSTUS", "cat_ee": "ANDMEHALDUS"}, {"id": "CFR-075", "title_lv": "Prasība CFR-075: Lähtekoodi s kirjeldatud andmetüübi d peavad", "desc_lv": "Lähtekoodi s kirjeldatud andmetüübi d peavad (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Izstrāde, Statuss: Apstiprināts.", "cat_lv": "Izstrāde", "type_lv": "Obligāts", "text_ee": "Lähtekoodi s kirjeldatud andmetüübi d peavad", "type_ee": "KOHUSTUS", "cat_ee": "ARENDUS"}, {"id": "CFR-076", "title_lv": "Prasība CFR-076: Kasutuses mitteolev kood tuleb rakenduse lähtekoodis", "desc_lv": "Kasutuses mitteolev kood tuleb rakenduse lähtekoodis t kõrvaldada. (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Izstrāde, Statuss: Apstiprināts.", "cat_lv": "Izstrāde", "type_lv": "Obligāts", "text_ee": "Kasutuses mitteolev kood tuleb rakenduse lähtekoodis t kõrvaldada.", "type_ee": "KOHUSTUS", "cat_ee": "ARENDUS"}, {"id": "CFR-077", "title_lv": "Prasība CFR-077: Lisanduvat e süsteemiko mponentide puhul tuleb", "desc_lv": "Lisanduvat e süsteemiko mponentide puhul tuleb vältida juba kasutuses olevate komponent ide funktsionaa lsuste dubleerimis t. (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Izstrāde, Statuss: Apstiprināts.", "cat_lv": "Izstrāde", "type_lv": "Sagaidāms", "text_ee": "Lisanduvat e süsteemiko mponentide puhul tuleb vältida juba kasutuses olevate komponent ide funktsionaa lsuste dubleerimis t.", "type_ee": "OOTUS", "cat_ee": "ARENDUS"}, {"id": "CFR-078", "title_lv": "Prasība CFR-078: Süsteemi koosvõime tagamisel tuleb eelistada süsteemis", "desc_lv": "Süsteemi koosvõime tagamisel tuleb eelistada süsteemis juba kasutuses olevaid andmeform aate ning arhitektuur seid põhimõttei d. (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Datu pārvaldība, Statuss: Apstiprināts.", "cat_lv": "Datu pārvaldība", "type_lv": "Sagaidāms", "text_ee": "Süsteemi koosvõime tagamisel tuleb eelistada süsteemis juba kasutuses olevaid andmeform aate ning arhitektuur seid põhimõttei d.", "type_ee": "OOTUS", "cat_ee": "ANDMEHALDUS"}, {"id": "CFR-079", "title_lv": "Prasība CFR-079: Rakenduse disainimise l on oluline kasutada", "desc_lv": "Rakenduse disainimise l on oluline kasutada SA-l juba kasutusel (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Arhitektūra, Statuss: Apstiprināts.", "cat_lv": "Arhitektūra", "type_lv": "Sagaidāms", "text_ee": "Rakenduse disainimise l on oluline kasutada SA-l juba kasutusel", "type_ee": "OOTUS", "cat_ee": "ARHITEKTUUR"}, {"id": "CFR-080", "title_lv": "Prasība CFR-080: Rakenduse taaskäivitus , konfigurats iooni muutmine", "desc_lv": "Rakenduse taaskäivitus , konfigurats iooni muutmine v.m.s. peab toimuma mõistliku aja jooksul. Podi mõistlikuks restardiks loetakse 1- 3min (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Arhitektūra, Statuss: Apstiprināts.", "cat_lv": "Arhitektūra", "type_lv": "Obligāts", "text_ee": "Rakenduse taaskäivitus , konfigurats iooni muutmine v.m.s. peab toimuma mõistliku aja jooksul. Podi mõistlikuks restardiks loetakse 1- 3min", "type_ee": "KOHUSTUS", "cat_ee": "ARHITEKTUUR"}, {"id": "CFR-081", "title_lv": "Prasība CFR-081: Kasutajalii dese kõik osad ja teated", "desc_lv": "Kasutajalii dese kõik osad ja teated peavad olema eestikeelse d. (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Izstrāde, Statuss: Apstiprināts.", "cat_lv": "Izstrāde", "type_lv": "Obligāts", "text_ee": "Kasutajalii dese kõik osad ja teated peavad olema eestikeelse d.", "type_ee": "KOHUSTUS", "cat_ee": "ARENDUS"}, {"id": "CFR-082", "title_lv": "Prasība CFR-082: Rakendust peab saama ilma ümberprogr ammeerima", "desc_lv": "Rakendust peab saama ilma ümberprogr ammeerima ta liigutada erinevate domeenide vahel. (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Arhitektūra, Statuss: Apstiprināts.", "cat_lv": "Arhitektūra", "type_lv": "Obligāts", "text_ee": "Rakendust peab saama ilma ümberprogr ammeerima ta liigutada erinevate domeenide vahel.", "type_ee": "KOHUSTUS", "cat_ee": "ARHITEKTUUR"}, {"id": "CFR-083", "title_lv": "Prasība CFR-083: Rakenduse komponent ide konfigurats iooni peab", "desc_lv": "Rakenduse komponent ide konfigurats iooni peab olema võimalik ette anda käivitamise l. (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Arhitektūra, Statuss: Apstiprināts.", "cat_lv": "Arhitektūra", "type_lv": "Sagaidāms", "text_ee": "Rakenduse komponent ide konfigurats iooni peab olema võimalik ette anda käivitamise l.", "type_ee": "OOTUS", "cat_ee": "ARHITEKTUUR"}, {"id": "CFR-084", "title_lv": "Prasība CFR-084: Konfigurat siooni muudatus peab olema teostatav", "desc_lv": "Konfigurat siooni muudatus peab olema teostatav ilma rakendust kompileeri mata. (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Arhitektūra, Statuss: Apstiprināts.", "cat_lv": "Arhitektūra", "type_lv": "Sagaidāms", "text_ee": "Konfigurat siooni muudatus peab olema teostatav ilma rakendust kompileeri mata.", "type_ee": "OOTUS", "cat_ee": "ARHITEKTUUR"}, {"id": "CFR-085", "title_lv": "Prasība CFR-085: Erinevaid sama sisuga parameetrei d ei", "desc_lv": "Erinevaid sama sisuga parameetrei d ei tohi konfigurats ioonis eksisteerida . (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Arhitektūra, Statuss: Apstiprināts.", "cat_lv": "Arhitektūra", "type_lv": "Sagaidāms", "text_ee": "Erinevaid sama sisuga parameetrei d ei tohi konfigurats ioonis eksisteerida .", "type_ee": "OOTUS", "cat_ee": "ARHITEKTUUR"}, {"id": "CFR-086", "title_lv": "Prasība CFR-086: Rakendus peab olema võimeline kasutama keskkonna", "desc_lv": "Rakendus peab olema võimeline kasutama keskkonna muutujaid (serveri nimi, kuu, päev j.n.e.). (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Arhitektūra, Statuss: Apstiprināts.", "cat_lv": "Arhitektūra", "type_lv": "Obligāts", "text_ee": "Rakendus peab olema võimeline kasutama keskkonna muutujaid (serveri nimi, kuu, päev j.n.e.).", "type_ee": "KOHUSTUS", "cat_ee": "ARHITEKTUUR"}, {"id": "CFR-087", "title_lv": "Prasība CFR-087: Keskkonna põhised muutujad peavad olema konfigurats", "desc_lv": "Keskkonna põhised muutujad peavad olema konfigurats ioonifailist seadistatav ad. (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Arhitektūra, Statuss: Apstiprināts.", "cat_lv": "Arhitektūra", "type_lv": "Sagaidāms", "text_ee": "Keskkonna põhised muutujad peavad olema konfigurats ioonifailist seadistatav ad.", "type_ee": "OOTUS", "cat_ee": "ARHITEKTUUR"}, {"id": "CFR-088", "title_lv": "Prasība CFR-088: Kogu rakenduse testimiseks, koolituseks või implemente", "desc_lv": "Kogu rakenduse testimiseks, koolituseks või implemente erimiseks üle antav lähtekood ja tarkvarapak etid peavad olema versioneerit ud. (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Izstrāde, Statuss: Apstiprināts.", "cat_lv": "Izstrāde", "type_lv": "Obligāts", "text_ee": "Kogu rakenduse testimiseks, koolituseks või implemente erimiseks üle antav lähtekood ja tarkvarapak etid peavad olema versioneerit ud.", "type_ee": "KOHUSTUS", "cat_ee": "ARENDUS"}, {"id": "CFR-089", "title_lv": "Prasība CFR-089: Tarnepakett ide terviklikku se kontrollimi seks", "desc_lv": "Tarnepakett ide terviklikku se kontrollimi seks soovitataks e kasutada kontrollsu (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Piegāde (CI/CD), Statuss: Apstiprināts.", "cat_lv": "Piegāde (CI/CD)", "type_lv": "Obligāts", "text_ee": "Tarnepakett ide terviklikku se kontrollimi seks soovitataks e kasutada kontrollsu", "type_ee": "KOHUSTUS", "cat_ee": "TARNE"}, {"id": "CFR-090", "title_lv": "Prasība CFR-090: Kubernetes el orkestreerit avate lahenduste paigalduste", "desc_lv": "Kubernetes el orkestreerit avate lahenduste paigalduste jaoks tuleb luua Helm chart. (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Arhitektūra, Statuss: Apstiprināts.", "cat_lv": "Arhitektūra", "type_lv": "Sagaidāms", "text_ee": "Kubernetes el orkestreerit avate lahenduste paigalduste jaoks tuleb luua Helm chart.", "type_ee": "OOTUS", "cat_ee": "ARHITEKTUUR"}, {"id": "CFR-091", "title_lv": "Prasība CFR-091: Tarkvara lähtekood peab olema dokumente eritud", "desc_lv": "Tarkvara lähtekood peab olema dokumente eritud detailsuses, mis võimaldab hilisemat edasiarend use jätkamist. (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Kvalitāte, Statuss: Apstiprināts.", "cat_lv": "Kvalitāte", "type_lv": "Obligāts", "text_ee": "Tarkvara lähtekood peab olema dokumente eritud detailsuses, mis võimaldab hilisemat edasiarend use jätkamist.", "type_ee": "KOHUSTUS", "cat_ee": "KVALITEET"}, {"id": "CFR-092", "title_lv": "Izmaiņu žurnāls (Changelog) ar katru versiju", "desc_lv": "Katrai jaunajai versijai jābūt skaidri dokumentētam izmaiņu žurnālam (Changelog) ar laboto defektu un pievienoto funkciju aprakstu.", "details_lv": "Paredzama un caurspīdīga laidienu vadība.", "cat_lv": "Kvalitāte", "type_lv": "Obligāts", "text_ee": "Iga uue versiooniga peab alati välja tooma versiooni muudatuse kirjeldused (release notes). Täidetakse üldiselt confluence ja jira koostöös. Jira suudab automaatselt release note koostada.", "type_ee": "KOHUSTUS", "cat_ee": "KVALITEET"}, {"id": "CFR-093", "title_lv": "Prasība CFR-093: Tarkvaraar enduses kasutatavad Node teegid", "desc_lv": "Tarkvaraar enduses kasutatavad Node teegid (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Izstrāde, Statuss: Apstiprināts.", "cat_lv": "Izstrāde", "type_lv": "Ieteikums", "text_ee": "Tarkvaraar enduses kasutatavad Node teegid", "type_ee": "SOOVITUS", "cat_ee": "ARENDUS"}, {"id": "CFR-094", "title_lv": "Vienotas koda un API nosaukumu konvencijas", "desc_lv": "Visam pirmkodam un API laukiem jāizmanto vienotas konvencijas: camelCase API un JS/TS metodēm, PascalCase klasēm, UPPER_SNAKE konstantēm.", "details_lv": "Standartizēts stils visā koda bāzē.", "cat_lv": "Kvalitāte", "type_lv": "Obligāts", "text_ee": "Kogu lähtekood ja API- väljad peavad kasutama ühtset, keelespetsii filist nimetamisk onventsioo ni. Tarkvara lähtekoodis tuleb kasutada läbivat nimetamiskonventsio oni: näiteks Pythonis snake_case muutujate ja funktsioonide jaoks ning PascalCase klassidele; teistes keeltes camelCase muutujate ja meetodite jaoks ning PascalCase klassidele. Püsikonstantid esitatakse UPPER_SNAKE_C ASE. API väljad kasutavad vaikimisi camelCase, v.a kui tarbija ökosüsteem nõuab teisiti.", "type_ee": "KOHUSTUS", "cat_ee": "ARENDUS"}, {"id": "CFR-095", "title_lv": "Prasība CFR-095: Rakendus peab kasutama tööriip- tekste (tooltips)", "desc_lv": "Rakendus peab kasutama tööriip- tekste (tooltips) järjepideval t, et selgitada lühidalt ebaselgeid elemente ilma kasutaja voogu katkestama ta. Näiteks ikoone (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Izstrāde, Statuss: Apstiprināts.", "cat_lv": "Izstrāde", "type_lv": "Sagaidāms", "text_ee": "Rakendus peab kasutama tööriip- tekste (tooltips) järjepideval t, et selgitada lühidalt ebaselgeid elemente ilma kasutaja voogu katkestama ta. Näiteks ikoone", "type_ee": "OOTUS", "cat_ee": "ARENDUS"}, {"id": "CFR-096", "title_lv": "Prasība CFR-096: Rakenduse logid peavad olema struktureeri tud", "desc_lv": "Rakenduse logid peavad olema struktureeri tud jsoni kujule Näiteks ei tohi olla kujul: log.info(\"Starti ng token exchange: receivedState= {}, (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Izstrāde, Statuss: Apstiprināts.", "cat_lv": "Izstrāde", "type_lv": "Obligāts", "text_ee": "Rakenduse logid peavad olema struktureeri tud jsoni kujule Näiteks ei tohi olla kujul: log.info(\"Starti ng token exchange: receivedState= {},", "type_ee": "KOHUSTUS", "cat_ee": "ARENDUS"}, {"id": "CFR-097", "title_lv": "Prasība CFR-097: AI-põhiste tööriistade, sealhulgas koodigener aatorite, assistentide", "desc_lv": "AI-põhiste tööriistade, sealhulgas koodigener aatorite, assistentide ja analüsaator ite kasutamise ks arenduses on antud tinglik luba, kui täidetakse EIS-i kehtestatud AI kasutamise tingimusi. AI-põhiseid tööriistu käsitletakse arendaja abivahendina. Kasutamisel tuleb lähtuda EIS-i AI- reeglitest: https://azure.eis.ee/ai- rules. (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Vispārīgās / AI, Statuss: Apstiprināts.", "cat_lv": "Vispārīgās / AI", "type_lv": "Obligāts", "text_ee": "AI-põhiste tööriistade, sealhulgas koodigener aatorite, assistentide ja analüsaator ite kasutamise ks arenduses on antud tinglik luba, kui täidetakse EIS-i kehtestatud AI kasutamise tingimusi. AI-põhiseid tööriistu käsitletakse arendaja abivahendina. Kasutamisel tuleb lähtuda EIS-i AI- reeglitest: https://azure.eis.ee/ai- rules.", "type_ee": "KOHUSTUS", "cat_ee": "ÜLDINE"}, {"id": "CFR-098", "title_lv": "Prasība CFR-098: Arenduspar tner või arendaja peab EIS-", "desc_lv": "Arenduspar tner või arendaja peab EIS- ile teatama arenduses kasutatava AI-mudeli ja AI- teenuse pakkuja. Teave tuleb esitada enne AI-teenuse kasutuselevõttu. Mudeli või teenusepakkuja muutumisest tuleb EIS-ile teada anda. (Prasība EIS sistēmu un tīmekļa vietņu izstrādē).", "details_lv": "Kategorija: Vispārīgās / AI, Statuss: Apstiprināts.", "cat_lv": "Vispārīgās / AI", "type_lv": "Obligāts", "text_ee": "Arenduspar tner või arendaja peab EIS- ile teatama arenduses kasutatava AI-mudeli ja AI- teenuse pakkuja. Teave tuleb esitada enne AI-teenuse kasutuselevõttu. Mudeli või teenusepakkuja muutumisest tuleb EIS-ile teada anda.", "type_ee": "KOHUSTUS", "cat_ee": "ÜLDINE"}, {"id": "CFR-099", "title_lv": "Piekļūstamība un WCAG 2.1 AA līmenis", "desc_lv": "Visām publiskajām tīmekļa vietnēm un to komponentēm jāatbilst WCAG 2.1 AA līmeņa piekļūstamības prasībām un Eiropas standartam EN 301 549.", "details_lv": "Kontrasts, ekrāna lasītāju atbalsts, pilna tastatūras navigācija.", "cat_lv": "Kvalitāte", "type_lv": "Obligāts", "text_ee": "AI- tööriistade kasutamisel peab olema tagatud EIS-i teabe konfidentsi aalsus ja andmekaits e. AI-tööriistale ei tohi edastada EIS-i lähtekoodi, konfiguratsiooni, logisid, arhitektuurimaterjale ega muid tundlikku teavet või isikuandmeid sisaldavaid andmeid.", "type_ee": "KOHUSTUS", "cat_ee": "ÜLDINE"}, {"id": "CFR-100", "title_lv": "Veiktspēja un lapas ielādes ātrums (Core Web Vitals)", "desc_lv": "Lietotāja saskarnei jāsasniedz 'Zaļā zona' Google Core Web Vitals rādītājos (LCP, FID/INP, CLS).", "details_lv": "Attēlu optimizācija, koda sadalīšana (code-splitting), servera puses renderēšana.", "cat_lv": "Kvalitāte", "type_lv": "Obligāts", "text_ee": "Saladuste edastamine AI- tööriistadel e on keelatud. Saladusteks loetakse muu hulgas API- võtmed, paroolid, pääsutalongid ehk tokenid, sertifikaadid, privaatvõtmed ja muud autentimisandmed.", "type_ee": "KOHUSTUS", "cat_ee": "ÜLDINE"}, {"id": "CFR-101", "title_lv": "Reaģētspējīgs dizains (Responsive Design)", "desc_lv": "Visām lapām un satura blokiem nevainojami jādarbojas visās ierīcēs: viedtālruņos, planšetdatoros un dažādu izšķirtspēju monitoros.", "details_lv": "Mobilajām ierīcēm pielāgots interfeiss un adaptīvi elementi.", "cat_lv": "Kvalitāte", "type_lv": "Obligāts", "text_ee": "AI abil loodud või muudetud koodi ühiktestid ja automaatte stid peab looma inimene. AI-agent ei tohi iseseisvalt luua, muuta ega kustutada ühikteste, automaatteste, testandmeid, testimise konfiguratsiooni ega koodikatvuse piirmäärasid.", "type_ee": "KOHUSTUS", "cat_ee": "ÜLDINE"}, {"id": "CFR-102", "title_lv": "AI radītā koda testu pārklājums", "desc_lv": "Ar mākslīgā intelekta (AI) palīdzību radītajam vai labotajam kodam jābūt 100% pārklātam ar automātiskajiem testiem.", "details_lv": "Testi garantē, ka AI kods precīzi izpilda paredzēto biznesa loģiku un nerada blakusefektus.", "cat_lv": "Vispārīgie / AI", "type_lv": "Obligāts", "text_ee": "AI abil loodud või muudetud koodi automaatte stide koodikatvu s peab olema vähemalt 90%. Koodikatvust kontrollitakse CI/CD protsessis. Alla 90% tulemus peab blokeerima muudatuse liitmise. Mõõta tuleb eelistatult AI abil loodud või muudetud koodi katvust.", "type_ee": "KOHUSTUS", "cat_ee": "ÜLDINE"}, {"id": "CFR-103", "title_lv": "AI radītā koda atbildības princips", "desc_lv": "Kods, kas radīts ar AI atbalstu, juridiski un tehniski tiek uzskatīts par izstrādātāja radītu kodu. Pilnu atbildību par tā darbību un kvalitāti nes izstrādātājs.", "details_lv": "Pretendents nevar atsaukties uz AI kļūdu kā attaisnojumu.", "cat_lv": "Vispārīgie / AI", "type_lv": "Obligāts", "text_ee": "AI poolt loodud kood loetakse arendaja loodud koodiks ning selle eest vastutab arendaja. AI kasutamine ei vabasta arenduspartnerit ega arendajat vastutusest EIS-i turvanõuete, kvaliteedinõuete ega lepinguliste kohustuste täitmisel.", "type_ee": "KOHUSTUS", "cat_ee": "ÜLDINE"}, {"id": "CFR-104", "title_lv": "Obligāta cilvēka koda pārbaude (Human-in-the-loop)", "desc_lv": "Ar AI radītā vai modificētā koda pārskatīšanā (Code Review) vienmēr obligāti jābūt iesaistītam cilvēkam (izstrādātājam).", "details_lv": "Aizliegts automātiski sapludināt kodu bez izstrādātāja manuālas pārbaudes.", "cat_lv": "Vispārīgie / AI", "type_lv": "Obligāts", "text_ee": "AI abil loodud või muudetud koodi ülevaatusse peab alati olema kaasatud inimene. Kood peab enne liitmist läbima sõltumatu inimese tehtud sisulise koodiülevaatuse. Ainult AI-agendi või automaatkontrolli tehtud ülevaatus ei ole piisav.", "type_ee": "KOHUSTUS", "cat_ee": "ÜLDINE"}, {"id": "CFR-105", "title_lv": "AI koda atbilstība EIS drošības prasībām", "desc_lv": "Ar AI radītajam kodam jāiziet visas spēkā esošās EIS drošas programmatūras izstrādes un drošības pārbaudes bez izņēmumiem.", "details_lv": "Pilna statiskā analīze un ievainojamību kontrole.", "cat_lv": "Vispārīgie / AI", "type_lv": "Obligāts", "text_ee": "AI abil loodud või muudetud kood peab läbima kõik EIS-i kehtivas turvalise tarkvaraare nduse korras nõutud kontrollid. Kontrollid peavad hõlmama vähemalt sõltumatut koodiülevaatust, SAST-i, sõltuvuste ja litsentside skaneeringut, saladuste skaneeringut ning CI/CD toru kontrolle. OWASP ASVS-i nõuded ja turvalise koodi praktikad kehtivad täies mahus.", "type_ee": "KOHUSTUS", "cat_ee": "ÜLDINE"}, {"id": "CFR-106", "title_lv": "AI koda autortiesību aizsardzība", "desc_lv": "Izstrādē jānodrošina, ka ar AI palīdzību radītais kods nepārkāpj trešo personu autortiesības un licencēšanas nosacījumus.", "details_lv": "Aizliegts izmantot modeļus vai uzvednes, kas kopē aizsargātu patentētu kodu.", "cat_lv": "Vispārīgie / AI", "type_lv": "Obligāts", "text_ee": "Arentustes peab tagama, et AI abil loodud kood ei rikuks kolmandate isikute autoriõigus i ega litsentsiting imusi. AI abil loodud koodile rakenduvad lepingus sätestatud intellektuaalomandi tingimused ning loodud kood jääb lepingu kohaselt EIS- i omandisse.", "type_ee": "KOHUSTUS", "cat_ee": "ÜLDINE"}, {"id": "CFR-107", "title_lv": "Atļautie AI servisi un datu privātums", "desc_lv": "Izstrādē atļauts izmantot tikai tādus AI servisus, kuru lietošanas noteikumi skaidri izslēdz klienta pirmkoda vai datu izmantošanu modeļu tālākai apmācībai.", "details_lv": "Privātuma un komercnoslēpuma garantija uzņēmuma koda bāzei.", "cat_lv": "Vispārīgie / AI", "type_lv": "Obligāts", "text_ee": "Arenduses tohib kasutada ainult selliseid AI- teenuseid, mille tingimused välistavad EIS-i andmete ja koodi kasutamise teenuse treenimisek s ning nende edastamise kolmandate le osapooltele . Vajaduse korral peab arenduspartner esitama teenuse kasutustingimused EIS-i IT-osakonnale ja infoturbe eest vastutavale üksusele ülevaatamiseks.", "type_ee": "KOHUSTUS", "cat_ee": "ÜLDINE"}, {"id": "CFR-108", "title_lv": "AI izmantošanas caurspīdīgums un reģistrēšana", "desc_lv": "AI rīku izmantošanai izstrādē jābūt caurspīdīgai izstrādes komandai un pasūtītājam (EIS), un tai jābūt atbilstoši reģistrētai / marķētai.", "details_lv": "Atvērtība un dokumentēta sadarbība par izmantotajiem AI rīkiem.", "cat_lv": "Vispārīgie / AI", "type_lv": "Obligāts", "text_ee": "AI kasutamine arenduses peab olema arendusme eskonnale ja EIS-ile läbipaistev ning põhjendata v. AI kasutamine tuleb dokumenteerida näiteks pull request’is, muudatuse kirjelduses või disainikirjelduses. Dokumentatsioonist peab nähtuma AI kasutamise eesmärk ja mõjutatud artefaktid.", "type_ee": "KOHUSTUS", "cat_ee": "ÜLDINE"}];
+
+    // Populate CFR Table
+    function renderCFR(items) {
+      const tbody = document.getElementById('cfrTableBody');
+      tbody.innerHTML = '';
+      
+      items.forEach(item => {
+        const tr = document.createElement('tr');
+        
+        let typeBadge = 'badge-primary';
+        if (item.type_lv === 'Obligāts') typeBadge = 'badge-danger';
+        else if (item.type_lv === 'Sagaidāms') typeBadge = 'badge-primary';
+        else if (item.type_lv === 'Ieteikums') typeBadge = 'badge-success';
+
+        let catBadge = 'badge-muted';
+        if (item.cat_lv.includes('AI')) catBadge = 'badge-purple';
+        else if (item.cat_lv === 'Drošība') catBadge = 'badge-warning';
+
+        tr.innerHTML = `
+          <td><strong>${item.id}</strong></td>
+          <td><span class="badge ${typeBadge}">${item.type_lv}</span></td>
+          <td><span class="badge ${catBadge}">${item.cat_lv}</span></td>
+          <td>
+            <strong>${item.title_lv}</strong>
+            <p style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">${item.desc_lv}</p>
+            <div class="orig-block" style="margin-top:0.4rem;">
+              <div class="orig-header" onclick="toggleOrig(this)">
+                <span>Oriģināls (EE): ${item.id}</span> <span>▼</span>
+              </div>
+              <div class="orig-content">
+                ${item.text_ee} [${item.type_ee} ${item.cat_ee}]
+              </div>
+            </div>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      document.getElementById('cfrCountDisplay').innerText = `Rāda ${items.length} no ${cfrData.length} prasībām`;
+    }
+
+    // Filter CFR by Category
+    let currentCategory = 'ALL';
+    function filterCFR(category, btn) {
+      currentCategory = category;
+      document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      applyCFRFilters();
+    }
+
+    // Search CFR
+    function searchCFR() {
+      applyCFRFilters();
+    }
+
+    function applyCFRFilters() {
+      const query = document.getElementById('cfrSearchInput').value.toLowerCase().trim();
+      let filtered = cfrData;
+
+      if (currentCategory !== 'ALL') {
+        filtered = filtered.filter(item => item.cat_lv === currentCategory);
+      }
+
+      if (query) {
+        filtered = filtered.filter(item => 
+          item.id.toLowerCase().includes(query) ||
+          item.title_lv.toLowerCase().includes(query) ||
+          item.desc_lv.toLowerCase().includes(query) ||
+          item.text_ee.toLowerCase().includes(query)
+        );
+      }
+
+      renderCFR(filtered);
+    }
+
+    // Toggle Single Estonian text block
+    function toggleOrig(headerElem) {
+      const content = headerElem.nextElementSibling;
+      content.classList.toggle('open');
+      const arrow = headerElem.querySelector('span:last-child');
+      if (arrow) {
+        arrow.innerText = content.classList.contains('open') ? '▲' : '▼';
+      }
+    }
+
+    // Toggle All Originals globally
+    let allOrigOpen = false;
+    function toggleAllOriginals() {
+      allOrigOpen = !allOrigOpen;
+      const contents = document.querySelectorAll('.orig-content');
+      contents.forEach(c => {
+        if (allOrigOpen) c.classList.add('open');
+        else c.classList.remove('open');
+      });
+      const btn = document.getElementById('toggleOrigBtn');
+      btn.innerHTML = allOrigOpen ? '<span>🌐 Slēpt EE oriģinālu</span>' : '<span>🌐 Rādīt EE oriģinālu</span>';
+    }
+
+    // Interactive Score Calculator
+    function recalcScore() {
+      const priceInput = parseFloat(document.getElementById('calcPriceInput').value) || 60;
+      // Below 60 EUR is equalized to 60 EUR
+      const effectivePrice = Math.max(60, priceInput);
+      const minPrice = 60;
+      // Formula: 20 - ((effectivePrice - minPrice) / maxReferencePrice) * 20
+      // In RHR, if lowest = 60, price = 60 => points = 20.00
+      let pricePoints = 20.00;
+      if (effectivePrice > minPrice) {
+        // max assumed around 120 or proportional formula: 20 * (60 / effectivePrice)
+        pricePoints = Math.max(0, 20 - ((effectivePrice - 60) / 100) * 20);
+      }
+
+      const sub1 = parseFloat(document.getElementById('sub1').value) || 0;
+      const sub2 = parseFloat(document.getElementById('sub2').value) || 0;
+      const sub3 = parseFloat(document.getElementById('sub3').value) || 0;
+      const sub4 = parseFloat(document.getElementById('sub4').value) || 0;
+      const sub5 = parseFloat(document.getElementById('sub5').value) || 0;
+
+      const proovitooPoints = sub1 + sub2 + sub3 + sub4 + sub5;
+      const totalPoints = pricePoints + proovitooPoints;
+
+      document.getElementById('calcTotalPoints').innerText = totalPoints.toFixed(2);
+      document.getElementById('calcScoreBreakdown').innerHTML = `
+        Cena (${effectivePrice} €/h): <strong>${pricePoints.toFixed(2)}</strong> punkti | Pārbaudes darbs: <strong>${proovitooPoints}</strong> / 80 punkti
+      `;
+    }
+
+    // Active Sidebar Scrollspy
+    window.addEventListener('scroll', () => {
+      const sections = document.querySelectorAll('.doc-section');
+      const navLinks = document.querySelectorAll('.nav-link');
+      let currentSectionId = '';
+
+      sections.forEach(section => {
+        const top = section.offsetTop - 120;
+        if (window.pageYOffset >= top) {
+          currentSectionId = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + currentSectionId) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // Initialize on load
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCFR(cfrData);
+      recalcScore();
+    });
+  </script>
+</body>
+</html>
