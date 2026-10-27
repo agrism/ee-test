@@ -67,6 +67,9 @@ export default function Footer() {
               <p>• WCAG 2.1 AA ligipääsetavus</p>
               <p>• Next.js App Router & Directus Headless CMS</p>
               <p>• Riigipilv Kubernetes & GitOps valmidus</p>
+              <a href="/dokumentacija" className="hover:text-white underline font-medium text-blue-300 block pt-1">
+                ➔ Iepirkuma dokumentācija (LV) & CFR
+              </a>
             </div>
           </div>
 

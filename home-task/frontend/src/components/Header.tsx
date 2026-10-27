@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Sparkles, Bot, Search } from 'lucide-react';
+import { Sparkles, Bot, Search, FileText } from 'lucide-react';
 
 export default function Header() {
   const pathname = usePathname();
@@ -27,7 +27,7 @@ export default function Header() {
         </Link>
 
         {/* Navigation Links */}
-        <nav className="hidden md:flex items-center gap-7">
+        <nav className="hidden md:flex items-center gap-6">
           <Link 
             href="/innoveeri-ja-kaitse-ari" 
             className={`text-sm font-semibold transition-colors py-2 border-b-2 ${
@@ -47,6 +47,15 @@ export default function Header() {
             <span>AI Asistent (MCP)</span>
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse ml-0.5"></span>
           </Link>
+
+          <a 
+            href="/dokumentacija" 
+            className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 text-slate-800 text-sm font-semibold rounded-lg hover:bg-slate-200 transition-colors"
+            title="Iepirkuma pilnā dokumentācija, 110 CFR un kalkulatori"
+          >
+            <FileText className="w-4 h-4 text-brand-blue" />
+            <span>Dokumentācija & CFR</span>
+          </a>
 
           <div className="flex items-center gap-1 bg-brand-gray-100 p-1 rounded-brand-sm text-xs font-bold text-brand-gray-600">
             <span className="px-2 py-0.5 bg-white text-brand-blue rounded shadow-xs">ET</span>
