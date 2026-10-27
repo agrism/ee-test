@@ -1,0 +1,43 @@
+name: Deploy EIS Proovitoo to Hetzner
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy to Hetzner Server
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Deploy via SSH
+        env:
+          SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_HOST: ${{ secrets.SSH_HOST || '65.21.182.7' }}
+          SSH_USER: ${{ secrets.SSH_USER || 'root' }}
+        run: |
+          if [ -z "$SSH_KEY" ]; then
+            echo "⚠️ SSH_PRIVATE_KEY is not configured in GitHub repository secrets."
+            echo "👉 Add SSH_PRIVATE_KEY in GitHub Repo Settings -> Secrets and variables -> Actions."
+            exit 1
+          fi
+
+          mkdir -p ~/.ssh
+          echo "$SSH_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H "$SSH_HOST" >> ~/.ssh/known_hosts
+
+          ssh -i ~/.ssh/id_rsa -o IdentitiesOnly=yes -o StrictHostKeyChecking=no "$SSH_USER@$SSH_HOST" << 'EOF'
+            set -e
+            echo "🚀 Starting automated deployment on Hetzner..."
+            cd /var/www/ee-test.kilograms.lv
+            git pull origin main
+            cd home-task
+            docker compose up -d --build
+            echo "🎉 Deployment successfully finished!"
+            docker compose ps
+          EOF
